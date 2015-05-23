@@ -1,0 +1,67 @@
+# Syntax: IdInJiffy=Section1/../SectionN
+# Spaces are allowed in any part of the line
+# Order of the sections in the report will replicate the order of lines here
+
+Работа-Total=Day Job
+Работа-Прогр=Day Job/Programming
+Работа-Отладк=Day Job/Debugging
+Работа=Day Job/Other
+
+ПисатАнг-Total=Writing
+ПисатАнг=Writing/In English
+ПисатАнг-ПрзПисат=Writing/In English/Novel
+ПисатАнг-ПрзПроч=Writing/In English/Novel/Other
+ПисатАнг-ПрзРедакт=Writing/In English/Novel/Editing
+ПисатАнг-ПрочПисат=Writing/In English/Other
+
+Блог-Total=Writing/Blog
+Блог-БлогПисат=Writing/Blog/Writing
+Блог=Writing/Blog/Other
+
+Чтение-Total=Learning/Reading
+Чтение-КнигиАнг=Learning/Reading/Books/In English
+Чтение-КнигиПисат=Learning/Reading/About Writing/Books
+Чтение-ПрочПисат=Learning/Reading/About Writing/Other
+Чтение-КнигиИсп=Learning/Reading/Books/In Spanish
+Чтение-ПрочЧтАнг=Learning/Reading/Other/In English
+Чтение-ПрочЧтИсп=Learning/Reading/Other/In Spanish
+Чтение-ПрочЧтРус=Learning/Reading/Other/In Russian
+
+Англ-Total=Learning/English
+Англ=Learning/English
+Англ-ПвтСлов=Learning/English/Vocabulary
+Англ-ГраматУпр=Learning/English/Grammar
+
+Прогр-Total=Learning/Programming
+Прогр-ВидеоТехн=Learning/Programming/Tech Video
+Прогр-ПрогрТренинг=Learning/Programming/Exercises
+Прогр-ЧтенТехн=Learning/Programming/Tech Reading
+Прогр=Learning/Programming/Other
+
+Аудио-Total=Learning/Audio
+Аудио-АКниги=Learning/Audio/Audio Books
+Аудио-Театр=Learning/Audio/Theater
+Аудио=Learning/Audio/Other
+
+Видео-Total=Learning/Video
+Видео=Learning/Video/Other
+Видео-ВидеоАнг=Learning/Video/In English
+Видео-ВидеоИсп=Learning/Video/In Spanish
+Видео-ВидеоРус=Learning/Video/In Russian
+
+Прочее-Переписка=Social/Correspondence
+
+Спорт-Total=Sport
+Спорт-БЖЖ=Sport/BJJ
+Спорт-Йога=Sport/Yoga
+Спорт-Силовая=Sport/Weightlifting
+Спорт-Разминка=Sport/Warmup
+Спорт=Sport/Other
+
+Самоорг-Total=Self-organization
+Самоорг-Отчеты=Self-organization/Reports
+Самоорг=Self-organization/Other
+
+Прочее-Фирма=Other/Startup
+Прочее-SibEDGE=Other/SibEDGE
+Прочее=Other/Other
