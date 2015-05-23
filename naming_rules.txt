@@ -9,7 +9,7 @@
 
 ПисатАнг-Total=Writing
 ПисатАнг=Writing/In English
-ПисатАнг-ПрзПисат=Writing/In English/Novel
+ПисатАнг-ПрзПисат=Writing/In English/Novel/Writing
 ПисатАнг-ПрзПроч=Writing/In English/Novel/Other
 ПисатАнг-ПрзРедакт=Writing/In English/Novel/Editing
 ПисатАнг-ПрочПисат=Writing/In English/Other
@@ -55,7 +55,7 @@
 Спорт-БЖЖ=Sport/BJJ
 Спорт-Йога=Sport/Yoga
 Спорт-Силовая=Sport/Weightlifting
-Спорт-Разминка=Sport/Warmup
+Спорт-Разминка=Sport/Warm-up
 Спорт=Sport/Other
 
 Самоорг-Total=Self-organization

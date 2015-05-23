@@ -24,11 +24,22 @@ class SectionStat:
                ", \"Pomodoros stat\": " + ("\"None\"" if self.pomodoros_stat is None else str(self.pomodoros_stat)) + "}"
 
 class PomodorosStat:
+    planned = 0
     done = 0
     broken = 0
     not_done = 0
 
+    def is_not_zero(self):
+        return self.planned > 0 or self.done > 0 or self.broken > 0 or self.not_done > 0
+
     def __repr__(self):
-        return "{\"Done\": " + str(self.done) + \
+        return "{\"Planned\": " + str(self.planned) + \
+               ", \"Done\": " + str(self.done) + \
                ", \"Broken\": " + str(self.broken) + \
                ", \"Not done\": " + str(self.not_done) + "}"
+
+    def __str__(self):
+        return "Pomodoros [Planned: " + str(self.planned) + \
+               ", Done: " + str(self.done) + \
+               ", Broken: " + str(self.broken) + \
+               ", Not done: " + str(self.not_done) + "]"
