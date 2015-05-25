@@ -7,7 +7,7 @@ naming_rules = {}
 
 if __name__ == '__main__':
     config = configparser.RawConfigParser()
-    config.read('reportgenerator.ini')
+    config.read('generator.ini')
     jiffy_report = config['Files']['jiffy_report_file']
 
     jiffy_csv_parser = jiffycsvparser.JiffyCSVParser(config)
