@@ -45,7 +45,7 @@ class JiffyCSVParser:
 
         if row[titles[self.column_name_extra]].isdigit():
             stat_object.extra += int(row[titles[self.column_name_extra]])
-        elif row[titles[self.column_name_extra]] != '':
+        elif row[titles[self.column_name_extra]] != '' and ID_DIV + ID_TOTAL not in row_id:
             stat_object.comments_list.append(row[titles[self.column_name_extra]])
 
     def load_file(self, filename):
