@@ -15,10 +15,11 @@ if __name__ == '__main__':
     jiffy_csv_parser.load_file(jiffy_report)
 
     report = reporting.Report()
-    report.create("Week", config['Files']['naming_rules_file'], jiffy_csv_parser.rows_stats_map)
+    report.create(config['ReportSpecific']['report_title'],
+                  config['Files']['naming_rules_file'], jiffy_csv_parser.rows_stats_map)
 
     html_report = htmlreport.HtmlReport()
     html_report.generate(report, config['Files']['out_html_report_file'],
-                                 config['Html']['before_report'],
-                                 config['Html']['after_report'])
+                         config['Html']['before_report'],
+                         config['Html']['after_report'])
 

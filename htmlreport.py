@@ -46,8 +46,10 @@ class HtmlReport:
     def generate(self, report, filename, before_report, after_report):
         html_file = open(filename, "w")
         html_file.write(before_report + '\n')
+        html_file.write('<center><h1>{}</h1></center>'.format(report.title))
         html_file.write('<ul>\n')
         self.traverse_and_save(html_file, report.root_section, 1)
         html_file.write('</ul>\n')
+        html_file.write('<br>' + '\n')
         html_file.write(after_report + '\n')
         html_file.close()

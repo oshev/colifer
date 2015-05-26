@@ -44,6 +44,7 @@ class Report:
 
     def create(self, name, naming_rules_filename, rows_stats_map):
         lines = [line.strip() for line in open(naming_rules_filename)]
+        self.title = name
         self.root_section = Section("Total")
         for row in lines:
             if row != '' and not row.startswith('#'):
