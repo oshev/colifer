@@ -18,5 +18,7 @@ if __name__ == '__main__':
     report.create("Week", config['Files']['naming_rules_file'], jiffy_csv_parser.rows_stats_map)
 
     html_report = htmlreport.HtmlReport()
-    html_report.generate(report, config['Files']['out_html_report_file'])
+    html_report.generate(report, config['Files']['out_html_report_file'],
+                                 config['Html']['before_report'],
+                                 config['Html']['after_report'])
 

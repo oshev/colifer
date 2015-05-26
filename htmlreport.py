@@ -25,8 +25,8 @@ class HtmlReport:
     @staticmethod
     def num_spaces(num):
         spaces = ''
-        for counter in range(1, num * 6):
-            spaces += ' '
+        for counter in range(1, num):
+            spaces += '\t'
         return spaces
 
     def traverse_and_save(self, html_file, section, level):
@@ -43,9 +43,11 @@ class HtmlReport:
 
         html_file.write(self.num_spaces(level) + '</ul>\n')
 
-    def generate(self, report, filename):
+    def generate(self, report, filename, before_report, after_report):
         html_file = open(filename, "w")
+        html_file.write(before_report + '\n')
         html_file.write('<ul>\n')
         self.traverse_and_save(html_file, report.root_section, 1)
         html_file.write('</ul>\n')
+        html_file.write(after_report + '\n')
         html_file.close()
