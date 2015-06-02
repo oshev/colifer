@@ -2,9 +2,9 @@
 report_title = 2015 Week 22 (25.05-31.05)
 
 [Files]
-jiffy_report_file = /home/oleg/Downloads/jiffy week 22.csv
+jiffy_report_file = /home/user/Downloads/jiffy.csv
 naming_rules_file = naming_rules.txt
-out_html_report_file = /home/oleg/Downloads/report.html
+out_html_report_file = /home/user/Downloads/report.html
 
 [Columns]
 column_name_project = Project
