@@ -1,0 +1,14 @@
+# Syntax: LabelNameInTrello=Section1/../SectionN
+# Use special label name 'NoLabel' for Trello tasks without labels
+# Spaces are allowed in any part of the line
+# Order of the sections in the report will replicate the order of lines here
+
+Sport=Sport
+SelfOrganization=Self-organization
+DayJob=Day Job
+Learning=Learning
+Projects=Other
+Writing=Writing
+Other=Other
+Social=Social
+NoLabel=Other

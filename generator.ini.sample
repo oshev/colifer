@@ -17,6 +17,16 @@ before_report = <html><body><div style="background:white;width:800px;right: 0;le
 after_report = </div></body></html>
 
 [Trello]
+
+# to generate your Trello developer key visit https://trello.com/1/appKey/generate
 trello_developer_key =
+
+# to get your token read https://trello.com/docs/gettingstarted/index.html#getting-a-token-from-a-user
+# or open the following link in the browser (don't forget to change SUBSTITUE_WITH_YOUR_DEV_KEY with your trello_developer_key
+# https://trello.com/1/authorize?key=SUBSTITUE_WITH_YOUR_DEV_KEY&name=coscious-life-generator&expiration=never&response_type=token
 trello_user_oauth_token =
-trello_board =
+
+trello_board_id = yEfGPTZu
+trello_list_done_name = Done
+trello_list_failed_name = Postponed / Failed
+naming_rules_file = naming_rules_trello.txt
