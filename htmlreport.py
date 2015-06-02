@@ -39,6 +39,7 @@ class HtmlReport:
 
         if section.stats is not None and section.stats.comments_list is not None:
             for comment in section.stats.comments_list:
+
                 html_file.write('{}<li>{}</li>\n'.format(self.num_spaces(level), comment))
 
         html_file.write(self.num_spaces(level) + '</ul>\n')
