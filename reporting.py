@@ -1,7 +1,9 @@
 
+
 SECTION_SEPARATOR = '/'
 
 class Section:
+    parent = None
     name = ''
     children = None
     stats = None
@@ -20,9 +22,6 @@ class Report:
     title = ''
     root_section = None
 
-    def __init__(self):
-        sections = []
-
     def __repr__(self):
             return "{\"Title\": \"" + str(self.title) + "\"" + \
                    ", \"Root\": " + ("\"None\"" if self.root_section is None else str(self.root_section)) + "}"
@@ -36,6 +35,7 @@ class Report:
                 break
         if next_section is None:
             next_section = Section(next_section_name)
+            next_section.parent = current_section
             next_section.holds_level_tag = holds_level_tag
             current_section.children.append(next_section)
         if len(section_path_elements) == element_index + 1:

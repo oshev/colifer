@@ -29,17 +29,37 @@ class PomodorosStat:
     broken = 0
     not_done = 0
 
+    done_single = 0
+    done_double = 0
+
     def is_not_zero(self):
         return self.planned > 0 or self.done > 0 or self.broken > 0 or self.not_done > 0
 
+    def add_pomodoros(self, pomodoros_stat):
+        self.planned += pomodoros_stat.planned
+        self.done += pomodoros_stat.done
+        self.broken += pomodoros_stat.broken
+        self.not_done += pomodoros_stat.not_done
+        self.done_single += pomodoros_stat.done_single
+        self.done_double += pomodoros_stat.done_double
+
     def __repr__(self):
         return "{\"Planned\": " + str(self.planned) + \
-               ", \"Done\": " + str(self.done) + \
+               ", \"Done Total\": " + str(self.done) + \
                ", \"Broken\": " + str(self.broken) + \
-               ", \"Not done\": " + str(self.not_done) + "}"
+               ", \"Not done\": " + str(self.not_done) + \
+               ", \"Done single\": " + str(self.done_single) + \
+               ", \"Done double\": " + str(self.done_double) + "}"
 
     def __str__(self):
-        return "Pomodoros [Planned: " + str(self.planned) + \
-               ", Done: " + str(self.done) + \
-               ", Broken: " + str(self.broken) + \
-               ", Not done: " + str(self.not_done) + "]"
+        return "Pomodoros [" + \
+            "{}".format("Planned: " + str(self.planned) + ", " if self.planned > 0 else "") + \
+            "{}".format("Broken: " + str(self.broken) + ", " if self.broken > 0 else "") + \
+            "{}".format("Not done: " + str(self.not_done) + ", " if self.not_done > 0 else "") + \
+            "{}".format("Done: " + str(self.done) +
+                        (" (single " + str(self.done_single) + ", "
+                            if self.done_single > 0 and self.done_double > 0 else "") +
+                        (" (" if self.done_single == 0 else "") +
+                        ("double " + str(self.done_double) + ")" if self.done_double > 0 else "")
+                        if self.done > 0 else "") + \
+            "]".strip(', ') if self.is_not_zero() else ""
