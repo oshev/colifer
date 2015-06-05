@@ -2,23 +2,19 @@
 # Spaces are allowed in any part of the line
 # Order of the sections in the report will replicate the order of lines here
 
-Работа-Total=Day Job
 Работа-Прогр=Day Job/Programming
 Работа-Отладк=Day Job/Debugging
 Работа=Day Job/Other
 
-ПисатАнг-Total=Writing
 ПисатАнг=Writing/In English
 ПисатАнг-ПрзПисат=Writing/In English/Novel/Writing
 ПисатАнг-ПрзПроч=Writing/In English/Novel/Other
 ПисатАнг-ПрзРедакт=Writing/In English/Novel/Editing
 ПисатАнг-ПрочПисат=Writing/In English/Other
 
-Блог-Total=Writing/Blog
-Блог-БлогПисат=Writing/Blog/Writing
-Блог=Writing/Blog/Other
+Блог-БлогПисат=Writing/In Russian/Blog/Writing
+Блог=Writing/In Russian/Blog/Other
 
-Чтение-Total=Learning/Reading
 Чтение-КнигиАнг=Learning/Reading/Books/In English
 Чтение-КнигиПисат=Learning/Reading/About Writing/Books
 Чтение-ПрочПисат=Learning/Reading/About Writing/Other
@@ -27,23 +23,19 @@
 Чтение-ПрочЧтИсп=Learning/Reading/Other/In Spanish
 Чтение-ПрочЧтРус=Learning/Reading/Other/In Russian
 
-Англ-Total=Learning/English
 Англ=Learning/English
 Англ-ПвтСлов=Learning/English/Vocabulary
 Англ-ГраматУпр=Learning/English/Grammar
 
-Прогр-Total=Learning/Programming
 Прогр-ВидеоТехн=Learning/Programming/Tech Video
 Прогр-ПрогрТренинг=Learning/Programming/Exercises
 Прогр-ЧтенТехн=Learning/Programming/Tech Reading
 Прогр=Learning/Programming/Other
 
-Аудио-Total=Learning/Audio
 Аудио-АКниги=Learning/Audio/Audio Books
 Аудио-Театр=Learning/Audio/Theater
 Аудио=Learning/Audio/Other
 
-Видео-Total=Learning/Video
 Видео=Learning/Video/Other
 Видео-ВидеоАнг=Learning/Video/In English
 Видео-ВидеоИсп=Learning/Video/In Spanish
@@ -51,14 +43,12 @@
 
 Прочее-Переписка=Social/Correspondence
 
-Спорт-Total=Sport
 Спорт-БЖЖ=Sport/BJJ
 Спорт-Йога=Sport/Yoga
 Спорт-Силовая=Sport/Weightlifting
 Спорт-Разминка=Sport/Warm-up
 Спорт=Sport/Other
 
-Самоорг-Total=Self-organization
 Самоорг-Отчеты=Self-organization/Reports
 Самоорг=Self-organization/Other
 

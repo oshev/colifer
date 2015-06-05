@@ -1,4 +1,4 @@
-
+import sectionstat
 
 SECTION_SEPARATOR = '/'
 
@@ -43,6 +43,15 @@ class Report:
         else:
             return self.find_or_create_section(next_section, section_path_elements, element_index + 1, holds_level_tag)
 
+    @staticmethod
+    def propagate_stats_to_parent(section, stats):
+        if section.parent is not None:
+            if section.parent.stats is None:
+                section.parent.stats = sectionstat.SectionStat()
+            section.parent.stats.add_stats(stats)
+
+            Report.propagate_stats_to_parent(section.parent, stats)
+
     def create(self, name, naming_rules_filename, rows_stats_map):
         lines = [line.strip() for line in open(naming_rules_filename)]
         self.title = name
@@ -56,4 +65,5 @@ class Report:
                     if jiffy_id in rows_stats_map.keys():
                         section = self.find_or_create_section(self.root_section, section_path_elements, 0, True)
                         section.stats = rows_stats_map[jiffy_id]
+                        Report.propagate_stats_to_parent(section, section.stats)
 

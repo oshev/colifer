@@ -8,6 +8,12 @@ class SectionStat:
     comments_list = None
     pomodoros_stat = None
 
+    def add_stats(self, stats):
+        self.time += stats.time
+        self.extra += stats.extra
+        self.events_num += stats.events_num
+        self.days_num += stats.days_num
+
     def __init__(self):
         super().__init__()
         self.days_list = []

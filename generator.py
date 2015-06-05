@@ -19,12 +19,14 @@ if __name__ == '__main__':
     report.create(config['ReportSpecific']['report_title'],
                   config['Files']['naming_rules_file'], jiffy_csv_parser.rows_stats_map)
 
-    trello_parser = trelloparser.TrelloParser(config['Trello']['trello_api_key'], config['Trello']['trello_user_oauth_token'])
-    trello_parser.load_data(config['Trello']['trello_board_id'],
-                            config['Trello']['trello_list_done_name'],
-                            config['Trello']['trello_list_failed_name'],
-                            config['Trello']['naming_rules_file'],
-                            report)
+    if config['Trello']['trello_stat_enabled'] == 'true':
+        trello_parser = trelloparser.TrelloParser(config['Trello']['trello_api_key'],
+                                                  config['Trello']['trello_user_oauth_token'])
+        trello_parser.load_data(config['Trello']['trello_board_id'],
+                                config['Trello']['trello_list_done_name'],
+                                config['Trello']['trello_list_failed_name'],
+                                config['Trello']['naming_rules_file'],
+                                report)
 
     html_report = htmlreport.HtmlReport()
     html_report.generate(report, config['Files']['out_html_report_file'],

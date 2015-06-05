@@ -2,7 +2,6 @@ import csv
 import sectionstat
 
 ID_DIV = '-'
-ID_TOTAL = 'Total'
 
 class JiffyCSVParser:
 
@@ -45,7 +44,7 @@ class JiffyCSVParser:
 
         if row[titles[self.column_name_extra]].isdigit():
             stat_object.extra += int(row[titles[self.column_name_extra]])
-        elif row[titles[self.column_name_extra]] != '' and ID_DIV + ID_TOTAL not in row_id:
+        elif row[titles[self.column_name_extra]] != '':
             stat_object.comments_list.append(row[titles[self.column_name_extra]])
 
     def load_file(self, filename):
@@ -64,9 +63,7 @@ class JiffyCSVParser:
                         row_id = row[titles[self.column_name_project]]
                     else:
                         row_id = row[titles[self.column_name_project]] + ID_DIV + row[titles[self.column_name_task]]
-                    row_up_id = row[titles[self.column_name_project]] + ID_DIV + ID_TOTAL
 
                     self.update_stat_object(row_id, row, titles)
-                    self.update_stat_object(row_up_id, row, titles)
 
             # print(self.rows_stats_map)
