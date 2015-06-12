@@ -58,14 +58,14 @@ class PomodorosStat:
                ", \"Done double\": " + str(self.done_double) + "}"
 
     def __str__(self):
-        return "Pomodoros [" + \
-            "{}".format("Planned: " + str(self.planned) + ", " if self.planned > 0 else "") + \
-            "{}".format("Broken: " + str(self.broken) + ", " if self.broken > 0 else "") + \
-            "{}".format("Not done: " + str(self.not_done) + ", " if self.not_done > 0 else "") + \
-            "{}".format("Done: " + str(self.done) +
-                        (" (single " + str(self.done_single) + ", "
-                            if self.done_single > 0 and self.done_double > 0 else "") +
-                        (" (" if self.done_single == 0 else "") +
-                        ("double " + str(self.done_double) + ")" if self.done_double > 0 else "")
-                        if self.done > 0 else "") + \
-            "]".strip(', ') if self.is_not_zero() else ""
+        return "P[" + \
+               ("{}".format("pln: " + str(self.planned) + ", " if self.planned > 0 else "") + \
+                "{}".format("ok: " + str(self.done) +
+                            (" (1x" + str(self.done_single) + ", "
+                                if self.done_single > 0 and self.done_double > 0 else "") +
+                            (" (" if self.done_single == 0 else "") +
+                            ("2x" + str(self.done_double) + ") " if self.done_double > 0 else "")
+                            if self.done > 0 else "") + \
+                "{}".format("brk: " + str(self.broken) + ", " if self.broken > 0 else "") + \
+                "{}".format("skp: " + str(self.not_done) + ", " if self.not_done > 0 else "")
+                ).strip(', ') + "]" if self.is_not_zero() else ""

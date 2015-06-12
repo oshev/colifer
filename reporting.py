@@ -56,6 +56,7 @@ class Report:
         lines = [line.strip() for line in open(naming_rules_filename)]
         self.title = name
         self.root_section = Section("Total")
+        self.root_section.holds_level_tag = True
         for row in lines:
             if row != '' and not row.startswith('#'):
                 elements = row.split('=')

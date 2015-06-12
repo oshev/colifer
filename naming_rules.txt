@@ -10,7 +10,8 @@
 ПисатАнг-ПрзПисат=Writing/In English/Novel/Writing
 ПисатАнг-ПрзПроч=Writing/In English/Novel/Other
 ПисатАнг-ПрзРедакт=Writing/In English/Novel/Editing
-ПисатАнг-ПрочПисат=Writing/In English/Other
+ПисатАнг-ПрочПисат=Writing/In English/Other/Writing
+ПисатАнг-ПрочРедакт=Writing/In English/Other
 
 Блог-БлогПисат=Writing/In Russian/Blog/Writing
 Блог=Writing/In Russian/Blog/Other
@@ -26,6 +27,7 @@
 Англ=Learning/English
 Англ-ПвтСлов=Learning/English/Vocabulary
 Англ-ГраматУпр=Learning/English/Grammar
+Англ-Elevate=Learning/English/Elevate
 
 Прогр-ВидеоТехн=Learning/Programming/Tech Video
 Прогр-ПрогрТренинг=Learning/Programming/Exercises

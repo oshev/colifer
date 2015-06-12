@@ -5,6 +5,7 @@ report_title = 2015 Week 22 (25.05-31.05)
 jiffy_report_file = /home/user/Downloads/jiffy.csv
 naming_rules_file = naming_rules.txt
 out_html_report_file = /home/user/Downloads/report.html
+constant_sections_file = constant_sections.txt
 
 [Columns]
 column_name_project = Project
@@ -13,7 +14,7 @@ column_name_minutes = Minutes
 column_name_extra = Note
 
 [Html]
-before_report = <html><body><div style="background:white;width:800px;right: 0;left: 0;margin-right: auto;margin-left: auto;">
+before_report = <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><style>.stats {color: lightgray} .level1 {font-weight: bold;font-size:130%;padding:10px} .level2 {font-weight: bold;font-size:120%;padding:10px} .level3 {font-weight: bold;font-size:110%;padding:5px} .level4 {font-weight: bold;padding:5px} .level5 {padding:5px}</style></head><body><div style="background:white;width:800px;right: 0;left: 0;margin-right: auto;margin-left: auto;">
 after_report = </div></body></html>
 
 [Trello]

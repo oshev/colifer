@@ -3,6 +3,7 @@ import jiffycsvparser
 import reporting
 import htmlreport
 import trelloparser
+import constantparser
 
 naming_rules = {}
 
@@ -27,6 +28,9 @@ if __name__ == '__main__':
                                 config['Trello']['trello_list_failed_name'],
                                 config['Trello']['naming_rules_file'],
                                 report)
+
+    constant_parser = constantparser.ConstantParser()
+    constant_parser.load_data(config['Files']['constant_sections_file'], report)
 
     html_report = htmlreport.HtmlReport()
     html_report.generate(report, config['Files']['out_html_report_file'],
