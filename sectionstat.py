@@ -1,6 +1,6 @@
 class SectionStat:
     jiffy_name = ''
-    time = 0
+    seconds = 0
     extra = 0
     events_num = 0
     days_num = 0
@@ -9,7 +9,7 @@ class SectionStat:
     pomodoros_stat = None
 
     def add_stats(self, stats):
-        self.time += stats.time
+        self.seconds += stats.seconds
         self.extra += stats.extra
         self.events_num += stats.events_num
         self.days_num += stats.days_num
@@ -21,7 +21,7 @@ class SectionStat:
         self.pomodoros_stat = PomodorosStat()
 
     def __repr__(self):
-        return "{\"Time\": " + str(self.time) + \
+        return "{\"Seconds\": " + str(self.seconds) + \
                ", \"Extra\": " + str(self.extra) + \
                ", \"Events num\": " + str(self.events_num) + \
                ", \"Days num\": " + str(self.days_num) + \

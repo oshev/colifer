@@ -1,14 +1,17 @@
 import csv
 import sectionstat
+from datetime import datetime
 
 ID_DIV = '-'
+DATE_TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 
 class JiffyCSVParser:
 
     column_name_project = ''
     column_name_task = ''
-    column_name_minutes = ''
     column_name_extra = ''
+    column_start_time = ''
+    column_stop_time = ''
     rows_stats_map = {}
     config = None
 
@@ -19,7 +22,8 @@ class JiffyCSVParser:
     def load_column_names(self):
         self.column_name_project = self.config['Columns']['column_name_project']
         self.column_name_task = self.config['Columns']['column_name_task']
-        self.column_name_minutes = self.config['Columns']['column_name_minutes']
+        self.column_start_time = self.config['Columns']['column_name_start_time']
+        self.column_stop_time = self.config['Columns']['column_name_stop_time']
         self.column_name_extra = self.config['Columns']['column_name_extra']
 
     def check_titles(self, titles):
@@ -27,8 +31,10 @@ class JiffyCSVParser:
             raise NameError('Can\'t find necessary column ' + self.column_name_project + ' in CSV')
         if titles[self.column_name_task] is None:
             raise NameError('Can\'t find necessary column ' + self.column_name_task + ' in CSV')
-        if titles[self.column_name_minutes] is None:
-            raise NameError('Can\'t find necessary column ' + self.column_name_minutes + ' in CSV')
+        if titles[self.column_start_time] is None:
+            raise NameError('Can\'t find necessary column ' + self.column_start_time + ' in CSV')
+        if titles[self.column_stop_time] is None:
+            raise NameError('Can\'t find necessary column ' + self.column_stop_time + ' in CSV')
         if titles[self.column_name_extra] is None:
             raise NameError('Can\'t find necessary column ' + self.column_name_extra + ' in CSV')
 
@@ -40,7 +46,9 @@ class JiffyCSVParser:
             stat_object.jiffy_name = row_id
             self.rows_stats_map[row_id] = stat_object
 
-        stat_object.time += int(row[titles[self.column_name_minutes]])
+        start_datetime = datetime.strptime(row[titles[self.column_start_time]], DATE_TIME_FORMAT)
+        stop_datetime = datetime.strptime(row[titles[self.column_stop_time]], DATE_TIME_FORMAT)
+        stat_object.seconds += round((stop_datetime - start_datetime).total_seconds())
 
         if row[titles[self.column_name_extra]].isdigit():
             stat_object.extra += int(row[titles[self.column_name_extra]])

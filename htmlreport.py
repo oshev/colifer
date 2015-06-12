@@ -5,8 +5,8 @@ class HtmlReport:
         text = ''
         if stats is not None:
             text = '('
-            if stats.time > 0:
-                text += "{:02d}:{:02d}, ".format(stats.time // 60, stats.time % 60)
+            if stats.seconds > 0:
+                text += "{:02d}:{:02d}, ".format((stats.seconds // 60) // 60, (stats.seconds // 60) % 60)
             if stats.extra > 0:
                 text += "{:d} words, ".format(stats.extra)
             if stats.events_num > 0:
