@@ -59,13 +59,13 @@ class PomodorosStat:
 
     def __str__(self):
         return "P[" + \
-               ("{}".format("pln: " + str(self.planned) + ", " if self.planned > 0 else "") + \
-                "{}".format("ok: " + str(self.done) +
-                            (" (1x" + str(self.done_single) + ", "
+               ("{}".format("pln: " + str(self.planned) + ", " if self.planned > 0 else "") +
+                "{}".format("ok: " + str(self.done) + " " +
+                            ("(1x" + str(self.done_single) + ", "
                                 if self.done_single > 0 and self.done_double > 0 else "") +
-                            (" (" if self.done_single == 0 else "") +
+                            ("(" if self.done_single == 0 else "") +
                             ("2x" + str(self.done_double) + ") " if self.done_double > 0 else "")
-                            if self.done > 0 else "") + \
-                "{}".format("brk: " + str(self.broken) + ", " if self.broken > 0 else "") + \
+                            if self.done > 0 else "") +
+                "{}".format("brk: " + str(self.broken) + ", " if self.broken > 0 else "") +
                 "{}".format("skp: " + str(self.not_done) + ", " if self.not_done > 0 else "")
                 ).strip(', ') + "]" if self.is_not_zero() else ""

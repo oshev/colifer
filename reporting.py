@@ -52,11 +52,13 @@ class Report:
 
             Report.propagate_stats_to_parent(section.parent, stats)
 
-    def create(self, name, naming_rules_filename, rows_stats_map):
-        lines = [line.strip() for line in open(naming_rules_filename)]
+    def create(self, name):
         self.title = name
         self.root_section = Section("Total")
         self.root_section.holds_level_tag = True
+
+    def fill_jiffy_sections(self, naming_rules_filename, rows_stats_map):
+        lines = [line.strip() for line in open(naming_rules_filename)]
         for row in lines:
             if row != '' and not row.startswith('#'):
                 elements = row.split('=')

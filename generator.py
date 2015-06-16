@@ -17,8 +17,12 @@ if __name__ == '__main__':
     jiffy_csv_parser.load_file(jiffy_report)
 
     report = reporting.Report()
-    report.create(config['ReportSpecific']['report_title'],
-                  config['Files']['naming_rules_file'], jiffy_csv_parser.rows_stats_map)
+    report.create(config['ReportSpecific']['report_title'])
+
+    constant_parser = constantparser.ConstantParser()
+    constant_parser.load_data(config['Files']['constant_sections_file'], report)
+
+    report.fill_jiffy_sections(config['Files']['naming_rules_file'], jiffy_csv_parser.rows_stats_map)
 
     if config['Trello']['trello_stat_enabled'] == 'true':
         trello_parser = trelloparser.TrelloParser(config['Trello']['trello_api_key'],
@@ -28,9 +32,6 @@ if __name__ == '__main__':
                                 config['Trello']['trello_list_failed_name'],
                                 config['Trello']['naming_rules_file'],
                                 report)
-
-    constant_parser = constantparser.ConstantParser()
-    constant_parser.load_data(config['Files']['constant_sections_file'], report)
 
     html_report = htmlreport.HtmlReport()
     html_report.generate(report, config['Files']['out_html_report_file'],

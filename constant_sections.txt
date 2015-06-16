@@ -3,24 +3,24 @@
 # Spaces are allowed in any part of the line
 # Order of the sections in the report will replicate the order of lines here
 
-Day Job=History: 71:43, 62:16, 64:46, 65:11, 59:42, 56:04, 50:06, 65:00, 62:20, 67:34, 72:22, 68:31, 76:38
+Overview=History: 71:43, 62:16, 64:46, 65:11, 59:42, 56:04, 50:06, 65:00, 62:20, 67:34, 72:22, 68:31, 76:38
+
+Day Job/Programming=Dummy
+Writing/Dummy=Dummy
 
 Learning/Reading/Books/In English=<img class=book src="https://cityoftongues.files.wordpress.com/2010/09/pattern-recognition.jpg">William Gibson "Pattern Recognition" (Goal 7 days, total >=2,5 hours)
-PREV=0, 8%, 14%, 21%, 26%, 36%, 43%, 55%, 65%
+PREV=0, 8%, 14%, 21%, 26%, 36%, 43%, 55%, 65%, 77%
 
 Learning/Reading/Books/In English=<img class=book src="http://a5.mzstatic.com/us/r30/Publication4/v4/4d/be/a9/4dbea928-0514-01ee-ef99-014a09bedb41/cover225x225.jpeg">"Trigger Workbook Headaches Migraines including TMJ pain"
-PREV=0%, 5%, 14%, 23%, 26%, 36%, 45%, 54%, 62%x5 (goal was 65%)
+PREV=0%, 5%, 14%, 23%, 26%, 36%, 45%, 54%, 62%x6 (goal was 65%)
 
 Learning/Reading/Books/In Spanish=<img class=book src="https://arturogoicoechea.files.wordpress.com/2011/05/portada-migrac3b1a.jpg">Arturo Goicoechea "MIGRAÑA, una pesadilla cerebral"
-PREV=0, 1%, 5%, 5%, 7%x2, 10% (goal was 10%)
+PREV=0, 1%, 5%, 5%, 7%x2, 10%x2 (goal was 13%)
 
 Learning/Reading/About Writing/Books=<img class=book src="http://www.thecreativepenn.com/wp-content/uploads/2013/12/cover-write-publish-repeat-final.jpg">S. Platt, J.B. Truant "Write. Publish. Repeat."(Goal 7d, total >=1h)
-PREV=0, 3%, 13%, 17%, 23%, 28%, 33%, 39% (Loc 2091 / 5400)
-
-Learning/Audio/Audio Books=<img class=book src="http://ecx.images-amazon.com/images/I/71R96vCyonL.jpg">Ira Levin "This Perfect Day" (Goal: >=1h)
-PREV=0:08, 1:27, 4:50, 6:01, 7:49, X:XX, 10:45, 11:15 / 11:15 DONE!
+PREV=0, 3%, 13%, 17%, 23%, 28%, 33%, 39%, 45% (Loc 2420 / 5400)
 
 Learning/Audio/Audio Books=<img class=book src="http://www.classiccarstodayonline.com/wp-content/uploads/2014/03/z-dean-koontz-a1.jpg">Dean Koontz "Lightning"
-PREV=1:24 / 12:58
+PREV=1:24, 2:25 / 12:58
 
 Learning/Video/In English=<img class=book src="http://ecx.images-amazon.com/images/I/814W6B9sMaL._SL1500_.jpg">Sopranos Season 2

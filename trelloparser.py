@@ -70,10 +70,23 @@ class TrelloParser:
             TrelloParser.propagate_pomodoros_to_parent(section.parent, pomodoros)
 
     @staticmethod
+    def process_checklists(report, section_path_elements, checklists):
+
+        for checklist in checklists:
+
+            items = checklist.get_items()
+
+            for item in items:
+                section_path_elements.append(item['name'])
+                report.find_or_create_section(report.root_section,
+                                              section_path_elements, 0, False)
+                section_path_elements.pop()
+
+    @staticmethod
     def process_actions(report, section_path_elements, this_section, actions):
         pomodoros = sectionstat.PomodorosStat()
 
-        for action in actions:
+        for action in reversed(actions):
             if action[ACTION_TYPE_HASH_TAG] == COMMENT_TYPE_TEXT:
                 if not TrelloParser.process_pomodoros(pomodoros,
                                                       action[ACTION_DATA_HASH_TAG]
@@ -93,11 +106,12 @@ class TrelloParser:
     def load_list_data(naming_rules, report, trello_lists, list_name, add_to_name):
         for trello_list in trello_lists:
             if trello_list.name == list_name:
-                for card in trello_list.get_cards():
+                for card in reversed(trello_list.get_cards()):
                     extended_card = ExtendedCard(card)
                     actions = extended_card.get_actions_json()
                     print("Processing Trello task: " + card.name)
                     labels = card.get_card_information()[LABELS_HASH_TAG]
+
                     rules = []
                     if not labels:
                         if naming_rules[NO_LABEL_RULE] is not None:
@@ -113,6 +127,11 @@ class TrelloParser:
 
                             this_section = report.find_or_create_section(report.root_section,
                                                                          section_path_elements, 0, False)
+
+                            checklists = card.get_checklists()
+                            if checklists is not None:
+                                TrelloParser.process_checklists(report, section_path_elements, checklists)
+
                             if actions is not None and len(actions) > 0:
                                 TrelloParser.process_actions(report, section_path_elements, this_section, actions)
 
