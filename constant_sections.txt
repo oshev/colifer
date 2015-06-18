@@ -3,7 +3,7 @@
 # Spaces are allowed in any part of the line
 # Order of the sections in the report will replicate the order of lines here
 
-Overview=History: 71:43, 62:16, 64:46, 65:11, 59:42, 56:04, 50:06, 65:00, 62:20, 67:34, 72:22, 68:31, 76:38
+Overview=History: 71:43, 62:16, 64:46, 65:11, 59:42, 56:04, 50:06, 65:00, 62:20, 67:34, 72:22, 68:31, 76:38, 62:09
 
 Day Job/Programming=Dummy
 Writing/Dummy=Dummy

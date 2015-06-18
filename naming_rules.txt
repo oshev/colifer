@@ -54,6 +54,8 @@
 Самоорг-Отчеты=Self-organization/Reports
 Самоорг=Self-organization/Other
 
-Прочее-Фирма=Other/Startup
-Прочее-SibEDGE=Other/SibEDGE
 Прочее=Other/Other
+Прочее-CL Generator=Other/Projects/Conscious Life Generator
+Прочее-Фирма=Other/Projects/Consultancy Service
+Прочее-SibEDGE=Other/Projects/SibEDGE
+

@@ -32,4 +32,5 @@ trello_user_oauth_token = PUT_YOUR_OAUTH_TOKEN_HERE
 trello_board_id = yEfGPTZu
 trello_list_done_name = Done
 trello_list_failed_name = Postponed / Failed
+trello_list_notes_name = Notes
 naming_rules_file = naming_rules_trello.txt

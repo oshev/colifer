@@ -30,6 +30,7 @@ if __name__ == '__main__':
         trello_parser.load_data(config['Trello']['trello_board_id'],
                                 config['Trello']['trello_list_done_name'],
                                 config['Trello']['trello_list_failed_name'],
+                                config['Trello']['trello_list_notes_name'],
                                 config['Trello']['naming_rules_file'],
                                 report)
 

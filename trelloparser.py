@@ -146,7 +146,7 @@ class TrelloParser:
                     naming_rules[elements[0]] = elements[1]
         return naming_rules
 
-    def load_data(self, board_id, list_done_name, list_failed_name, naming_rules_filename, report):
+    def load_data(self, board_id, list_done_name, list_failed_name, list_notes_name, naming_rules_filename, report):
         if self.api_key != '' and self.user_oauth_token != '':
             client = Client(self.api_key, self.user_oauth_token)
             board = Board(client, board_id)
@@ -155,4 +155,5 @@ class TrelloParser:
             trello_lists = board.get_lists()
             self.load_list_data(naming_rules, report, trello_lists, list_done_name, '')
             self.load_list_data(naming_rules, report, trello_lists, list_failed_name, 'NOT DONE - ')
+            self.load_list_data(naming_rules, report, trello_lists, list_notes_name, '')
 
