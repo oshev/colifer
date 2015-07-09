@@ -23,11 +23,12 @@ class HtmlReport:
         return text
 
     def traverse_and_save(self, html_file, section, level):
-        html_file.write("{}<li{}>{} <span class='stats'>{}</span></li>\n".
+        nice_stats = self.get_nice_stats(section.stats)
+        html_file.write("{}<li{}>{} {}</li>\n".
                         format(self.num_spaces(level),
                                " class='level{}'".format(level) if section.holds_level_tag else "",
                                section.name,
-                               self.get_nice_stats(section.stats)))
+                               "<span class='stats'>{}</span>".format(nice_stats) if nice_stats != '' else ''))
 
         if section.children is not None and len(section.children) > 0:
             html_file.write(self.num_spaces(level) + '<ul>\n')

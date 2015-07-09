@@ -27,6 +27,9 @@ class ExtendedCard(Card):
     def get_actions_json(self):
         return self.fetch_json(self.base_uri + '/actions')
 
+    def get_desc_json(self):
+        return self.fetch_json(self.base_uri + '/desc')
+
 class TrelloParser:
 
     api_key = ''
@@ -77,7 +80,8 @@ class TrelloParser:
             items = checklist.get_items()
 
             for item in items:
-                section_path_elements.append(item['name'])
+                prefix = '' if item['state'] == 'complete' else 'NOT DONE - '
+                section_path_elements.append(prefix + item['name'])
                 report.find_or_create_section(report.root_section,
                                               section_path_elements, 0, False)
                 section_path_elements.pop()
@@ -111,6 +115,10 @@ class TrelloParser:
                     actions = extended_card.get_actions_json()
                     print("Processing Trello task: " + card.name)
                     labels = card.get_card_information()[LABELS_HASH_TAG]
+                    desc = extended_card.get_desc_json()
+                    desc_lines = []
+                    if desc is not None and desc != '':
+                        desc_lines = desc['_value'].split("\n")
 
                     rules = []
                     if not labels:
@@ -123,10 +131,17 @@ class TrelloParser:
                     for rule in rules:
                         section_path_elements = rule.split(SECTION_SEPARATOR)
                         if section_path_elements:
+
                             section_path_elements.append(add_to_name + card.name)
 
                             this_section = report.find_or_create_section(report.root_section,
                                                                          section_path_elements, 0, False)
+
+                            for desc_line in desc_lines:
+                                if desc_line != '':
+                                    section_path_elements.append(desc_line)
+                                    report.find_or_create_section(report.root_section, section_path_elements, 0, False)
+                                    section_path_elements.pop()
 
                             checklists = card.get_checklists()
                             if checklists is not None:
