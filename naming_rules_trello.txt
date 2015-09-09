@@ -22,3 +22,4 @@ WritingNovel=Writing/In English/Novel/Writing
 Other=Other
 Social=Social
 NoLabel=Other
+NotDone=Failed

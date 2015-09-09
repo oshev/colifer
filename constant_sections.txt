@@ -3,20 +3,24 @@
 # Spaces are allowed in any part of the line
 # Order of the sections in the report will replicate the order of lines here
 
-Overview=History: 71:43, 62:16, 64:46, 65:11, 59:42, 56:04, 50:06, 65:00, 62:20, 67:34, 72:22, 68:31, 76:38, 62:09, 70:47, 55:41, 57:37, 71:42, 70:39
+Overview=History: 71:43, 62:16, 64:46, 65:11, 59:42, 56:04, 50:06, 65:00, 62:20, 67:34, 72:22, 68:31, 76:38, 62:09, 70:47, 55:41, 57:37, 71:42, 70:39, 48:54, 14:31, 53:19, 41:40, 73:35
 
 Day Job/Programming=Dummy
-Writing/Dummy=Dummy
+Writing=Dummy
+Learning=Dummy
+Social=Dummy
+Sport=Dummy
+Self-organization=Dummy
+Other=Dummy
+Failed=Dummy
 
 Learning/Reading/Books/In Spanish=<img class=book src="https://arturogoicoechea.files.wordpress.com/2011/05/portada-migrac3b1a.jpg">Arturo Goicoechea "MIGRAÑA, una pesadilla cerebral"
-PREV=0, 1%, 5%, 5%, 7%x2, 10%x5, 22%, 31%
+PREV=0, 1%, 5%, 5%, 7%x2, 10%x5, 22%, 31%, X%, 39%, X%, 53%, 65%
 
 Learning/Reading/About Writing/Books=<img class=book src="http://www.thecreativepenn.com/wp-content/uploads/2013/12/cover-write-publish-repeat-final.jpg">S. Platt, J.B. Truant "Write. Publish. Repeat."(Goal 7d, total >=1h)
-PREV=0, 3%, 13%, 17%, 23%, 28%, 33%, 39%, 45%, 48%, 52%, 57%, 61%, 66% (Loc 3560 / 5400)
+PREV=0, 3%, 13%, 17%, 23%, 28%, 33%, 39%, 45%, 48%, 52%, 57%, 61%, 66%, X%, 68%, 74%, X%, 84% (Loc 4523 / 5400)
 
-Learning/Audio/Audio Books=<img class=book src="http://www.classiccarstodayonline.com/wp-content/uploads/2014/03/z-dean-koontz-a1.jpg">Dean Koontz "Lightning"
-PREV=1:24, 2:25, 4:05, 5:29, 6:27, 8:38, 9:31 / 12:58
+Learning/Audio/Audio Books=<img class=book src="https://h2savecom.files.wordpress.com/2014/12/screen-shot-2014-12-16-at-12-30-31-pm.png?w=300&h=299">Hans Christian Andersen "Snow Queen"
+PREV=0:46, 1:14 / 1:14
 
-Learning/Video/In English=<img class=book src="https://upload.wikimedia.org/wikipedia/en/9/9e/The_Sopranos_S3_DVD.jpg">Sopranos Season 3
-
-Learning/Video/In English=<img class=book src="https://upload.wikimedia.org/wikipedia/en/1/11/The_Sopranos_S4_DVD.jpg">Sopranos Season 4
+Learning/Video/In English=<img class=book src="http://www.pariscine.com/sites/default/files/affiches_series_tv/the_sopranos_s5.jpg">Sopranos Season 5

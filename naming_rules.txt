@@ -28,6 +28,7 @@
 Англ-ПвтСлов=Learning/English/Vocabulary
 Англ-ГраматУпр=Learning/English/Grammar
 Англ-Elevate=Learning/English/Elevate
+Англ-Произн=Learning/English/Pronounciation
 
 Прогр-ВидеоТехн=Learning/Programming/Tech Video
 Прогр-ПрогрТренинг=Learning/Programming/Exercises

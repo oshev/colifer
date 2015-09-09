@@ -12,6 +12,7 @@ LABEL_NAME_HASH_TAG = "name"
 ACTION_DATA_HASH_TAG = "data"
 ACTION_DATA_TEXT_HASH_TAG = "text"
 ACTION_TYPE_HASH_TAG = "type"
+NOT_DONE_LABEL = "NotDone"
 
 class ExtendedCard(Card):
 
@@ -107,7 +108,7 @@ class TrelloParser:
             TrelloParser.propagate_pomodoros_to_parent(this_section, pomodoros)
 
     @staticmethod
-    def load_list_data(naming_rules, report, trello_lists, list_name, add_to_name):
+    def load_list_data(naming_rules, report, trello_lists, list_name, is_not_done_section):
         for trello_list in trello_lists:
             if trello_list.name == list_name:
                 for card in reversed(trello_list.get_cards()):
@@ -125,14 +126,17 @@ class TrelloParser:
                         if naming_rules[NO_LABEL_RULE] is not None:
                             rules.append(naming_rules[NO_LABEL_RULE])
                     else:
-                        for label in labels:
-                            if naming_rules[label[LABEL_NAME_HASH_TAG]] is not None:
-                                rules.append(naming_rules[label[LABEL_NAME_HASH_TAG]])
+                        if is_not_done_section:
+                            rules.append(naming_rules[NOT_DONE_LABEL])
+                        else:
+                            for label in labels:
+                                if naming_rules[label[LABEL_NAME_HASH_TAG]] is not None:
+                                    rules.append(naming_rules[label[LABEL_NAME_HASH_TAG]])
                     for rule in rules:
                         section_path_elements = rule.split(SECTION_SEPARATOR)
                         if section_path_elements:
 
-                            section_path_elements.append(add_to_name + card.name)
+                            section_path_elements.append(card.name)
 
                             this_section = report.find_or_create_section(report.root_section,
                                                                          section_path_elements, 0, False)
@@ -168,7 +172,7 @@ class TrelloParser:
 
             naming_rules = self.read_naming_rules(naming_rules_filename)
             trello_lists = board.get_lists()
-            self.load_list_data(naming_rules, report, trello_lists, list_done_name, '')
-            self.load_list_data(naming_rules, report, trello_lists, list_failed_name, 'NOT DONE - ')
-            self.load_list_data(naming_rules, report, trello_lists, list_notes_name, '')
+            self.load_list_data(naming_rules, report, trello_lists, list_done_name, False)
+            self.load_list_data(naming_rules, report, trello_lists, list_failed_name, True)
+            self.load_list_data(naming_rules, report, trello_lists, list_notes_name, False)
 
