@@ -2,20 +2,22 @@
 report_title = 2015 Week 22 (25.05-31.05)
 
 [Files]
-jiffy_report_file = /home/user/Downloads/jiffy.csv
-naming_rules_file = naming_rules.txt
+naming_rules_file = configs/naming_rules.txt
+constant_sections_file = configs/constant_sections.txt
+
+jiffy_report_file = /home/user/Downloads/jiffy week 22.csv
 out_html_report_file = /home/user/Downloads/report.html
-constant_sections_file = constant_sections.txt
 
 [Columns]
 column_name_project = Project
 column_name_task = Task
-column_name_minutes = Minutes
 column_name_extra = Note
+column_name_start_time = Start time
+column_name_stop_time = Stop time
 
 [Html]
 before_report = <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><style>.stats {color: lightgray} .level1 {font-weight: bold;font-size:130%;padding:10px} .level2 {font-weight: bold;font-size:120%;padding:10px} .level3 {font-weight: bold;font-size:110%;padding:5px} .level4 {font-weight: bold;padding:5px} .level5 {padding:5px}</style></head><body><div style="background:white;width:800px;right: 0;left: 0;margin-right: auto;margin-left: auto;">
-after_report = </div></body></html>
+after_report = <li class=level4>Time for writing this report: X:X (template X:X, draft X:X, the rest is editing).</li></div></body></html>
 
 [Trello]
 # if false, then the generator won't read data from trello
@@ -33,4 +35,4 @@ trello_board_id = yEfGPTZu
 trello_list_done_name = Done
 trello_list_failed_name = Postponed / Failed
 trello_list_notes_name = Notes
-naming_rules_file = naming_rules_trello.txt
+naming_rules_file = configs/naming_rules_trello.txt
