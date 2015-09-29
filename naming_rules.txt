@@ -59,4 +59,4 @@
 Прочее-CL Generator=Other/Projects/Conscious Life Generator
 Прочее-Фирма=Other/Projects/Consultancy Service
 Прочее-SibEDGE=Other/Projects/SibEDGE
-
+Прочее-Переезд=Other/Projects/Migration
