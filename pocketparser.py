@@ -1,14 +1,11 @@
-from reporting import SECTION_SEPARATOR
-import sectionstat
+import pocket
 
 class PocketParser:
 
-    api_key = ''
-    user_oauth_token = ''
+    api = None
 
-    def __init__(self, api_key, oauth_token):
-        self.api_key = api_key
-        self.user_oauth_token = oauth_token
+    def __init__(self, pocket_consumer_key, pocket_access_token):
+        self.api = pocket.Pocket.Api(consumer_key=pocket_consumer_key, access_token=pocket_access_token)
 
     @staticmethod
     def read_naming_rules(naming_rules_filename):
@@ -22,7 +19,9 @@ class PocketParser:
         return naming_rules
 
     def load_data(self, naming_rules_filename, report):
-        if self.api_key != '' and self.user_oauth_token != '':
-
+        if self.api != '':
             naming_rules = self.read_naming_rules(naming_rules_filename)
 
+            items_list = self.api.get(state = 'archive', sort = 'newest', detailType = 'simple')
+            for item in items_list:
+                print("%s (%s)" % (item.title, item.resolved_url))

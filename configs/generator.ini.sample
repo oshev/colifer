@@ -36,3 +36,11 @@ trello_list_done_name = Done
 trello_list_failed_name = Postponed / Failed
 trello_list_notes_name = Notes
 naming_rules_file = configs/naming_rules_trello.txt
+
+[Pocket]
+consumer_key = 46352-1fffd94875bbf8016f9f8bdc
+# to get access token, copy paste consumer key here
+# http://reader.fxneumann.de/plugins/oneclickpocket/auth.php?consumer_key=46352-1fffd94875bbf8016f9f8bdc&token=aa192b77-add3-c74f-5e3a-34b392
+# and press the button to obtain the access to your data
+access_token = PUT_YOUR_ACCESS_TOKEN_HERE
+naming_rules_file = configs/naming_rules_pocket.txt
