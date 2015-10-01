@@ -34,7 +34,7 @@ class PocketParser:
                 exit(1)
 
             init_section_path_elements = rule.split(SECTION_SEPARATOR)
-            init_section_path_elements.append("Read article")
+            init_section_path_elements.append("Read articles")
             report.find_or_create_section(report.root_section, init_section_path_elements, 0, False)
             init_section_path_elements.append("Quora")
             report.find_or_create_section(report.root_section, init_section_path_elements, 0, False)
