@@ -1,12 +1,29 @@
 [ReportSpecific]
-report_title = 2015 Week 22 (25.05-31.05)
+report_week_number = 39
+report_year = 2015
+report_title = %REPORT_YEAR Week %WEEK_NUMBER (%WEEK_START-%WEEK_END)
+
+[Trello]
+trello_board_id = yEfGPTZu
+# if false, then the generator won't read data from trello
+trello_stat_enabled = true
+# to generate your Trello developer key visit https://trello.com/1/appKey/generate
+trello_developer_key = PUT_YOUR_KEY_HERE
+# to get your token read https://trello.com/docs/gettingstarted/index.html#getting-a-token-from-a-user
+# or just open the following link in the browser (don't forget to change SUBSTITUE_WITH_YOUR_DEV_KEY with your trello_developer_key
+# https://trello.com/1/authorize?key=SUBSTITUTE_WITH_YOUR_DEV_KEY&name=coscious-life-generator&expiration=never&response_type=token
+trello_user_oauth_token = PUT_YOUR_OAUTH_TOKEN_HERE
+trello_list_done_name = Done
+trello_list_failed_name = Postponed / Failed
+trello_list_notes_name = Notes
+naming_rules_file = configs/naming_rules_trello.txt
 
 [Files]
 naming_rules_file = configs/naming_rules.txt
 constant_sections_file = configs/constant_sections.txt
 
-jiffy_report_file = /home/user/Downloads/jiffy week 22.csv
-out_html_report_file = /home/user/Downloads/report.html
+jiffy_report_file = /home/user/Downloads/jiffy week %WEEK_NUMBER.csv
+out_html_report_file = /home/user/Downloads/2015 Week %WEEK_NUMBER.html
 
 [Columns]
 column_name_project = Project
@@ -18,24 +35,6 @@ column_name_stop_time = Stop time
 [Html]
 before_report = <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><style>.stats {color: lightgray} .level1 {font-weight: bold;font-size:130%;padding:10px} .level2 {font-weight: bold;font-size:120%;padding:10px} .level3 {font-weight: bold;font-size:110%;padding:5px} .level4 {font-weight: bold;padding:5px} .level5 {padding:5px}</style></head><body><div style="background:white;width:800px;right: 0;left: 0;margin-right: auto;margin-left: auto;">
 after_report = <li class=level4>Time for writing this report: X:X (template X:X, draft X:X, the rest is editing).</li></div></body></html>
-
-[Trello]
-# if false, then the generator won't read data from trello
-trello_stat_enabled = true
-
-# to generate your Trello developer key visit https://trello.com/1/appKey/generate
-trello_developer_key = PUT_YOUR_KEY_HERE
-
-# to get your token read https://trello.com/docs/gettingstarted/index.html#getting-a-token-from-a-user
-# or just open the following link in the browser (don't forget to change SUBSTITUE_WITH_YOUR_DEV_KEY with your trello_developer_key
-# https://trello.com/1/authorize?key=SUBSTITUTE_WITH_YOUR_DEV_KEY&name=coscious-life-generator&expiration=never&response_type=token
-trello_user_oauth_token = PUT_YOUR_OAUTH_TOKEN_HERE
-
-trello_board_id = yEfGPTZu
-trello_list_done_name = Done
-trello_list_failed_name = Postponed / Failed
-trello_list_notes_name = Notes
-naming_rules_file = configs/naming_rules_trello.txt
 
 [Pocket]
 consumer_key = 46352-1fffd94875bbf8016f9f8bdc

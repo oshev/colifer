@@ -3,7 +3,7 @@
 # Spaces are allowed in any part of the line
 # Order of the sections in the report will replicate the order of lines here
 
-Overview=History: 71:43, 62:16, 64:46, 65:11, 59:42, 56:04, 50:06, 65:00, 62:20, 67:34, 72:22, 68:31, 76:38, 62:09, 70:47, 55:41, 57:37, 71:42, 70:39, 48:54, 14:31, 53:19, 41:40, 73:35, 63:21, 73:24, 62:56, 74:12
+Overview=History: 71:43, 62:16, 64:46, 65:11, 59:42, 56:04, 50:06, 65:00, 62:20, 67:34, 72:22, 68:31, 76:38, 62:09, 70:47, 55:41, 57:37, 71:42, 70:39, 48:54, 14:31, 53:19, 41:40, 73:35, 63:21, 73:24, 62:56, 74:12, 61:33
 
 Day Job/Programming=Dummy
 Writing=Dummy
@@ -15,9 +15,12 @@ Other=Dummy
 Failed=Dummy
 
 Learning/Reading/Books/In English=<img class=book src="http://d.gr-assets.com/books/1417815598l/15830541.jpg">David Simpson <a href="http://www.goodreads.com/book/show/15830541-sub-human">Sub-Human (Post-human #1)</a>
-PREV=0, X%, X%
+PREV=0, X%, X%, 44% (1579 / 3560)
 
 Learning/Reading/About Writing/Books=<img class=book src="http://ecx.images-amazon.com/images/I/51lt7pc-LML._BO2,204,203,200_PIsitb-sticker-v3-big,TopRight,0,-55_SX324_SY324_PIkin4,BottomRight,1,22_AA346_SH20_OU30_.jpg">Julia Cameron <a href="https://www.goodreads.com/book/show/18186527-the-miracle-of-the-morning-pages-journal">The Miracle of Morning Pages</a>
-PREV=0, X%, X%
+PREV=0, X%, X%, 100%
+
+Learning/Reading/About Writing/Books=<img class=book src="http://ecx.images-amazon.com/images/I/41J4VXXkEpL._SX331_BO1,204,203,200_.jpg">Donald Maass "Writing the Breakout Novel"</a>
+PREV=0, 10%
 
 Learning/Video/In English=<img class=book src="http://www.stargatecinema.com/images/magictoolbox_cache/3bf842518f40ca6b8a10b619b8e02daf/2/2/22913/thumb400x400/23298-04.jpg">Sopranos Season 6

@@ -3,4 +3,4 @@
 # Spaces are allowed in any part of the line
 # The order of the sections in the report will replicate the order of lines here
 
-NoLabel=Other
+Default=Learning/Reading/Other/In English
