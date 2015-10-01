@@ -13,8 +13,8 @@ if __name__ == '__main__':
     config.read('configs/generator.ini')
     jiffy_report = config['Files']['jiffy_report_file']
 
-    #pocket_parser = pocketparser.PocketParser(config['Pocket']['consumer_key'], config['Pocket']['access_token'])
-    #pocket_parser.load_data(config['Pocket']['naming_rules_file'], None)
+    pocket_parser = pocketparser.PocketParser(config['Pocket']['consumer_key'], config['Pocket']['access_token'])
+    pocket_parser.load_data(config['Pocket']['naming_rules_file'], None)
 
     jiffy_csv_parser = jiffycsvparser.JiffyCSVParser(config)
     jiffy_csv_parser.load_column_names()
