@@ -32,12 +32,13 @@
 
 Прогр-ВидеоТехн=Learning/Programming/Tech Video
 Прогр-ПрогрТренинг=Learning/Programming/Exercises
-Прогр-ЧтенТехн=Learning/Programming/Tech Reading
+Прогр-ЧтенТехнич=Learning/Programming/Tech Reading
 Прогр=Learning/Programming/Other
 
 Аудио-АКниги=Learning/Audio/Audio Books
 Аудио-Театр=Learning/Audio/Theater
 Аудио=Learning/Audio/Other
+Прогр-АудиоТехн=Learning/Audio/Tech
 
 Видео=Learning/Video/Other
 Видео-ВидеоАнг=Learning/Video/In English
