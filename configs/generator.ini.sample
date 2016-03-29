@@ -17,11 +17,15 @@ list_done_name = Done
 list_failed_name = Postponed / Failed
 list_notes_name = Notes
 naming_rules_file = configs/naming_rules_trello.txt
+past_tense_rules_file = configs/past_tense_rules.txt
+lists_stats_graph_filename = lists_stats.png
+list_stats_graph_tag = <img style="max-height:300px;vertical-align:middle;padding:5px" src="{}">
 
 [Files]
 naming_rules_file = configs/naming_rules.txt
 constant_sections_file = configs/constant_sections.txt
 
+pic_dir = /Users/oleg/Dropbox/Productivity/Reports Unfinished/%REPORT_YEAR Week %WEEK_NUMBER pics
 jiffy_report_file = /home/user/Downloads/jiffy week %WEEK_NUMBER.csv
 out_html_report_file = /home/user/Downloads/2015 Week %WEEK_NUMBER.html
 
