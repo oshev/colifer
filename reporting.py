@@ -2,6 +2,7 @@ import sectionstat
 
 SECTION_SEPARATOR = '/'
 
+
 class Section:
     parent = None
     name = ''
@@ -17,6 +18,7 @@ class Section:
             return "{\"Name\": \"" + str(self.name) + "\"" + \
                    ", \"Stats\": " + ("\"None\"" if self.stats is None else str(self.stats)) + \
                    ", \"Children\": " + ("\"None\"" if self.children is None else str(self.children)) + "}"
+
 
 class Report:
     title = ''

@@ -1,34 +1,34 @@
 import pocket
 import datetime
 from reporting import SECTION_SEPARATOR
+from namingrules import NamingRules
 
 DEFAULT_LABEL_RULE = "Default"
 
-class PocketParser:
 
+class PocketParser:
     api = None
 
     def __init__(self, pocket_consumer_key, pocket_access_token):
         self.api = pocket.Pocket(pocket_consumer_key, pocket_access_token)
+        self.naming_rules_obj = NamingRules()
 
     @staticmethod
-    def read_naming_rules(naming_rules_filename):
-        naming_rules = {}
-        lines = [line.strip() for line in open(naming_rules_filename)]
-        for row in lines:
-            if row != '' and not row.startswith('#'):
-                elements = row.split('=')
-                if len(elements) == 2:
-                    naming_rules[elements[0]] = elements[1]
-        return naming_rules
+    def safe_get(article, field, alternative):
+        if field in article:
+            return article[field]
+        elif alternative:
+            return article[alternative]
+        else:
+            return ''
 
     def load_data(self, report, week_start, week_end, naming_rules_filename):
         if self.api != '':
-            naming_rules = self.read_naming_rules(naming_rules_filename)
+            self.naming_rules_obj.read_naming_rules_old(naming_rules_filename)
 
             rule = None
-            if naming_rules[DEFAULT_LABEL_RULE] is not None:
-                rule = naming_rules[DEFAULT_LABEL_RULE]
+            if self.naming_rules_obj.naming_rules[DEFAULT_LABEL_RULE] is not None:
+                rule = self.naming_rules_obj.naming_rules[DEFAULT_LABEL_RULE]
             else:
                 print("You must put Default rule to Pocket naming rules file")
                 exit(1)
@@ -47,15 +47,17 @@ class PocketParser:
                     time_read = datetime.datetime.fromtimestamp(int(result[0]['list'][key]['time_read']))
                     if week_start <= time_read <= week_end:
                         init_section_path_elements = section_path_elements.copy()
-                        if "quora.com" in result[0]['list'][key]['resolved_url']:
+                        if "quora.com" in self.safe_get(result[0]['list'][key], 'resolved_url', 'given_url'):
                             section_path_elements.append("Quora")
-                        print("Processing Pocket article: " + result[0]['list'][key]['resolved_title'])
+                        print("Processing Pocket article: " + self.safe_get(result[0]['list'][key],
+                                                                            'resolved_title', 'given_title'))
                         section_path_elements.append("<a href='" +
-                                                     result[0]['list'][key]['resolved_url'] +
+                                                     self.safe_get(result[0]['list'][key],
+                                                                   'resolved_url', 'given_url') +
                                                      "'>" +
-                                                     result[0]['list'][key]['resolved_title'] +
+                                                     self.safe_get(result[0]['list'][key],
+                                                                   'resolved_title', 'given_title') +
                                                      "</a>" +
-                                                     " (" + result[0]['list'][key]['word_count'] +
+                                                     " (" + self.safe_get(result[0]['list'][key], 'word_count', None) +
                                                      "&nbsp;words)")
                         report.find_or_create_section(report.root_section, section_path_elements, 0, False)
-

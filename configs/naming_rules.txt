@@ -26,6 +26,7 @@
 
 Англ=Learning/English
 Англ-ПвтСлов=Learning/English/Vocabulary
+Англ-ПвтСловV=Learning/English/Vocabulary
 Англ-ГраматУпр=Learning/English/Grammar
 Англ-Elevate=Learning/English/Elevate
 Англ-Произн=Learning/English/Pronounciation

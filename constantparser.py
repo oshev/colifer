@@ -1,7 +1,6 @@
 from reporting import SECTION_SEPARATOR
-import sectionstat
-
 SPECIAL_PREV = "PREV"
+
 
 class Couple:
     a = ""
@@ -10,6 +9,7 @@ class Couple:
     def __init__(self, a, b):
         self.a = a
         self.b = b
+
 
 class ConstantParser:
 

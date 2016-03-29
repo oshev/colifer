@@ -1,25 +1,42 @@
-# Syntax: LabelNameInTrello=Section1/../SectionN
+# Syntax: LabelNameInTrello1,LabelNameInTrell2...=Section1/../SectionN
 # Use special label name 'NoLabel' for Trello tasks without labels
+# Use special label name 'NotDone' for Trello tasks in Postponed/Failed section
 # Spaces are allowed in any part of the line
 # Order of the sections in the report will replicate the order of lines here
 
 Sport=Sport
 SelfOrganization=Self-organization
-DayJob=Day Job
-Learning=Learning
-LearningEngVocab=Learning/English/Vocabulary
-LearningReadBookEng=Learning/Reading/Books/In English
-LearningReadBookSpa=Learning/Reading/Books/In Spanish
-LearningReadOther=Learning/Reading/Other
-LearningReadWritBook=Learning/Reading/About Writing/Books
-LearningReadWrit=Learning/Reading/About Writing/Other
-LearningVideoEng=Learning/Video/In English
-LearningAudioBook=Learning/Audio/Audio Books
+Tech=Learning/Programming/Other
+Tech,Projects=Learning/Programming
+#=Learning/English/Vocabulary
+Reading=Learning/Reading/Other/In English
+Reading,Spanish=Learning/Reading/Other/In Spanish
+Reading,Russian=Learning/Reading/Other/In Russian
+Reading,Tech=Learning/Programming/Tech Reading
+Reading,Tech,Projects=Learning/Programming/Tech Reading
+Reading,Books,Tech=Learning/Programming/Tech Reading/Books
+Reading,Books=Learning/Reading/Books/In English
+Reading,Books,Spanish=Learning/Reading/Books/In Spanish
+Reading,Books,Russian=Learning/Reading/Books/In Russian
+Reading,Books,Writing=Learning/Reading/About Writing/Books
+Reading,Writing=Learning/Reading/About Writing/Other
+Video=Learning/Video/In English
+Video,Spanish=Learning/Video/In Spanish
+Video,Russian=Learning/Video/In Russian
+Audio=Learning/Audio
+Audio,Books=Learning/Audio/Audio Books/In English
+Audio,Books,Spanish=Learning/Audio/Audio Books/In Spanish
+Audio,Books,Russian=Learning/Audio/Audio Books/In Russian
+Audio,Tech=Learning/Audio/Tech
+Audio,Spanish=Learning/Audio/In Spanish
+Audio,Russian=Learning/Audio/In Russian
 Projects=Other/Projects
-Health=Other/Health
-Writing=Writing
-WritingNovel=Writing/In English/Novel/Writing
-Other=Other
+Writing=Writing/In English/Other
+Writing,Spanish=Writing/In Spanish/Other
+Writing,Russian=Writing/In Russian/Other
+Writing,Projects=Writing/In English/Novel/Writing
 Social=Social
 NoLabel=Other
 NotDone=Failed
+UnknownLabel=UnknownLabel
+ListsUnitsGraph=Overview/Week Units

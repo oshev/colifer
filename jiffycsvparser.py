@@ -5,18 +5,17 @@ from datetime import datetime
 ID_DIV = '-'
 DATE_TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 
-class JiffyCSVParser:
 
-    column_name_project = ''
-    column_name_task = ''
-    column_name_extra = ''
-    column_start_time = ''
-    column_stop_time = ''
-    rows_stats_map = {}
-    config = None
+class JiffyCSVParser:
 
     def __init__(self, config):
         super().__init__()
+        self.column_name_project = ''
+        self.column_name_task = ''
+        self.column_name_extra = ''
+        self.column_start_time = ''
+        self.column_stop_time = ''
+        self.rows_stats_map = {}
         self.config = config
 
     def load_column_names(self):

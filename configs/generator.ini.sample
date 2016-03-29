@@ -4,18 +4,18 @@ report_year = 2015
 report_title = %REPORT_YEAR Week %WEEK_NUMBER (%WEEK_START-%WEEK_END)
 
 [Trello]
-trello_board_id = yEfGPTZu
+board_id = yEfGPTZu
 # if false, then the generator won't read data from trello
-trello_stat_enabled = true
+stat_enabled = true
 # to generate your Trello developer key visit https://trello.com/1/appKey/generate
-trello_developer_key = PUT_YOUR_KEY_HERE
+developer_key = PUT_YOUR_KEY_HERE
 # to get your token read https://trello.com/docs/gettingstarted/index.html#getting-a-token-from-a-user
-# or just open the following link in the browser (don't forget to change SUBSTITUE_WITH_YOUR_DEV_KEY with your trello_developer_key
+# or just open the following link in the browser (don't forget to change SUBSTITUE_WITH_YOUR_DEV_KEY with your developer_key
 # https://trello.com/1/authorize?key=SUBSTITUTE_WITH_YOUR_DEV_KEY&name=coscious-life-generator&expiration=never&response_type=token
-trello_user_oauth_token = PUT_YOUR_OAUTH_TOKEN_HERE
-trello_list_done_name = Done
-trello_list_failed_name = Postponed / Failed
-trello_list_notes_name = Notes
+user_oauth_token = PUT_YOUR_OAUTH_TOKEN_HERE
+list_done_name = Done
+list_failed_name = Postponed / Failed
+list_notes_name = Notes
 naming_rules_file = configs/naming_rules_trello.txt
 
 [Files]

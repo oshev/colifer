@@ -1,12 +1,4 @@
 class SectionStat:
-    jiffy_name = ''
-    seconds = 0
-    extra = 0
-    events_num = 0
-    days_num = 0
-    days_list = None
-    comments_list = None
-    pomodoros_stat = None
 
     def add_stats(self, stats):
         self.seconds += stats.seconds
@@ -16,6 +8,11 @@ class SectionStat:
 
     def __init__(self):
         super().__init__()
+        self.jiffy_name = ''
+        self.seconds = 0
+        self.extra = 0
+        self.events_num = 0
+        self.days_num = 0
         self.days_list = []
         self.comments_list = []
         self.pomodoros_stat = PomodorosStat()
@@ -29,43 +26,43 @@ class SectionStat:
                ", \"Comments list\": " + ("\"None\"" if self.comments_list is None else str(self.comments_list)) + \
                ", \"Pomodoros stat\": " + ("\"None\"" if self.pomodoros_stat is None else str(self.pomodoros_stat)) + "}"
 
-class PomodorosStat:
-    planned = 0
-    done = 0
-    broken = 0
-    not_done = 0
 
-    done_single = 0
-    done_double = 0
+class PomodorosStat:
+
+    def __init__(self):
+        super().__init__()
+        self.planned = 0
+        self.units = 0
+        self.done = 0
+        self.broken = 0
+        self.not_done = 0
 
     def is_not_zero(self):
-        return self.planned > 0 or self.done > 0 or self.broken > 0 or self.not_done > 0
+        return self.planned > 0 or self.done > 0 or self.broken > 0 or self.not_done > 0 or self.units > 0
 
     def add_pomodoros(self, pomodoros_stat):
         self.planned += pomodoros_stat.planned
         self.done += pomodoros_stat.done
         self.broken += pomodoros_stat.broken
         self.not_done += pomodoros_stat.not_done
-        self.done_single += pomodoros_stat.done_single
-        self.done_double += pomodoros_stat.done_double
+        self.units += pomodoros_stat.units
 
     def __repr__(self):
         return "{\"Planned\": " + str(self.planned) + \
+               ", \"Units\": " + str(self.units) + \
                ", \"Done Total\": " + str(self.done) + \
                ", \"Broken\": " + str(self.broken) + \
-               ", \"Not done\": " + str(self.not_done) + \
-               ", \"Done single\": " + str(self.done_single) + \
-               ", \"Done double\": " + str(self.done_double) + "}"
+               ", \"Not done\": " + str(self.not_done) + "}"
+
+    @staticmethod
+    def fmt_field(name, value):
+        return "{}".format(name + ": " + str(int(value) if value - int(value) < 0.0001 else "{:.1f}".format(value)) +
+                           ", " if value > 0 else "")
 
     def __str__(self):
-        return "P[" + \
-               ("{}".format("pln: " + str(self.planned) + ", " if self.planned > 0 else "") +
-                "{}".format("ok: " + str(self.done) + " " +
-                            ("(1x" + str(self.done_single) + ", "
-                                if self.done_single > 0 and self.done_double > 0 else "") +
-                            ("(" if self.done_single == 0 else "") +
-                            ("2x" + str(self.done_double) + ") " if self.done_double > 0 else "")
-                            if self.done > 0 else "") +
-                "{}".format("brk: " + str(self.broken) + ", " if self.broken > 0 else "") +
-                "{}".format("skp: " + str(self.not_done) + ", " if self.not_done > 0 else "")
-                ).strip(', ') + "]" if self.is_not_zero() else ""
+        return ("P[" + self.fmt_field("pln", self.planned) +
+                self.fmt_field("unt", self.units) +
+                self.fmt_field("pom", self.done) +
+                self.fmt_field("brk", self.broken) +
+                self.fmt_field("fail", self.not_done)).\
+                strip(', ') + "]" if self.is_not_zero() else ""
