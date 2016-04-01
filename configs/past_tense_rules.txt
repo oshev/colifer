@@ -16,3 +16,15 @@ repeat repeated
 call called
 publish published
 talk talked
+prepare prepared
+interview interviewed
+answer answered
+speak spoke
+fix fixed
+add added
+investigate investigated
+send sent
+check checked
+make made
+review reviewed
+listen listened
