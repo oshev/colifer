@@ -3,7 +3,7 @@
 # Spaces are allowed in any part of the line
 # Order of the sections in the report will replicate the order of lines here
 
-Overview=History: 68:22, 63:45, 59:13, 65:11, 59:33, 60:28, 64:14, 66:16, 39:47, 36:28, 44:41
+Overview=History: 68:22, 63:45, 59:13, 65:11, 59:33, 60:28, 64:14, 66:16, 39:47, 36:28, 44:41, 40:20, 50:36, 46:43
 
 #Day Job/Programming=Dummy
 Learning=Dummy
@@ -15,12 +15,16 @@ Other=Dummy
 Failed=Dummy
 
 Learning/Reading/About Writing/Books=<img class=book src="https://d.gr-assets.com/books/1356023889l/180467.jpg"><a href=https://www.goodreads.com/book/show/180467.Self_Editing_for_Fiction_Writers>Renni Browne, Dave King "Self-Editing for Fiction Writers: How to Edit Yourself Into Print"</a>
-PREV=8%, 14%, 19%, 21%, 26%, 31%, 37%
+PREV=8%, 14%, 19%, 21%, 26%, 31%, 37%, 45%, 49%, 53%
 
 Learning/Reading/Books/In English=<img class=book src="https://d.gr-assets.com/books/1349614200l/13453029.jpg">Hugh Howey<a href="https://www.goodreads.com/book/show/13453029-wool-omnibus?ac=1&from_search=1&from_nav=true">Wool Omnibus</a>
-PREV=8%, 15%, 18%, 23%, 25%, 27%, 36%
+PREV=8%, 15%, 18%, 23%, 25%, 27%, 36%, 44%, 52%, 62%
 
 Learning/Video/In English=<img class=book src="http://ia.media-imdb.com/images/M/MV5BMTY4ODk3OTM4Nl5BMl5BanBnXkFtZTgwMjMwNzg1NzE@._V1_UY268_CR8,0,182,268_AL_.jpg"><a href=http://www.imdb.com/title/tt4270492/?ref_=fn_al_tt_1>Billions</a>
 
+Learning/Video/In English=<img class=book src="http://ia.media-imdb.com/images/M/MV5BNjk5MjYwNjg4NV5BMl5BanBnXkFtZTgwNzAzMzc5NzE@._V1_UX182_CR0,0,182,268_AL_.jpg"><a href=http://www.imdb.com/title/tt3032476/?ref_=nv_sr_1>Better Call Saul</a>
+
+Learning/Video/In English=<img class=book src="http://ia.media-imdb.com/images/M/MV5BMjM3ODMyMjc3MV5BMl5BanBnXkFtZTgwNDgzNDc5NzE@._V1_UX182_CR0,0,182,268_AL_.jpg"><a href=http://www.imdb.com/title/tt1856010/?ref_=nv_sr_1>House of Cards</a>
+
 Learning/Programming/Tech Reading=<img class=book src="https://d.gr-assets.com/books/1408309444l/58128.jpg">Eric Freeman, et al.<a href="https://www.goodreads.com/book/show/58128.Head_First_Design_Patterns">Head First Design Patterns</a>
-PREV=0%, 14%, 26%, 26% (3)
+PREV=0%, 14%, 26%, 26% (6)

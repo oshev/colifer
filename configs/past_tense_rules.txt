@@ -16,6 +16,7 @@ repeat repeated
 call called
 publish published
 talk talked
+chat chatted
 prepare prepared
 interview interviewed
 answer answered
@@ -28,3 +29,13 @@ check checked
 make made
 review reviewed
 listen listened
+study studied
+eliminate eliminated
+go went
+fill filled
+schedule scheduled
+assist assisted
+paint painted
+re-paint re-painted
+tell told
+meet met

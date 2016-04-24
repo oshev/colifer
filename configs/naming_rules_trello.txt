@@ -7,7 +7,7 @@
 Sport=Sport
 SelfOrganization=Self-organization
 Tech=Learning/Programming/Other
-Tech,Projects=Learning/Programming
+Tech,Projects=Other/Projects
 #=Learning/English/Vocabulary
 Reading=Learning/Reading/Other/In English
 Reading,Spanish=Learning/Reading/Other/In Spanish

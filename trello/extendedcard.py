@@ -53,12 +53,12 @@ class TrelloExtendedCard(Card):
 
             for item in items:
                 prefix, postfix = '', ''
+                value = self.subst_urls(item['name'])
                 if item['state'] == 'complete':
                     postfix = COMMENT_AS_PLANNED
+                    value = self.past_tense_rules_obj.convert_to_past(value)
                 else:
                     prefix = COMMENT_NOT_DONE
-                value = self.subst_urls(item['name'])
-                value = self.past_tense_rules_obj.convert_to_past(value)
                 section_path_elements.append(prefix + value + postfix)
                 self.report.find_or_create_section(self.report.root_section,
                                                    section_path_elements, 0, False)
@@ -132,7 +132,9 @@ class TrelloExtendedCard(Card):
         section_path_elements = path.split(SECTION_SEPARATOR)
         if section_path_elements:
             title = TrelloExtendedCard.clean_title(self.name)
-            title = self.past_tense_rules_obj.convert_to_past(title)
+            if not self.stats.pomodoros_stat or self.stats.pomodoros_stat.not_done == 0:
+                # don't convert verbs to past for failed tasks
+                title = self.past_tense_rules_obj.convert_to_past(title)
             section_path_elements.append(title)
             this_section = self.report.find_or_create_section(self.report.root_section,
                                                               section_path_elements, 0, False)
