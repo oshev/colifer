@@ -4,6 +4,11 @@
 # Spaces are allowed in any part of the line
 # Order of the sections in the report will replicate the order of lines here
 
+DayJob=Day Job
+DayJob,Tech=Day Job/Programming
+DayJob,Reading,Tech=Day Job/Learning
+DayJob,Social=Day Job/Social
+DayJob,Sport=Sport/With colleagues
 Sport=Sport
 SelfOrganization=Self-organization
 Tech=Learning/Programming/Other

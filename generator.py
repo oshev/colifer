@@ -1,14 +1,15 @@
-import configparser
 import datetime
+import errno
+import os
+
+import configparser
+from trello.parser import TrelloParser
 
 import constantparser
 import htmlreport
 import jiffycsvparser
 import pocketparser
 import reporting
-from trello.parser import TrelloParser
-import errno
-import os
 
 config = configparser.RawConfigParser()
 

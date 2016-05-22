@@ -1,7 +1,9 @@
-import pocket
 import datetime
-from reporting import SECTION_SEPARATOR
+
+import pocket
+
 from namingrules import NamingRules
+from reporting import SECTION_SEPARATOR
 
 DEFAULT_LABEL_RULE = "Default"
 
