@@ -13,7 +13,7 @@ class PocketParser:
 
     def __init__(self, pocket_consumer_key, pocket_access_token):
         self.api = pocket.Pocket(pocket_consumer_key, pocket_access_token)
-        self.naming_rules_obj = NamingRules()
+        self.naming_rules = NamingRules()
 
     @staticmethod
     def safe_get(article, field, alternative):
@@ -26,16 +26,14 @@ class PocketParser:
 
     def load_data(self, report, week_start, week_end, naming_rules_filename):
         if self.api != '':
-            self.naming_rules_obj.read_naming_rules_old(naming_rules_filename)
+            self.naming_rules.read_naming_rules_old(naming_rules_filename)
 
-            rule = None
-            if self.naming_rules_obj.naming_rules[DEFAULT_LABEL_RULE] is not None:
-                rule = self.naming_rules_obj.naming_rules[DEFAULT_LABEL_RULE]
-            else:
-                print("You must put Default rule to Pocket naming rules file")
+            path = self.naming_rules.get_path(DEFAULT_LABEL_RULE)
+            if path is None:
+                print("You must put Default path to Pocket naming rules file")
                 exit(1)
 
-            init_section_path_elements = rule.split(SECTION_SEPARATOR)
+            init_section_path_elements = path.split(SECTION_SEPARATOR)
             init_section_path_elements.append("Read articles")
             report.find_or_create_section(report.root_section, init_section_path_elements, 0, False)
             init_section_path_elements.append("Quora")

@@ -17,7 +17,7 @@ class TrelloParser:
         self.api_key = self.config['api_key']
         self.user_oauth_token = self.config['user_oauth_token']
         self.report = report
-        self.naming_rules_obj = namingrules.NamingRules()
+        self.naming_rules = namingrules.NamingRules()
         self.past_tense_rules_obj = past_tense_rules.PastTenseRules()
         self.trello_lists = {}
         self.pic_dir = pic_dir
@@ -33,7 +33,7 @@ class TrelloParser:
             for card in reversed(trello_list.get_cards()):
                 print("Processing Trello task: " + card.name)
                 extended_card = TrelloExtendedCard(card, self.config, self.report,
-                                                   self.naming_rules_obj.naming_rules,
+                                                   self.naming_rules,
                                                    self.past_tense_rules_obj)
                 extended_card.parse_and_add_to_report(list_name)
                 trello_list_stat.add_card_stats(extended_card)
@@ -42,7 +42,7 @@ class TrelloParser:
     def add_lists_stats_graph(self, list_names, done_stats, img_path):
             TrelloGraphs.make_lists_stats_graph(self.pic_dir + '/' + self.config['lists_stats_graph_filename'],
                                                 list_names, done_stats)
-            path = self.naming_rules_obj.naming_rules[LISTS_UNITS_RULE]
+            path = self.naming_rules.get_path(LISTS_UNITS_RULE)
             section_path_elements = path.split(SECTION_SEPARATOR)
             section_path_elements.append(self.config['list_stats_graph_tag'].format(img_path))
 
@@ -53,7 +53,7 @@ class TrelloParser:
             client = Client(self.api_key, self.user_oauth_token)
             board = Board(client, self.config['board_id'])
 
-            self.naming_rules_obj.read_naming_rules(self.config['naming_rules_file'])
+            self.naming_rules.read_naming_rules(self.config['naming_rules_file'])
             self.past_tense_rules_obj.read_past_tense_rules(self.config['past_tense_rules_file'])
 
             board_lists = board.get_lists()

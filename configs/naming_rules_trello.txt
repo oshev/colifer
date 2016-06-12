@@ -4,14 +4,24 @@
 # Spaces are allowed in any part of the line
 # Order of the sections in the report will replicate the order of lines here
 
-DayJob=Day Job
+DayJob[review]=Day Job/Other
+DayJob,Tech[review]=Day Job/Other
+DayJob[test]=Day Job/Debugging
+DayJob,Tech[test]=Day Job/Debugging
 DayJob,Tech=Day Job/Programming
+DayJob,Reading=Day Job/Learning
 DayJob,Reading,Tech=Day Job/Learning
 DayJob,Social=Day Job/Social
 DayJob,Sport=Sport/With colleagues
+DayJob=Day Job
+Sport[Football]=Sport/Football
+Sport[BJJ]=Sport/BJJ
 Sport=Sport
+SelfOrganization[report]=Self-organization/Reports
+SelfOrganization[plan]=Self-organization/Other
 SelfOrganization=Self-organization
 Tech=Learning/Programming/Other
+Tech,Social=Learning/Programming/Social
 Tech,Projects=Other/Projects
 #=Learning/English/Vocabulary
 Reading=Learning/Reading/Other/In English
@@ -30,6 +40,7 @@ Video,Spanish=Learning/Video/In Spanish
 Video,Russian=Learning/Video/In Russian
 Video,Tech=Learning/Programming/Tech Video
 Video,Tech,Projects=Learning/Programming/Tech Video/Projects
+Audio[Anki]=Learning/English/Vocabulary
 Audio=Learning/Audio
 Audio,Books=Learning/Audio/Audio Books/In English
 Audio,Books,Spanish=Learning/Audio/Audio Books/In Spanish
@@ -42,6 +53,8 @@ Writing=Writing/In English/Other
 Writing,Spanish=Writing/In Spanish/Other
 Writing,Russian=Writing/In Russian/Other
 Writing,Projects=Writing/In English/Novel/Writing
+Social[letter]=Social/Correspondence
+Social[e-mail]=Social/Correspondence
 Social=Social
 NoLabel=Other
 NotDone=Failed

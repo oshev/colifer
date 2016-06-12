@@ -10,7 +10,7 @@
 ПисатАнг-ПрзПисат=Writing/In English/Novel/Writing
 ПисатАнг-ПрзПроч=Writing/In English/Novel/Other
 ПисатАнг-ПрзРедакт=Writing/In English/Novel/Editing
-ПисатАнг-ПрочПисат=Writing/In English/Other/Writing
+ПисатАнг-ПрочПисат=Writing/In English/Other
 ПисатАнг-ПрочРедакт=Writing/In English/Other
 
 Блог-БлогПисат=Writing/In Russian/Blog/Writing
@@ -40,6 +40,7 @@
 Аудио-Театр=Learning/Audio/Theater
 Аудио=Learning/Audio/Other
 Прогр-АудиоТехн=Learning/Audio/Tech
+Аудио-ПодкПисат=Learning/Audio/About Writing
 
 Видео=Learning/Video/Other
 Видео-ВидеоАнг=Learning/Video/In English
@@ -51,6 +52,7 @@
 Спорт-БЖЖ=Sport/BJJ
 Спорт-Йога=Sport/Yoga
 Спорт-Силовая=Sport/Weightlifting
+Спорт-Футбол=Sport/Football
 Спорт-Разминка=Sport/Warm-up
 Спорт=Sport/Other
 

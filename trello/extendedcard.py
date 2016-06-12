@@ -84,24 +84,21 @@ class TrelloExtendedCard(Card):
 
     def get_card_path(self, list_name):
         labels = self.get_card_information()[LABELS_HASH_TAG]
-        path = ""
         if not labels:
-            if NO_LABEL_RULE in self.naming_rules:
-                path = self.naming_rules[NO_LABEL_RULE]
+            path = self.naming_rules.get_path(NO_LABEL_RULE)
         else:
             if list_name == self.config['list_failed_name']:
-                path = self.naming_rules[NOT_DONE_LABEL]
+                path = self.naming_rules.get_path(NOT_DONE_LABEL)
             else:
                 labels_list = []
                 for label in labels:
                     labels_list.append(label[LABEL_NAME_HASH_TAG])
                 sorted_labels = ','.join(sorted(labels_list))
-                if sorted_labels in self.naming_rules:
-                    path = self.naming_rules[sorted_labels]
-                else:
+                path = self.naming_rules.get_path(sorted_labels, self.name)
+                if path is None:
                     print("Unknown label {}!".format(sorted_labels))
-                    path = self.naming_rules[UNKNOWN_LABEL_RULE]
-        return path
+                    path = self.naming_rules.get_path(UNKNOWN_LABEL_RULE)
+        return path if path is not None else ""
 
     # TODO: add card chain processing: clean title, substitute urls, change the first verb to past tense
 
@@ -117,7 +114,7 @@ class TrelloExtendedCard(Card):
         return re.sub(r"(https*:[^\s]+)", r"<a href='\1'>link</a>", text, flags=re.IGNORECASE)
 
     # TODO: Separate parse from adding to report. Parse should only create an add object.
-    # TODO: Adding to report must be in trello parser.
+    # TODO: Adding to report must be in Trello parser.
 
     def parse_and_add_to_report(self, list_name):
         desc_lines = self.get_desc_lines()
@@ -127,7 +124,7 @@ class TrelloExtendedCard(Card):
         if pomodoros_in_title:
             self.stats.pomodoros_stat.add_pomodoros(pomodoros_in_title)  # update card stats
             if self.stats.pomodoros_stat.not_done > 0:
-                path = self.naming_rules[NOT_DONE_LABEL] + SECTION_SEPARATOR + list_name
+                path = self.naming_rules.get_path(NOT_DONE_LABEL) + SECTION_SEPARATOR + list_name
 
         section_path_elements = path.split(SECTION_SEPARATOR)
         if section_path_elements:
@@ -135,15 +132,18 @@ class TrelloExtendedCard(Card):
             if not self.stats.pomodoros_stat or self.stats.pomodoros_stat.not_done == 0:
                 # don't convert verbs to past for failed tasks
                 title = self.past_tense_rules_obj.convert_to_past(title)
+
+            for url_line in filter(lambda s: "http" in s, desc_lines):
+                title += " " + self.subst_urls(url_line)
+
             section_path_elements.append(title)
             this_section = self.report.find_or_create_section(self.report.root_section,
                                                               section_path_elements, 0, False)
             if pomodoros_in_title:
                 self.trello_pomodoros.add_pomodoros_to_section(this_section, pomodoros_in_title)  # set section stats
 
-            for desc_line in desc_lines:
+            for desc_line in filter(lambda s: "http" not in s, desc_lines):
                 if desc_line != '':
-                    desc_line = self.subst_urls(desc_line)
                     section_path_elements.append(desc_line)
                     self.report.find_or_create_section(self.report.root_section,
                                                        section_path_elements, 0, False)

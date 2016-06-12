@@ -57,3 +57,12 @@ deploy deployed
 start started
 share shared
 move moved
+commit committed
+discuss discussed
+jog jogged
+organize organized
+catch-up caught-up
+meet-up met-up
+test tested
+suggest suggested
+sort sorted
