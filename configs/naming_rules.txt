@@ -4,6 +4,8 @@
 
 Работа-Прогр=Day Job/Programming
 Работа-Отладк=Day Job/Debugging
+Работа-Собрания=Day Job/Social
+Работа-Обучение=Day Job/Learning
 Работа=Day Job/Other
 
 ПисатАнг=Writing/In English
@@ -34,13 +36,15 @@
 Прогр-ВидеоТехн=Learning/Programming/Tech Video
 Прогр-ПрогрТренинг=Learning/Programming/Exercises
 Прогр-ЧтенТехнич=Learning/Programming/Tech Reading
+Прогр-АудиоТехн=Learning/Programming/Tech Audio
 Прогр=Learning/Programming/Other
 
 Аудио-АКниги=Learning/Audio/Audio Books
 Аудио-Театр=Learning/Audio/Theater
-Аудио=Learning/Audio/Other
-Прогр-АудиоТехн=Learning/Audio/Tech
 Аудио-ПодкПисат=Learning/Audio/About Writing
+Аудио-ПодкТехн=Learning/Audio/Tech
+Аудио-ПодкПроч=Learning/Audio/Other
+Аудио=Learning/Audio/Other
 
 Видео=Learning/Video/Other
 Видео-ВидеоАнг=Learning/Video/In English
@@ -54,6 +58,7 @@
 Спорт-Силовая=Sport/Weightlifting
 Спорт-Футбол=Sport/Football
 Спорт-Разминка=Sport/Warm-up
+Спорт-ПингПонг=Sport/Ping-pong
 Спорт=Sport/Other
 
 Самоорг-Отчеты=Self-organization/Reports
@@ -64,3 +69,4 @@
 Прочее-Фирма=Other/Projects/Consultancy Service
 Прочее-SibEDGE=Other/Projects/SibEDGE
 Прочее-Переезд=Other/Projects/Migration
+Прочее-Гитара=Other/Projects/Guitar
