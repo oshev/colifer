@@ -7,6 +7,7 @@ from trello.extendedcard import TrelloExtendedCard
 from trello.liststat import TrelloListStat
 from trello.graphs import TrelloGraphs
 from reporting import SECTION_SEPARATOR
+import re
 LISTS_UNITS_RULE = "ListsUnitsGraph"
 
 
@@ -21,6 +22,10 @@ class TrelloParser:
         self.past_tense_rules_obj = past_tense_rules.PastTenseRules()
         self.trello_lists = {}
         self.pic_dir = pic_dir
+        self.list_group_separator_regexp = self.config['list_group_separator_regexp']
+
+    def is_group_separator(self, title):
+        return re.match(self.list_group_separator_regexp, title)
 
     def load_list_data(self, list_name):
         trello_list_stat = TrelloListStat()
@@ -30,13 +35,16 @@ class TrelloParser:
         trello_list = self.trello_lists[list_name]
         print("Processing Trello list: " + list_name)
         if trello_list:
-            for card in reversed(trello_list.get_cards()):
+            for card in trello_list.get_cards():
                 print("Processing Trello task: " + card.name)
-                extended_card = TrelloExtendedCard(card, self.config, self.report,
-                                                   self.naming_rules,
-                                                   self.past_tense_rules_obj)
-                extended_card.parse_and_add_to_report(list_name)
-                trello_list_stat.add_card_stats(extended_card)
+                if self.is_group_separator(card.name):
+                    print("\tis group separator, skipping")
+                else:
+                    extended_card = TrelloExtendedCard(card, self.config, self.report,
+                                                       self.naming_rules,
+                                                       self.past_tense_rules_obj)
+                    extended_card.parse_and_add_to_report(list_name)
+                    trello_list_stat.add_card_stats(extended_card)
         return trello_list_stat
 
     def add_lists_stats_graph(self, list_names, done_stats, img_path):

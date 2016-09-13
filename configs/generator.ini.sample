@@ -20,6 +20,7 @@ naming_rules_file = configs/naming_rules_trello.txt
 past_tense_rules_file = configs/past_tense_rules.txt
 lists_stats_graph_filename = lists_stats.png
 list_stats_graph_tag = <img style="max-height:300px;vertical-align:middle;padding:5px" src="{}">
+list_group_separator_regexp = /\*\*\*.*\*\*\*
 
 [Files]
 naming_rules_file = configs/naming_rules.txt
