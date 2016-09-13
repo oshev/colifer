@@ -66,3 +66,10 @@ meet-up met-up
 test tested
 suggest suggested
 sort sorted
+explain explained
+update updated
+attend attended
+compile compiled
+process processed
+register registered
+conduct conducted
