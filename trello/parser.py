@@ -1,13 +1,15 @@
+import re
+
 from trolly.board import Board
 from trolly.client import Client
 
 import namingrules
 import past_tense_rules
-from trello.extendedcard import TrelloExtendedCard
-from trello.liststat import TrelloListStat
-from trello.graphs import TrelloGraphs
 from reporting import SECTION_SEPARATOR
-import re
+from trello.extendedcard import TrelloExtendedCard
+from trello.graphs import TrelloGraphs
+from trello.liststats import TrelloListStats
+
 LISTS_UNITS_RULE = "ListsUnitsGraph"
 
 
@@ -28,7 +30,7 @@ class TrelloParser:
         return re.match(self.list_group_separator_regexp, title)
 
     def load_list_data(self, list_name):
-        trello_list_stat = TrelloListStat()
+        trello_list_stat = TrelloListStats()
         if list_name not in self.trello_lists:
             print("Can't find list '{}' on board".format(list_name))
             return trello_list_stat

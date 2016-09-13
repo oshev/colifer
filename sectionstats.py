@@ -1,4 +1,4 @@
-class SectionStat:
+class SectionStats:
 
     def add_stats(self, stats):
         self.seconds += stats.seconds
@@ -7,7 +7,6 @@ class SectionStat:
         self.days_num += stats.days_num
 
     def __init__(self):
-        super().__init__()
         self.jiffy_name = ''
         self.seconds = 0
         self.extra = 0
@@ -15,7 +14,7 @@ class SectionStat:
         self.days_num = 0
         self.days_list = []
         self.comments_list = []
-        self.pomodoros_stat = PomodorosStat()
+        self.unit_stats = UnitStats()
 
     def __repr__(self):
         return "{\"Seconds\": " + str(self.seconds) + \
@@ -24,34 +23,38 @@ class SectionStat:
                ", \"Days num\": " + str(self.days_num) + \
                ", \"Days list\": " + ("\"None\"" if self.days_list is None else str(self.days_list)) + \
                ", \"Comments list\": " + ("\"None\"" if self.comments_list is None else str(self.comments_list)) + \
-               ", \"Pomodoros stat\": " + ("\"None\"" if self.pomodoros_stat is None else str(self.pomodoros_stat)) + "}"
+               ", \"Unit stats\": " + ("\"None\"" if self.unit_stats is None else str(self.unit_stats)) + "}"
 
 
-class PomodorosStat:
+class UnitStats:
 
     def __init__(self):
-        super().__init__()
         self.planned = 0
-        self.units = 0
-        self.done = 0
-        self.broken = 0
-        self.not_done = 0
+        self.done_cucumbers = 0  # cucumber is a non-focused interval (approx. 25 minutes)
+        self.done_pomodoros = 0  # pomodoro is a focused and timed interval (usually 25 minutes)
+        self.broken_pomodoros = 0
 
     def is_not_zero(self):
-        return self.planned > 0 or self.done > 0 or self.broken > 0 or self.not_done > 0 or self.units > 0
+        return self.planned > 0 or self.done_pomodoros > 0 or self.done_cucumbers > 0 or \
+               self.broken_pomodoros > 0 or self.not_done() > 0
 
-    def add_pomodoros(self, pomodoros_stat):
-        self.planned += pomodoros_stat.planned
-        self.done += pomodoros_stat.done
-        self.broken += pomodoros_stat.broken
-        self.not_done += pomodoros_stat.not_done
-        self.units += pomodoros_stat.units
+    def add(self, unit_stats):
+        self.planned += unit_stats.planned
+        self.done_cucumbers += unit_stats.done_cucumbers
+        self.done_pomodoros += unit_stats.done_pomodoros
+        self.broken_pomodoros += unit_stats.broken_pomodoros
+
+    def done_units(self):
+        return self.done_cucumbers + self.done_pomodoros
+
+    def not_done(self):
+        return self.planned - self.done_units()
 
     def __repr__(self):
         return "{\"Planned\": " + str(self.planned) + \
-               ", \"Units\": " + str(self.units) + \
-               ", \"Done Total\": " + str(self.done) + \
-               ", \"Broken\": " + str(self.broken) + \
+               ", \"Units\": " + str(self.done_cucumbers) + \
+               ", \"Done Total\": " + str(self.done_pomodoros) + \
+               ", \"Broken\": " + str(self.broken_pomodoros) + \
                ", \"Not done\": " + str(self.not_done) + "}"
 
     @staticmethod
@@ -61,8 +64,8 @@ class PomodorosStat:
 
     def __str__(self):
         return ("P[" + self.fmt_field("pln", self.planned) +
-                self.fmt_field("unt", self.units) +
-                self.fmt_field("pom", self.done) +
-                self.fmt_field("brk", self.broken) +
-                self.fmt_field("fail", self.not_done)).\
+                self.fmt_field("unt", self.done_units()) +
+                self.fmt_field("pom", self.done_pomodoros) +
+                self.fmt_field("brk", self.broken_pomodoros) +
+                self.fmt_field("fail", self.not_done())).\
                 strip(', ') + "]" if self.is_not_zero() else ""

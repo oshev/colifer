@@ -1,6 +1,7 @@
 import csv
-import sectionstat
 from datetime import datetime
+
+import sectionstats
 
 ID_DIV = '-'
 DATE_TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
@@ -41,7 +42,7 @@ class JiffyCSVParser:
         if row_id in self.rows_stats_map.keys():
             stat_object = self.rows_stats_map[row_id]
         else:
-            stat_object = sectionstat.SectionStat()
+            stat_object = sectionstats.SectionStats()
             stat_object.jiffy_name = row_id
             self.rows_stats_map[row_id] = stat_object
 

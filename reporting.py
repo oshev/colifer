@@ -1,4 +1,4 @@
-import sectionstat
+import sectionstats
 
 SECTION_SEPARATOR = '/'
 
@@ -49,7 +49,7 @@ class Report:
     def propagate_stats_to_parent(section, stats):
         if section.parent is not None:
             if section.parent.stats is None:
-                section.parent.stats = sectionstat.SectionStat()
+                section.parent.stats = sectionstats.SectionStats()
             section.parent.stats.add_stats(stats)
 
             Report.propagate_stats_to_parent(section.parent, stats)

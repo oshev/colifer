@@ -3,8 +3,8 @@ import re
 from trolly.card import Card
 
 from reporting import SECTION_SEPARATOR
-from trello.pomodoros import TrelloPomodoros
-from sectionstat import SectionStat
+from sectionstats import SectionStats
+from trello.cardstats import TrelloCardStatsParser
 
 NO_LABEL_RULE = "NoLabel"
 UNKNOWN_LABEL_RULE = "UnknownLabel"
@@ -26,12 +26,12 @@ class TrelloExtendedCard(Card):
         self.id = card.id
         self.name = card.name
         self.base_uri = '/cards/' + self.id
-        self.trello_pomodoros = TrelloPomodoros()
+        self.config = trello_config
+        self.card_stats_parser = TrelloCardStatsParser(self.config)
         self.report = report
         self.naming_rules = naming_rules
         self.past_tense_rules_obj = past_tense_rules_obj
-        self.stats = SectionStat()
-        self.config = trello_config
+        self.stats = SectionStats()
 
     def get_actions_json(self):
         return self.fetch_json(self.base_uri + '/actions')
@@ -70,10 +70,10 @@ class TrelloExtendedCard(Card):
         for action in reversed(actions):
             if action[ACTION_TYPE_HASH_TAG] == COMMENT_TYPE_TEXT:
                 comment = action[ACTION_DATA_HASH_TAG][ACTION_DATA_TEXT_HASH_TAG]
-                if self.trello_pomodoros.has_pomodoro_info(comment):
-                    pomodoros_stat = self.trello_pomodoros.process_pomodoros_in_comment(comment)
-                    self.stats.pomodoros_stat.add_pomodoros(pomodoros_stat)  # update card stats
-                    self.trello_pomodoros.add_pomodoros_to_section(this_section, pomodoros_stat)  # set section stats
+                if self.card_stats_parser.has_pomodoro_info(comment):
+                    pomodoros_stat = self.card_stats_parser.process_stats_in_comment(comment)
+                    self.stats.unit_stats.add(pomodoros_stat)  # update card stats
+                    self.card_stats_parser.add_stats_to_section(this_section, pomodoros_stat)  # set section stats
                 elif POMELLO_INFO in comment:
                     continue  # skip Pomello service information
                 else:
@@ -103,10 +103,8 @@ class TrelloExtendedCard(Card):
     # TODO: add card chain processing: clean title, substitute urls, change the first verb to past tense
 
     @staticmethod
-    def clean_title(title):  # removes Pomello's marks
-        title = re.sub("^\s*\d+\s+✓\s*", "", title)
-        title = re.sub("\(-?\d+(\.\d+)?\)\s*", "", title)
-        title = re.sub("\[\d+\]\s*", "", title)
+    def clean_title(clean_regexp, title):  # removes Pomello's marks
+        title = re.sub(clean_regexp, "", title)
         return title
 
     @staticmethod
@@ -120,16 +118,19 @@ class TrelloExtendedCard(Card):
         desc_lines = self.get_desc_lines()
         path = self.get_card_path(list_name)
 
-        pomodoros_in_title = self.trello_pomodoros.process_pomodoros_in_title(self.name)  # use raw card title
-        if pomodoros_in_title:
-            self.stats.pomodoros_stat.add_pomodoros(pomodoros_in_title)  # update card stats
-            if self.stats.pomodoros_stat.not_done > 0:
-                path = self.naming_rules.get_path(NOT_DONE_LABEL) + SECTION_SEPARATOR + list_name
+        stats_in_title = self.card_stats_parser.process_stats_in_title(self.name)  # use raw card title
+        if stats_in_title:
+            self.stats.unit_stats.add(stats_in_title)  # update card stats
+            print(self.stats)
+            if self.stats.unit_stats.not_done() > 0:
+                # TODO: move only part of the card which is not done to not done section
+                # path = self.naming_rules.get_path(NOT_DONE_LABEL) + SECTION_SEPARATOR + list_name
+                pass
 
         section_path_elements = path.split(SECTION_SEPARATOR)
         if section_path_elements:
-            title = TrelloExtendedCard.clean_title(self.name)
-            if not self.stats.pomodoros_stat or self.stats.pomodoros_stat.not_done == 0:
+            title = TrelloExtendedCard.clean_title(self.config['title_clean_regexp'], self.name)
+            if not self.stats.unit_stats or self.stats.unit_stats.not_done == 0:
                 # don't convert verbs to past for failed tasks
                 title = self.past_tense_rules_obj.convert_to_past(title)
 
@@ -139,8 +140,8 @@ class TrelloExtendedCard(Card):
             section_path_elements.append(title)
             this_section = self.report.find_or_create_section(self.report.root_section,
                                                               section_path_elements, 0, False)
-            if pomodoros_in_title:
-                self.trello_pomodoros.add_pomodoros_to_section(this_section, pomodoros_in_title)  # set section stats
+            if stats_in_title:
+                self.card_stats_parser.add_stats_to_section(this_section, stats_in_title)  # set section stats
 
             for desc_line in filter(lambda s: "http" not in s, desc_lines):
                 if desc_line != '':
