@@ -13,6 +13,7 @@ from trello.graphs import TrelloGraphs
 
 LISTS_UNITS_RULE = "ListsUnitsGraph"
 NOT_DONE_LABEL = "NotDone"
+UNFINISHED_COMMENT = "Unfinished"
 
 
 class TrelloBoardParser:
@@ -41,39 +42,35 @@ class TrelloBoardParser:
 
     def add_parsed_card_to_report(self, parsed_card, list_name):
 
-        children_section_path_elements = None
-        if parsed_card.unit_stats.done_units() > 0 or parsed_card.unit_stats.is_zero():
-            section_path_elements = parsed_card.path.split(SECTION_SEPARATOR)
-            section_path_elements.append(parsed_card.title_past)
-            this_section = self.report.find_or_create_section(self.report.root_section,
-                                                              section_path_elements, 0, False)
-            TrelloCardStatsParser.add_unit_stats_to_section(this_section, parsed_card.unit_stats)
-            children_section_path_elements = section_path_elements
-        else:  # don't add completely failed tasks but add its stats to the parent
-            section_path_elements = parsed_card.path.split(SECTION_SEPARATOR)
-            this_section = self.report.find_or_create_section(self.report.root_section,
-                                                              section_path_elements, 0, False)
-            TrelloCardStatsParser.add_unit_stats_to_section(this_section, parsed_card.unit_stats)
+        section_path_elements = parsed_card.path.split(SECTION_SEPARATOR)
+        section_path_elements.append(parsed_card.title_past)
+        this_section = self.report.find_or_create_section(self.report.root_section,
+                                                          section_path_elements, 0, False)
+        TrelloCardStatsParser.add_unit_stats_to_section(this_section, parsed_card.unit_stats)
+        children_section_path_elements = section_path_elements
 
         if parsed_card.unit_stats.not_done > 0:
+            # add NOT DONE comment to unfinished tasks
+            section_path_elements.append(UNFINISHED_COMMENT)
+            self.report.find_or_create_section(self.report.root_section, section_path_elements, 0, False)
+            # add failed tickets to FAILED section as well
             not_done_path = self.naming_rules.get_path(NOT_DONE_LABEL) + SECTION_SEPARATOR + list_name
-            section_path_elements = not_done_path.split(SECTION_SEPARATOR)
-            section_path_elements.append(parsed_card.title)
-            this_section = self.report.find_or_create_section(self.report.root_section,
-                                                              section_path_elements, 0, False)
+            failed_section_path_elements = not_done_path.split(SECTION_SEPARATOR)
+            failed_section_path_elements.append(parsed_card.title)
+            failed_section = self.report.find_or_create_section(self.report.root_section,
+                                                                failed_section_path_elements, 0, False)
             # don't propagate stats of failed tasks up, we already considered their stats in the main section
             propagation_stop_section = self.not_done_section
-            TrelloCardStatsParser.add_unit_stats_to_section(this_section, parsed_card.unit_stats,
+            TrelloCardStatsParser.add_unit_stats_to_section(failed_section, parsed_card.unit_stats,
                                                             stop_at=propagation_stop_section)
-            if not children_section_path_elements:
-                children_section_path_elements = section_path_elements
+            if not parsed_card.unit_stats.done_units():
+                children_section_path_elements = failed_section_path_elements
 
-        if children_section_path_elements:
-            for child in parsed_card.children:
-                children_section_path_elements.append(child)
-                self.report.find_or_create_section(self.report.root_section,
-                                                   children_section_path_elements, 0, False)
-                children_section_path_elements.pop()
+        for child in parsed_card.children:
+            children_section_path_elements.append(child)
+            self.report.find_or_create_section(self.report.root_section,
+                                               children_section_path_elements, 0, False)
+            children_section_path_elements.pop()
 
     def load_list_data(self, list_name):
         trello_list_stat = UnitStats()
