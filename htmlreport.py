@@ -16,8 +16,8 @@ class HtmlReport:
             if stats.days_list is not None and len(stats.days_list) > 0:
                 for day in stats.days_list:
                     text += day + ", "
-            if stats.pomodoros_stat is not None and stats.pomodoros_stat.is_not_zero():
-                text += stats.pomodoros_stat.__str__()
+            if stats.unit_stats is not None and stats.unit_stats.is_not_zero():
+                text += stats.unit_stats.__str__()
             text = text.strip(', ')
             text += ')'
         return text

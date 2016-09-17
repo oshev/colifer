@@ -14,7 +14,6 @@ developer_key = PUT_YOUR_KEY_HERE
 # https://trello.com/1/authorize?key=SUBSTITUTE_WITH_YOUR_DEV_KEY&name=coscious-life-generator&expiration=never&response_type=token
 user_oauth_token = PUT_YOUR_OAUTH_TOKEN_HERE
 list_done_name = Done
-list_failed_name = Postponed / Failed
 list_notes_name = Notes
 naming_rules_file = configs/naming_rules_trello.txt
 past_tense_rules_file = configs/past_tense_rules.txt

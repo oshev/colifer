@@ -1,15 +1,14 @@
+import configparser
 import datetime
 import errno
 import os
-
-import configparser
-from trello.parser import TrelloParser
 
 import constantparser
 import htmlreport
 import jiffycsvparser
 import pocketparser
 import reporting
+from trello.boardparser import TrelloBoardParser
 
 config = configparser.RawConfigParser()
 
@@ -66,7 +65,7 @@ if __name__ == '__main__':
     report.fill_jiffy_sections(config['Files']['naming_rules_file'], jiffy_csv_parser.rows_stats_map)
 
     if config['Trello']['stat_enabled'] == 'true':
-        trello_parser = TrelloParser(config['Trello'], report, pic_dir)
+        trello_parser = TrelloBoardParser(config['Trello'], report, pic_dir)
         trello_parser.load_data()
 
     pocket_parser = pocketparser.PocketParser(config['Pocket']['consumer_key'], config['Pocket']['access_token'])

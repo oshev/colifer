@@ -28,32 +28,34 @@ class SectionStats:
 
 class UnitStats:
 
-    def __init__(self):
-        self.planned = 0
-        self.done_cucumbers = 0  # cucumber is a non-focused interval (approx. 25 minutes)
-        self.done_pomodoros = 0  # pomodoro is a focused and timed interval (usually 25 minutes)
-        self.broken_pomodoros = 0
+    def __init__(self, planned=0, done_cucumbers=0, done_pomodoros=0, broken_pomodoros=0, not_done=0):
+        self.planned = planned
+        self.done_cucumbers = done_cucumbers  # cucumber is a non-focused interval (approx. 25 minutes)
+        self.done_pomodoros = done_pomodoros  # pomodoro is a focused and timed interval (usually 25 minutes)
+        self.done_units_plan = min(self.done_units(), planned)
+        self.broken_pomodoros = broken_pomodoros
+        self.not_done = not_done
 
     def is_not_zero(self):
         return self.planned > 0 or self.done_pomodoros > 0 or self.done_cucumbers > 0 or \
-               self.broken_pomodoros > 0 or self.not_done() > 0
+               self.broken_pomodoros > 0 or self.not_done > 0
 
     def add(self, unit_stats):
         self.planned += unit_stats.planned
         self.done_cucumbers += unit_stats.done_cucumbers
         self.done_pomodoros += unit_stats.done_pomodoros
+        self.not_done += unit_stats.not_done
+        self.done_units_plan += unit_stats.done_units_plan
         self.broken_pomodoros += unit_stats.broken_pomodoros
 
     def done_units(self):
         return self.done_cucumbers + self.done_pomodoros
 
-    def not_done(self):
-        return self.planned - self.done_units()
-
     def __repr__(self):
-        return "{\"Planned\": " + str(self.planned) + \
+        return "{\"Plan\": " + str(self.planned) + \
                ", \"Units\": " + str(self.done_cucumbers) + \
-               ", \"Done Total\": " + str(self.done_pomodoros) + \
+               ", \"Units Plan\": " + str(self.done_units_plan) + \
+               ", \"Poms\": " + str(self.done_pomodoros) + \
                ", \"Broken\": " + str(self.broken_pomodoros) + \
                ", \"Not done\": " + str(self.not_done) + "}"
 
@@ -63,9 +65,10 @@ class UnitStats:
                            ", " if value > 0 else "")
 
     def __str__(self):
-        return ("P[" + self.fmt_field("pln", self.planned) +
+        return ("S[" + self.fmt_field("pln", self.planned) +
                 self.fmt_field("unt", self.done_units()) +
+                self.fmt_field("untPln", self.done_units_plan) +
                 self.fmt_field("pom", self.done_pomodoros) +
                 self.fmt_field("brk", self.broken_pomodoros) +
-                self.fmt_field("fail", self.not_done())).\
+                self.fmt_field("fail", self.not_done)).\
                 strip(', ') + "]" if self.is_not_zero() else ""

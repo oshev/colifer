@@ -16,13 +16,14 @@ class TrelloCardStatsParser:
         return "pomodoro" in comment.lower()
 
     @staticmethod
-    def add_stats_to_section(section, unit_stats):
+    def add_unit_stats_to_section(section, unit_stats, stop_at=None):
         if not section:
             return
         if section.stats is None:
             section.stats = SectionStats()
         section.stats.unit_stats.add(unit_stats)
-        TrelloCardStatsParser.add_stats_to_section(section.parent, unit_stats)
+        if not stop_at or stop_at != section:
+            TrelloCardStatsParser.add_unit_stats_to_section(section.parent, unit_stats, stop_at)
 
     @staticmethod
     def process_stats_in_comment(comment):
@@ -59,10 +60,12 @@ class TrelloCardStatsParser:
         done_cucumbers = TrelloCardStatsParser.get_target_num(self.config['title_done_cucumbers_regexp'], title)
         done_pomodoros = TrelloCardStatsParser.get_target_num(self.config['title_done_pomodoros_regexp'], title)
         if planned or done_cucumbers or done_pomodoros:
-            pomodoro_stat = UnitStats()
-            pomodoro_stat.planned += planned
-            pomodoro_stat.done_cucumbers += done_cucumbers
-            pomodoro_stat.done_pomodoros += done_pomodoros
-            return pomodoro_stat
+            unit_stats = UnitStats()
+            unit_stats.planned += planned
+            unit_stats.done_cucumbers += done_cucumbers
+            unit_stats.done_pomodoros += done_pomodoros
+            unit_stats.not_done = max(unit_stats.planned - unit_stats.done_units(), 0)
+            unit_stats.done_units_plan = min(unit_stats.done_units(), unit_stats.planned)
+            return unit_stats
         return None
 
