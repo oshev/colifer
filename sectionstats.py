@@ -36,9 +36,9 @@ class UnitStats:
         self.broken_pomodoros = broken_pomodoros
         self.not_done = not_done
 
-    def is_not_zero(self):
-        return self.planned > 0 or self.done_pomodoros > 0 or self.done_cucumbers > 0 or \
-               self.broken_pomodoros > 0 or self.not_done > 0
+    def is_zero(self):
+        return not self.planned and not self.done_pomodoros and not self.done_cucumbers and \
+               not self.broken_pomodoros and not self.not_done
 
     def add(self, unit_stats):
         self.planned += unit_stats.planned
@@ -71,4 +71,4 @@ class UnitStats:
                 self.fmt_field("pom", self.done_pomodoros) +
                 self.fmt_field("brk", self.broken_pomodoros) +
                 self.fmt_field("fail", self.not_done)).\
-                strip(', ') + "]" if self.is_not_zero() else ""
+                strip(', ') + "]" if not self.is_zero() else ""

@@ -42,14 +42,18 @@ class TrelloBoardParser:
     def add_parsed_card_to_report(self, parsed_card, list_name):
 
         children_section_path_elements = None
-        if parsed_card.unit_stats.done_units() > 0 or not parsed_card.unit_stats.is_not_zero():
+        if parsed_card.unit_stats.done_units() > 0 or parsed_card.unit_stats.is_zero():
             section_path_elements = parsed_card.path.split(SECTION_SEPARATOR)
             section_path_elements.append(parsed_card.title_past)
             this_section = self.report.find_or_create_section(self.report.root_section,
                                                               section_path_elements, 0, False)
-            if parsed_card.unit_stats.is_not_zero():
-                TrelloCardStatsParser.add_unit_stats_to_section(this_section, parsed_card.unit_stats)
+            TrelloCardStatsParser.add_unit_stats_to_section(this_section, parsed_card.unit_stats)
             children_section_path_elements = section_path_elements
+        else:  # don't add completely failed tasks but add its stats to the parent
+            section_path_elements = parsed_card.path.split(SECTION_SEPARATOR)
+            this_section = self.report.find_or_create_section(self.report.root_section,
+                                                              section_path_elements, 0, False)
+            TrelloCardStatsParser.add_unit_stats_to_section(this_section, parsed_card.unit_stats)
 
         if parsed_card.unit_stats.not_done > 0:
             not_done_path = self.naming_rules.get_path(NOT_DONE_LABEL) + SECTION_SEPARATOR + list_name
@@ -57,14 +61,8 @@ class TrelloBoardParser:
             section_path_elements.append(parsed_card.title)
             this_section = self.report.find_or_create_section(self.report.root_section,
                                                               section_path_elements, 0, False)
-            if parsed_card.unit_stats.done_units() > 0:
-                # don't propagate stats of partially done tasks up,
-                # they are already considered in the main section
-                propagation_stop_section = self.not_done_section
-            else:
-                # propagate stats of completely failed tasks up
-                # because they didn't appear in the main section
-                propagation_stop_section = None
+            # don't propagate stats of failed tasks up, we already considered their stats in the main section
+            propagation_stop_section = self.not_done_section
             TrelloCardStatsParser.add_unit_stats_to_section(this_section, parsed_card.unit_stats,
                                                             stop_at=propagation_stop_section)
             if not children_section_path_elements:

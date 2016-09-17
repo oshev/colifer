@@ -17,7 +17,7 @@ class TrelloCardStatsParser:
 
     @staticmethod
     def add_unit_stats_to_section(section, unit_stats, stop_at=None):
-        if not section:
+        if not section or unit_stats.is_zero():
             return
         if section.stats is None:
             section.stats = SectionStats()
