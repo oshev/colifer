@@ -116,12 +116,13 @@ class TrelloCardParser(Card):
 
         section_path_elements = parsed_card.path.split(SECTION_SEPARATOR)
         if section_path_elements:
-            parsed_card.title = TrelloCardParser.clean_title(self.config['title_clean_regexp'], self.name)
+            parsed_card.title = TrelloCardParser.clean_title(self.config['title_clean_regexp'], self.name).strip()
             parsed_card.title_past = self.past_tense_rules_obj.convert_to_past(parsed_card.title)
 
             for desc_line in filter(lambda s: "http" not in s, desc_lines):
                 if "http" in desc_line:
                     parsed_card.title += " " + self.subst_urls(desc_line)
+                    parsed_card.title_past += " " + self.subst_urls(desc_line)
                 elif desc_line:
                     parsed_card.add_child(desc_line)
 

@@ -17,7 +17,7 @@ class PastTenseRules:
         if not text:
             return text
         if " " in text:
-            first_word, rest = text.split(" ", 1)
+            first_word, rest = text.strip().split(" ", 1)
         else:
             first_word, rest = text, ""
         first_word = first_word.lower()
