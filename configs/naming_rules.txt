@@ -33,6 +33,11 @@
 Англ-Elevate=Learning/English/Elevate
 Англ-Произн=Learning/English/Pronounciation
 
+Французский=Learning/French
+Французский-Pimsleur=Learning/French/Pimsleur
+Французский-ПвтСлов=Learning/French/Vocabulary
+Французский-ГраматУпр=Learning/French/Grammar
+
 Прогр-ВидеоТехн=Learning/Programming/Tech Video
 Прогр-ПрогрТренинг=Learning/Programming/Exercises
 Прогр-ЧтенТехнич=Learning/Programming/Tech Reading
@@ -70,3 +75,5 @@
 Прочее-SibEDGE=Other/Projects/SibEDGE
 Прочее-Переезд=Other/Projects/Migration
 Прочее-Гитара=Other/Projects/Guitar
+Прочее-Rebota=Other/Projects/Rebota
+Прочее-ML Challenge=Other/Projects/ML Challenge

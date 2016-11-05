@@ -3,7 +3,7 @@
 # Spaces are allowed in any part of the line
 # Order of the sections in the report will replicate the order of lines here
 
-Overview=History: 68:22, 63:45, 59:13, 65:11, 59:33, 60:28, 64:14, 66:16, 39:47, 36:28, 44:41, 40:20, 50:36, 46:43, 45:51, 45:26, 47:43, 52:36, 58:47, 67:16, 70:01, 60:15, 63:10, 57:52, 71:02, 65:38, 53:56, 63:16, 60:33, 57:56, 60:46, 57:32, 65:04, 65:22, 63:26, 72:50, 72:06
+Overview=History: 68:22, 63:45, 59:13, 65:11, 59:33, 60:28, 64:14, 66:16, 39:47, 36:28, 44:41, 40:20, 50:36, 46:43, 45:51, 45:26, 47:43, 52:36, 58:47, 67:16, 70:01, 60:15, 63:10, 57:52, 71:02, 65:38, 53:56, 63:16, 60:33, 57:56, 60:46, 57:32, 65:04, 65:22, 63:26, 72:50, 72:06, 46:40, 68:05, 73:39, 71:31, 71:08
 
 Day Job/Programming=Dummy
 Day Job/Debugging=Dummy
@@ -19,22 +19,22 @@ Other=Dummy
 Failed=Dummy
 
 Learning/Reading/About Writing/Books=<img class=book src="https://d.gr-assets.com/books/1388176882l/48654.jpg"><a href=https://www.goodreads.com/book/show/48654.Story>Robert McKee "Story: Style, Structure, Substance, and the Principles of Screenwriting"</a>
-PREV=1%, 5%, 10%, 14%, 20%, 23%, 24%, 27%, 28%, 30%, 35%, 36%, 39%, 41%, 43%, 45%, 48%, 53%
+PREV=1%, 5%, 10%, 14%| 20%, 23%, 24%, 27%| 28%, 30%, 35%, 36%| 39%, 41%, 43%, 45%| 48%, 53%, 58%, 60% | 60%, 63%, 65%
 
-Learning/Reading/Books/In English=<img class=book src="https://d.gr-assets.com/books/1405295945l/484998.jpg">James Patterson <a href="https://www.goodreads.com/book/show/484998.Along_Came_a_Spider">Along Came a Spider</a>
-PREV=X%, X% (3), X%, 24%, 36%, 40%, 46%, 58%
+Learning/Audio/Audio Books=<img class=book src="https://d.gr-assets.com/books/1405295945l/484998.jpg">James Patterson <a href="https://www.goodreads.com/book/show/484998.Along_Came_a_Spider">Along Came a Spider</a>
+PREV=X%, X% (3), X%| 24%, 36%, 40%, 46%| 58%, 62%, 67%, 74%| 81%, 89%
 
 Learning/Reading/Books/In English=<img class=book src="https://d2arxad8u2l0g7.cloudfront.net/books/1385226386l/18908744.jpg">Michael Dobbs <a href="https://www.goodreads.com/book/show/18908744-house-of-cards">House of Cards</a>
-PREV=4%, 8%
+PREV=4%, 8%, 20%, 27%| 30%, 36%, 42%
 
 # Learning/Video/In English=<img class=book src="http://ia.media-imdb.com/images/M/MV5BMTY4ODk3OTM4Nl5BMl5BanBnXkFtZTgwMjMwNzg1NzE@._V1_UY268_CR8,0,182,268_AL_.jpg"><a href=http://www.imdb.com/title/tt4270492/?ref_=fn_al_tt_1>Billions</a>
 # Learning/Video/In English=<img class=book src="http://ia.media-imdb.com/images/M/MV5BZjNiNGJlOTYtOGMxMS00YmM5LTg0M2YtMGMzZmRiOWYyNWU1XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_.jpg"><a href=http://www.imdb.com/title/tt4003966/?ref_=nv_sr_1>Marseille</a>
 # Learning/Video/In English=<img class=book src="http://ia.media-imdb.com/images/M/MV5BMTQxODYzNTQzOV5BMl5BanBnXkFtZTgwMTI2MDYwMDE@._V1_UY268_CR1,0,182,268_AL_.jpg"><a href=http://www.imdb.com/title/tt2442560/?ref_=nv_sr_1>Peaky Blinders</a>
-Learning/Video/In English=<img class=book src="http://ia.media-imdb.com/images/M/MV5BMjMyNzA0MTA3NV5BMl5BanBnXkFtZTgwMTYxMTA0NjE@._V1_UX182_CR0,0,182,268_AL_.jpg"><a href=http://www.imdb.com/title/tt2707408/?ref_=nv_sr_1>Narcos</a>
-Learning/Video/In English=<img class=book src="http://ia.media-imdb.com/images/M/MV5BNDEzOTYzMDkzN15BMl5BanBnXkFtZTgwODkzNTAyNjE@._V1_UY268_CR3,0,182,268_AL_.jpg"><a href=http://www.imdb.com/title/tt2802850/?ref_=nv_sr_1>Fargo</a>
+# Learning/Video/In English=<img class=book src="http://ia.media-imdb.com/images/M/MV5BMjMyNzA0MTA3NV5BMl5BanBnXkFtZTgwMTYxMTA0NjE@._V1_UX182_CR0,0,182,268_AL_.jpg"><a href=http://www.imdb.com/title/tt2707408/?ref_=nv_sr_1>Narcos</a>
+# Learning/Video/In English=<img class=book src="http://ia.media-imdb.com/images/M/MV5BNDEzOTYzMDkzN15BMl5BanBnXkFtZTgwODkzNTAyNjE@._V1_UY268_CR3,0,182,268_AL_.jpg"><a href=http://www.imdb.com/title/tt2802850/?ref_=nv_sr_1>Fargo</a>
 
 Learning/Programming/Tech Reading=<img class=book src="https://d.gr-assets.com/books/1348110005l/11335855.jpg">Horstmann, Cay S. <a href="https://www.goodreads.com/book/show/11335855-scala-for-the-impatient">Scala for the Impatient</a>
-?, ?, ?, 18% (14), 20% (2), 25%
+?, ?, ?, 18% (14), 20% (2), 25%, 29%, 32%, 33% (3)
 
 # Learning/Programming/Tech Reading=<img class=book src="https://d.gr-assets.com/books/1408309444l/58128.jpg">Eric Freeman, et al.<a href="https://www.goodreads.com/book/show/58128.Head_First_Design_Patterns">Head First Design Patterns</a>
 # PREV=0%, 14%, 26%, 26% (11)
