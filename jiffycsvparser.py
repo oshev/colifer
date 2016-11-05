@@ -20,11 +20,11 @@ class JiffyCSVParser:
         self.config = config
 
     def load_column_names(self):
-        self.column_name_project = self.config['Columns']['column_name_project']
-        self.column_name_task = self.config['Columns']['column_name_task']
-        self.column_start_time = self.config['Columns']['column_name_start_time']
-        self.column_stop_time = self.config['Columns']['column_name_stop_time']
-        self.column_name_extra = self.config['Columns']['column_name_extra']
+        self.column_name_project = self.config.get_param('Columns.column_name_project')
+        self.column_name_task = self.config.get_param('Columns.column_name_task')
+        self.column_start_time = self.config.get_param('Columns.column_name_start_time')
+        self.column_stop_time = self.config.get_param('Columns.column_name_stop_time')
+        self.column_name_extra = self.config.get_param('Columns.column_name_extra')
 
     def check_titles(self, titles):
         if titles[self.column_name_project] is None:

@@ -21,12 +21,12 @@ POMELLO_INFO = "Pomello Log"
 
 
 class TrelloCardParser(Card):
-    def __init__(self, card, trello_config, report, naming_rules, past_tense_rules_obj):
+    def __init__(self, card, config, report, naming_rules, past_tense_rules_obj):
         super(Card, self).__init__(card.client)
         self.id = card.id
         self.name = card.name
         self.base_uri = '/cards/' + self.id
-        self.config = trello_config
+        self.config = config
         self.card_stats_parser = TrelloCardStatsParser(self.config)
         self.report = report
         self.naming_rules = naming_rules
@@ -116,7 +116,8 @@ class TrelloCardParser(Card):
 
         section_path_elements = parsed_card.path.split(SECTION_SEPARATOR)
         if section_path_elements:
-            parsed_card.title = TrelloCardParser.clean_title(self.config['title_clean_regexp'], self.name).strip()
+            parsed_card.title = TrelloCardParser.\
+                clean_title(self.config.get_param('Trello.title_clean_regexp'), self.name).strip()
             parsed_card.title_past = self.past_tense_rules_obj.convert_to_past(parsed_card.title)
 
             for desc_line in filter(lambda s: "http" not in s, desc_lines):

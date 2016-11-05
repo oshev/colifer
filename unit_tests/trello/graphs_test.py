@@ -1,12 +1,12 @@
 from trello.graphs import TrelloGraphs
-import generator
+import colifer
 
 # TODO
 
-TrelloGraphs.make_lists_stats_graph(generator.config['Files']['pic_dir'] +
+TrelloGraphs.make_lists_stats_graph(colifer.config['Files']['pic_dir'] +
                                     '/' +
-                                    generator.config['Trello']['lists_stats_graph_filename'],
-                                    generator.config['Trello']['list_done_names'].split(","),
+                                    colifer.config['Trello']['lists_stats_graph_filename'],
+                                    colifer.config['Trello']['list_done_names'].split(","),
                                     [])
 
 # units_done = [1, 2, 3, 4, 5, 6, 7]

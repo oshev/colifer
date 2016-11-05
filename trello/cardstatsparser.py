@@ -8,8 +8,8 @@ MAX_CHARS_FOR_POMODORO_STATS = 20
 
 class TrelloCardStatsParser:
 
-    def __init__(self, trello_config):
-        self.config = trello_config
+    def __init__(self, config):
+        self.config = config
 
     @staticmethod
     def has_pomodoro_info(comment):
@@ -56,9 +56,12 @@ class TrelloCardStatsParser:
         return TrelloCardStatsParser.get_group_int(groups)
 
     def process_stats_in_title(self, title):
-        planned = TrelloCardStatsParser.get_target_num(self.config['title_planned_regexp'], title)
-        done_cucumbers = TrelloCardStatsParser.get_target_num(self.config['title_done_cucumbers_regexp'], title)
-        done_pomodoros = TrelloCardStatsParser.get_target_num(self.config['title_done_pomodoros_regexp'], title)
+        planned = TrelloCardStatsParser.\
+            get_target_num(self.config.get_param('Trello.title_planned_regexp'), title)
+        done_cucumbers = TrelloCardStatsParser.\
+            get_target_num(self.config.get_param('Trello.title_done_cucumbers_regexp'), title)
+        done_pomodoros = TrelloCardStatsParser.\
+            get_target_num(self.config.get_param('Trello.title_done_pomodoros_regexp'), title)
         if planned or done_cucumbers or done_pomodoros:
             unit_stats = UnitStats()
             unit_stats.planned += planned

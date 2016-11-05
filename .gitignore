@@ -1,1 +1,5 @@
 .idea
+configs/colifer.yaml
+__pycache__/
+articles/__pycache__/
+trello/__pycache__/

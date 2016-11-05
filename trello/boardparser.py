@@ -18,21 +18,21 @@ UNFINISHED_COMMENT = "Unfinished"
 
 class TrelloBoardParser:
 
-    def __init__(self, trello_config, report, pic_dir):
-        self.config = trello_config
-        self.api_key = self.config['api_key']
-        self.user_oauth_token = self.config['user_oauth_token']
+    def __init__(self, config, report, pic_dir):
+        self.config = config
+        self.api_key = self.config.get_param('Trello.api_key')
+        self.user_oauth_token = self.config.get_param('Trello.user_oauth_token')
         self.report = report
 
         self.naming_rules = namingrules.NamingRules()
-        self.naming_rules.read_naming_rules(self.config['naming_rules_file'])
+        self.naming_rules.read_naming_rules(self.config.get_param('Trello.naming_rules_file'))
 
         self.past_tense_rules_obj = past_tense_rules.PastTenseRules()
-        self.past_tense_rules_obj.read_past_tense_rules(self.config['past_tense_rules_file'])
+        self.past_tense_rules_obj.read_past_tense_rules(self.config.get_param('Trello.past_tense_rules_file'))
 
         self.trello_lists = {}
         self.pic_dir = pic_dir
-        self.list_group_separator_regexp = self.config['list_group_separator_regexp']
+        self.list_group_separator_regexp = self.config.get_param('Trello.list_group_separator_regexp')
         self.not_done_section = self.report.find_or_create_section(self.report.root_section,
                                                                    self.naming_rules.get_path(NOT_DONE_LABEL).
                                                                    split(SECTION_SEPARATOR), 0, False)
@@ -94,32 +94,33 @@ class TrelloBoardParser:
         return trello_list_stat
 
     def add_lists_stats_graph(self, list_names, done_stats, img_path):
-            TrelloGraphs.make_lists_stats_graph(self.pic_dir + '/' + self.config['lists_stats_graph_filename'],
+            TrelloGraphs.make_lists_stats_graph(self.pic_dir + '/' +
+                                                self.config.get_param('Trello.lists_stats_graph_filename'),
                                                 list_names, done_stats)
             path = self.naming_rules.get_path(LISTS_UNITS_RULE)
             section_path_elements = path.split(SECTION_SEPARATOR)
-            section_path_elements.append(self.config['list_stats_graph_tag'].format(img_path))
+            section_path_elements.append(self.config.get_param('Trello.list_stats_graph_tag').format(img_path))
 
             self.report.find_or_create_section(self.report.root_section, section_path_elements, 0, False)
 
     def load_data(self):
         if self.api_key != '' and self.user_oauth_token != '':
             client = Client(self.api_key, self.user_oauth_token)
-            board = Board(client, self.config['board_id'])
+            board = Board(client, self.config.get_param('Trello.board_id'))
 
             board_lists = board.get_lists()
             for trello_list in board_lists:
                 self.trello_lists[trello_list.name] = trello_list
 
             done_stats = {}
-            list_names = self.config['list_done_names'].split(",")
+            list_names = self.config.get_param('Trello.list_done_names').split(",")
             for list_name in list_names:
                 list_stat = self.load_list_data(list_name)
                 done_stats[list_name] = list_stat
 
-            self.load_list_data(self.config['list_notes_name'])
+            self.load_list_data(self.config.get_param('Trello.list_notes_name'))
 
-            img_path = self.pic_dir.split('/')[-1] + "/" + self.config['lists_stats_graph_filename']
+            img_path = self.pic_dir.split('/')[-1] + "/" + self.config.get_param('Trello.lists_stats_graph_filename')
             self.add_lists_stats_graph(list_names, done_stats, img_path)
         else:
             print("Empty api_key or user oauth token: skip Trello processing")
