@@ -7,6 +7,9 @@ Report:
 ConstantSection:
   filename: configs/constant_sections.txt
 
+SummaryExtender:
+  summary_path: Overview/Summary
+
 Jiffy:
   enabled: True
   report_file: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/jiffy/jiffy week %WEEK_NUMBER.csv"

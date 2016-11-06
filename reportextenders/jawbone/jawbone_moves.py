@@ -131,7 +131,7 @@ class JawboneMovesParser(ReportExtender):
         report.find_or_create_leaf(avg_moves_stats_path_elements,
                                    "Steps: {}".format(int(np.mean(measures_steps[STEPS_NAME].values))))
         report.find_or_create_leaf(avg_moves_stats_path_elements,
-                                   "Meters: {}".format(int(np.mean(measures_steps[STEPS_NAME].values))))
+                                   "Meters: {}".format(int(np.mean(measures_steps[METERS_NAME].values))))
         report.find_or_create_leaf(avg_moves_stats_path_elements,
                                    "Calories burned: {}".format(int(np.mean(calories_all))))
         avg_active_minutes = int(round(np.mean(measures_minutes[ACTIVE_NAME].values)))
