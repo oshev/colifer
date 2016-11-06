@@ -2,11 +2,12 @@ import re
 
 from trolly.card import Card
 
-from reporting import SECTION_SEPARATOR
+from config import Config
+from reportextenders.trello.cardstatsparser import TrelloCardStatsParser
+from reportextenders.trello.parsedcard import TrelloParsedCard
 from sectionstats import UnitStats
-from trello.cardstatsparser import TrelloCardStatsParser
-from trello.parsedcard import TrelloParsedCard
 
+SECTION_SEPARATOR = '/'
 NO_LABEL_RULE = "NoLabel"
 UNKNOWN_LABEL_RULE = "UnknownLabel"
 COMMENT_TYPE_TEXT = "commentCard"
@@ -21,13 +22,13 @@ POMELLO_INFO = "Pomello Log"
 
 
 class TrelloCardParser(Card):
-    def __init__(self, card, config, report, naming_rules, past_tense_rules_obj):
+    def __init__(self, card, section_entries, report, naming_rules, past_tense_rules_obj):
         super(Card, self).__init__(card.client)
         self.id = card.id
         self.name = card.name
         self.base_uri = '/cards/' + self.id
-        self.config = config
-        self.card_stats_parser = TrelloCardStatsParser(self.config)
+        self.section_entries = section_entries
+        self.card_stats_parser = TrelloCardStatsParser(self.section_entries)
         self.report = report
         self.naming_rules = naming_rules
         self.past_tense_rules_obj = past_tense_rules_obj
@@ -117,7 +118,7 @@ class TrelloCardParser(Card):
         section_path_elements = parsed_card.path.split(SECTION_SEPARATOR)
         if section_path_elements:
             parsed_card.title = TrelloCardParser.\
-                clean_title(self.config.get_param('Trello.title_clean_regexp'), self.name).strip()
+                clean_title(Config.get_section_param(self.section_entries, 'title_clean_regexp'), self.name).strip()
             parsed_card.title_past = self.past_tense_rules_obj.convert_to_past(parsed_card.title)
 
             for desc_line in filter(lambda s: "http" not in s, desc_lines):

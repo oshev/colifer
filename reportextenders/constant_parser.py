@@ -1,5 +1,7 @@
-from reporting import SECTION_SEPARATOR
+from config import Config
+from reportextenders.report_extender import ReportExtender
 SPECIAL_PREV = "PREV"
+SECTION_SEPARATOR = '/'
 
 
 class Couple:
@@ -11,7 +13,11 @@ class Couple:
         self.b = b
 
 
-class ConstantParser:
+class ConstantParser(ReportExtender):
+
+    def __init__(self, section_entries):
+        super().__init__(section_entries)
+        self.constant_sections_filename = Config.get_section_param(section_entries, "filename")
 
     @staticmethod
     def read_naming_rules(constant_sections_filename):
@@ -24,8 +30,8 @@ class ConstantParser:
                     constant_sections.append(Couple(elements[0], elements[1]))
         return constant_sections
 
-    def load_data(self, constant_sections_filename, report):
-        constant_sections = ConstantParser.read_naming_rules(constant_sections_filename)
+    def extend_report(self, report, report_parameters):
+        constant_sections = ConstantParser.read_naming_rules(self.constant_sections_filename)
         prev_section_path_elements = None
         for constant_section in constant_sections:
             if constant_section.a == SPECIAL_PREV and prev_section_path_elements is not None:

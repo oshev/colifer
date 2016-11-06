@@ -1,7 +1,5 @@
 import sectionstats
 
-SECTION_SEPARATOR = '/'
-
 
 class Section:
     parent = None
@@ -58,17 +56,4 @@ class Report:
         self.title = name
         self.root_section = Section("Total")
         self.root_section.holds_level_tag = True
-
-    def fill_jiffy_sections(self, naming_rules_filename, rows_stats_map):
-        lines = [line.strip() for line in open(naming_rules_filename)]
-        for row in lines:
-            if row != '' and not row.startswith('#'):
-                elements = row.split('=')
-                if len(elements) == 2:
-                    jiffy_id = elements[0]
-                    section_path_elements = elements[1].split(SECTION_SEPARATOR)
-                    if jiffy_id in rows_stats_map.keys():
-                        section = self.find_or_create_section(self.root_section, section_path_elements, 0, True)
-                        section.stats = rows_stats_map[jiffy_id]
-                        Report.propagate_stats_to_parent(section, section.stats)
 

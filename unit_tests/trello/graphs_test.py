@@ -1,5 +1,5 @@
-from trello.graphs import TrelloGraphs
 import colifer
+from reportextenders.trello.graphs import TrelloGraphs
 
 # TODO
 

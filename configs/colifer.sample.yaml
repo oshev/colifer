@@ -1,11 +1,25 @@
-ReportSpecific:
+Report:
   report_week_number: 43
   report_year: 2016
   report_title: "%REPORT_YEAR Week %WEEK_NUMBER (%WEEK_START-%WEEK_END)"
+  pic_dir: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/%REPORT_YEAR Week %WEEK_NUMBER pics"
+
+ConstantSection:
+  filename: configs/constant_sections.txt
+
+Jiffy:
+  enabled: True
+  report_file: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/jiffy/jiffy week %WEEK_NUMBER.csv"
+  naming_rules_file: configs/naming_rules_jiffy.txt
+  column_name_project: Project
+  column_name_task: Task
+  column_name_extra: Note
+  column_name_start_time: Start time
+  column_name_stop_time: Stop time
 
 Trello:
+  enabled: true
   board_id: AhXqJnjl
-  stat_enabled: true
   # to generate your Trello developer key visit https://trello.com/1/appKey/generate
   api_key: PUT_YOUR_KEY_HERE
   # to get your token read https://trello.com/docs/gettingstarted/index.html#getting-a-token-from-a-user
@@ -29,39 +43,28 @@ Trello:
   title_done_pomodoros_regexp: ^\s*(\d+)\s*✓.*$
   title_clean_regexp: (^\s*\d+\s*✓\s*|\(\d+(\.\d+)?\/?\d*(\.\d+)?\)|\[\d+\]\s*)
 
-Files:
-  naming_rules_file: configs/naming_rules.txt
-  constant_sections_file: configs/constant_sections.txt
-  pic_dir: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/%REPORT_YEAR Week %WEEK_NUMBER pics"
-  jiffy_report_file: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/jiffy/jiffy week %WEEK_NUMBER.csv"
-  out_html_report_file: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/%REPORT_YEAR Week %WEEK_NUMBER.html"
-
-Columns:
-  column_name_project: Project
-  column_name_task: Task
-  column_name_extra: Note
-  column_name_start_time: Start time
-  column_name_stop_time: Stop time
-
 Zotero:
-    # Your personal library ID is available at https://www.zotero.org/settings/keys,
-    # in the section Your userID for use in API calls
-    library_id: PUT_YOUR_LIBRARY_ID_HERE
-    library_type: user
-    # to generate a new api_key https://www.zotero.org/settings/keys/new
-    api_key: PUT_YOUR_API_KEY_HERE
-    read_tag: Done
-    naming_rules_file: configs/naming_rules_articles.txt
+  enabled: True
+  # Your personal library ID is available at https://www.zotero.org/settings/keys,
+  # in the section Your userID for use in API calls
+  library_id: PUT_YOUR_LIBRARY_ID_HERE
+  library_type: user
+  # to generate a new api_key https://www.zotero.org/settings/keys/new
+  api_key: PUT_YOUR_API_KEY_HERE
+  read_tag: Done
+  naming_rules_file: configs/naming_rules_articles.txt
 
 Pocket:
-    consumer_key: PUT_YOUR_CONSUMER_KEY_HERE
-    # to get access token, copy paste consumer key here
-    # http://reader.fxneumann.de/plugins/oneclickpocket/auth.php?consumer_key=46352-1fffd94875bbf8016f9f8bdc&token=aa192b77-add3-c74f-5e3a-34b392
-    # and press the button to obtain the access to your data
-    access_token: PUT_YOUR_ACCESS_TOKEN_HERE
-    naming_rules_file: configs/naming_rules_articles.txt
+  enabled: True
+  consumer_key: PUT_YOUR_CONSUMER_KEY_HERE
+  # to get access token, copy paste consumer key here
+  # http://reader.fxneumann.de/plugins/oneclickpocket/auth.php?consumer_key=46352-1fffd94875bbf8016f9f8bdc&token=aa192b77-add3-c74f-5e3a-34b392
+  # and press the button to obtain the access to your data
+  access_token: PUT_YOUR_ACCESS_TOKEN_HERE
+  naming_rules_file: configs/naming_rules_articles.txt
 
-Html:
+HtmlGenerator:
+  out_html_report_file: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/%REPORT_YEAR Week %WEEK_NUMBER.html"
   before_report: |
     <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>

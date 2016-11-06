@@ -1,25 +1,33 @@
 from datetime import datetime
-from pyzotero import zotero
-from namingrules import NamingRules
-from reporting import SECTION_SEPARATOR
 
+from pyzotero import zotero
+
+from config import Config
+from namingrules import NamingRules
+from reportextenders.report_extender import ReportExtender
+
+SECTION_SEPARATOR = '/'
 DEFAULT_LABEL_RULE = "Default"
 
 
-class ZoteroParser:
-    api = None
+class ZoteroParser(ReportExtender):
 
-    def __init__(self, library_id, library_type, api_key, read_tag):
-        library_id = library_id
-        api_key = api_key
-        self.read_tag = read_tag
-        self.naming_rules = NamingRules()
-        self.zotero_api = zotero.Zotero(library_id, library_type, api_key)
-
-    def load_data(self, report, week_start, week_end, naming_rules_filename):
-        if self.api != '':
+    def __init__(self, section_entries):
+        super().__init__(section_entries)
+        if Config.get_section_param(section_entries, "enabled"):
+            library_id = Config.get_section_param(section_entries, "library_id")
+            api_key = Config.get_section_param(section_entries, "api_key")
+            self.read_tag = Config.get_section_param(section_entries, "read_tag")
+            library_type = Config.get_section_param(section_entries, "library_type")
+            self.zotero_api = zotero.Zotero(library_id, library_type, api_key)
+            self.naming_rules = NamingRules()
+            naming_rules_filename = Config.get_section_param(section_entries, "naming_rules_file")
             self.naming_rules.read_naming_rules_old(naming_rules_filename)
+        else:
+            self.zotero_api = None
 
+    def extend_report(self, report, report_parameters):
+        if self.zotero_api:
             path = self.naming_rules.get_path(DEFAULT_LABEL_RULE)
             if path is None:
                 print("You must put Default path to Zotero naming rules file")
@@ -37,7 +45,7 @@ class ZoteroParser:
                     item_title = item['data']['title']
                     item_url = item['data']['url']
                     section_path_elements = init_section_path_elements.copy()
-                    if week_start <= item_date <= week_end:
+                    if report_parameters.week_start <= item_date <= report_parameters.week_end:
                         init_section_path_elements = section_path_elements.copy()
                         print("Processing Zotero article: " + item_title)
                         section_path_elements.append("<a href='{}'>{}</a>".format(item_url, item_title))

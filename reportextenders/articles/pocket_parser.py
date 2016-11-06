@@ -2,18 +2,28 @@ import datetime
 
 import pocket
 
+from config import Config
 from namingrules import NamingRules
-from reporting import SECTION_SEPARATOR
+from reportextenders.report_extender import ReportExtender
 
+SECTION_SEPARATOR = '/'
 DEFAULT_LABEL_RULE = "Default"
 
 
-class PocketParser:
+class PocketParser(ReportExtender):
     api = None
 
-    def __init__(self, pocket_consumer_key, pocket_access_token):
-        self.api = pocket.Pocket(pocket_consumer_key, pocket_access_token)
-        self.naming_rules = NamingRules()
+    def __init__(self, section_entries):
+        super().__init__(section_entries)
+        if Config.get_section_param(section_entries, "enabled"):
+            self.pocket_consumer_key = Config.get_section_param(section_entries, "consumer_key")
+            self.pocket_access_token = Config.get_section_param(section_entries, "access_token")
+            self.api = pocket.Pocket(self.pocket_consumer_key, self.pocket_access_token)
+            self.naming_rules = NamingRules()
+            naming_rules_filename = Config.get_section_param(section_entries, "naming_rules_file")
+            self.naming_rules.read_naming_rules_old(naming_rules_filename)
+        else:
+            self.api = None
 
     @staticmethod
     def safe_get(article, field, alternative):
@@ -24,10 +34,8 @@ class PocketParser:
         else:
             return ''
 
-    def load_data(self, report, week_start, week_end, naming_rules_filename):
-        if self.api != '':
-            self.naming_rules.read_naming_rules_old(naming_rules_filename)
-
+    def extend_report(self, report, report_parameters):
+        if self.api:
             path = self.naming_rules.get_path(DEFAULT_LABEL_RULE)
             if path is None:
                 print("You must put Default path to Pocket naming rules file")
@@ -45,7 +53,7 @@ class PocketParser:
                 for key in result[0]['list'].keys():
                     section_path_elements = init_section_path_elements.copy()
                     time_read = datetime.datetime.fromtimestamp(int(result[0]['list'][key]['time_read']))
-                    if week_start <= time_read <= week_end:
+                    if report_parameters.week_start <= time_read <= report_parameters.week_end:
                         init_section_path_elements = section_path_elements.copy()
                         if "quora.com" in self.safe_get(result[0]['list'][key], 'resolved_url', 'given_url'):
                             section_path_elements.append("Quora")

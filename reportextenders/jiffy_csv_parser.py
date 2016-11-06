@@ -2,29 +2,53 @@ import csv
 from datetime import datetime
 
 import sectionstats
+from config import Config
+from reportextenders.report_extender import ReportExtender
+from reporting import Report
 
 ID_DIV = '-'
 DATE_TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
+SECTION_SEPARATOR = '/'
 
 
-class JiffyCSVParser:
+class JiffyCSVParser(ReportExtender):
 
-    def __init__(self, config):
-        super().__init__()
-        self.column_name_project = ''
-        self.column_name_task = ''
-        self.column_name_extra = ''
-        self.column_start_time = ''
-        self.column_stop_time = ''
-        self.rows_stats_map = {}
-        self.config = config
+    def __init__(self, section_entries):
+        super().__init__(section_entries)
+        if Config.get_section_param(section_entries, "enabled"):
+            self.enabled = True
+            self.column_name_project = ''
+            self.column_name_task = ''
+            self.column_name_extra = ''
+            self.column_start_time = ''
+            self.column_stop_time = ''
+            self.rows_stats_map = {}
+            self.column_name_project = Config.get_section_param(section_entries, 'column_name_project')
+            self.column_name_task = Config.get_section_param(section_entries, 'column_name_task')
+            self.column_start_time = Config.get_section_param(section_entries, 'column_name_start_time')
+            self.column_stop_time = Config.get_section_param(section_entries, 'column_name_stop_time')
+            self.column_name_extra = Config.get_section_param(section_entries, 'column_name_extra')
+            self.jiffy_report_filename_template = Config.get_section_param(section_entries, 'report_file')
+            self.naming_rules_filename = Config.get_section_param(section_entries, 'naming_rules_file')
+        else:
+            self.enabled = False
 
-    def load_column_names(self):
-        self.column_name_project = self.config.get_param('Columns.column_name_project')
-        self.column_name_task = self.config.get_param('Columns.column_name_task')
-        self.column_start_time = self.config.get_param('Columns.column_name_start_time')
-        self.column_stop_time = self.config.get_param('Columns.column_name_stop_time')
-        self.column_name_extra = self.config.get_param('Columns.column_name_extra')
+    def extend_report(self, report, report_parameters):
+        if self.enabled:
+            jiffy_report_name = report_parameters.set_variables(self.jiffy_report_filename_template)
+            self.load_file(jiffy_report_name)
+
+            lines = [line.strip() for line in open(self.naming_rules_filename)]
+            for row in lines:
+                if row != '' and not row.startswith('#'):
+                    elements = row.split('=')
+                    if len(elements) == 2:
+                        jiffy_id = elements[0]
+                        section_path_elements = elements[1].split(SECTION_SEPARATOR)
+                        if jiffy_id in self.rows_stats_map.keys():
+                            section = report.find_or_create_section(report.root_section, section_path_elements, 0, True)
+                            section.stats = self.rows_stats_map[jiffy_id]
+                            Report.propagate_stats_to_parent(section, section.stats)
 
     def check_titles(self, titles):
         if titles[self.column_name_project] is None:
