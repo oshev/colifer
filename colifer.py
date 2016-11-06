@@ -5,6 +5,8 @@ from report_parameters import ReportParameters
 from reportextenders.articles.pocket_parser import PocketParser
 from reportextenders.articles.zotero_parser import ZoteroParser
 from reportextenders.constant_parser import ConstantParser
+from reportextenders.jawbone.jawbone_moves import JawboneMovesParser
+from reportextenders.jawbone.jawbone_sleep import JawboneSleepParser
 from reportextenders.jiffy_csv_parser import JiffyCSVParser
 from reportextenders.trello.boardparser import TrelloBoardParser
 
@@ -18,7 +20,9 @@ if __name__ == '__main__':
         JiffyCSVParser(config.get_param('Jiffy')),
         TrelloBoardParser(config.get_param('Trello')),
         PocketParser(config.get_param('Pocket')),
-        ZoteroParser(config.get_param('Zotero'))
+        ZoteroParser(config.get_param('Zotero')),
+        JawboneSleepParser(config.get_param('JawboneSleep')),
+        JawboneMovesParser(config.get_param('JawboneMoves'))
     ]
 
     report = reporting.Report()

@@ -43,6 +43,11 @@ class Report:
         else:
             return self.find_or_create_section(next_section, section_path_elements, element_index + 1, holds_level_tag)
 
+    def find_or_create_leaf(self, init_section_path_elements, leaf_element, holds_level_tag=False):
+        section_path_elements = init_section_path_elements.copy()
+        section_path_elements.append(leaf_element)
+        self.find_or_create_section(self.root_section, section_path_elements, 0, holds_level_tag)
+
     @staticmethod
     def propagate_stats_to_parent(section, stats):
         if section.parent is not None:

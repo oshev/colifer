@@ -7,3 +7,10 @@ class ReportExtender:
 
     def extend_report(self, report, report_parameters):
         pass
+
+    @staticmethod
+    def safe_get(hash_map, field, alternative):
+        if field in hash_map:
+            return hash_map[field]
+        else:
+            return alternative

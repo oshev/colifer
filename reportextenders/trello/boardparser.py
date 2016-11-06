@@ -9,7 +9,7 @@ from config import Config
 from reportextenders.report_extender import ReportExtender
 from reportextenders.trello.cardparser import TrelloCardParser
 from reportextenders.trello.cardstatsparser import TrelloCardStatsParser
-from reportextenders.trello.graphs import TrelloGraphs
+from reportextenders.trello.trello_graphs import TrelloGraphs
 from sectionstats import UnitStats
 
 SECTION_SEPARATOR = '/'
