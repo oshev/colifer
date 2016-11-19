@@ -69,14 +69,14 @@ class JawboneSleepParser(ReportExtender):
         relative_img_path = report_parameters.pic_dir.split('/')[-1] + "/" + self.sleep_by_days_graph_filename
         Graphs.save_line_graph(full_img_path, 'Sleep statistics by days',
                                measures, days, 'Hours', y_min=0, y_max=11)
-        report.find_or_create_leaf(sleep_stats_path_elements, self.graph_tag.format(relative_img_path))
+        report.find_or_create_leaf(sleep_stats_path_elements, self.graph_tag.format(relative_img_path).strip())
 
     def add_awake_asleep_by_days_stats(self, report, report_parameters, sleep_stats_path_elements, measures, days):
         full_img_path = report_parameters.pic_dir + "/" + self.asleep_by_days_graph_filename
         relative_img_path = report_parameters.pic_dir.split('/')[-1] + "/" + self.asleep_by_days_graph_filename
         Graphs.save_line_graph(full_img_path, 'Asleep / Awake statistics by days',
                                measures, days, 'Hours', y_min=-3, y_max=12)
-        report.find_or_create_leaf(sleep_stats_path_elements, self.graph_tag.format(relative_img_path))
+        report.find_or_create_leaf(sleep_stats_path_elements, self.graph_tag.format(relative_img_path).strip())
 
     def extend_report(self, report, report_parameters):
         if not self.auth_token:

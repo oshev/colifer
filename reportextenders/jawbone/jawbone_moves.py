@@ -64,7 +64,7 @@ class JawboneMovesParser(ReportExtender):
         relative_img_path = report_parameters.pic_dir.split('/')[-1] + "/" + self.steps_by_days_graph_filename
         Graphs.save_line_graph(full_img_path, 'Walk statistics by days',
                                measures, days, 'Steps / Meters', y_min=0, y_max=30000, y_tick_step=2000)
-        report.find_or_create_leaf(moves_stats_path_elements, self.graph_tag.format(relative_img_path))
+        report.find_or_create_leaf(moves_stats_path_elements, self.graph_tag.format(relative_img_path).strip())
 
     def add_activity_by_days_stats(self, report, report_parameters, moves_stats_path_elements, measures, days):
         full_img_path = report_parameters.pic_dir + "/" + self.activity_by_days_graph_filename
@@ -75,7 +75,7 @@ class JawboneMovesParser(ReportExtender):
             measures_hour[measure_key].values = [value/60 for value in measure.values]
         Graphs.save_line_graph(full_img_path, 'Activity statistics by days',
                                measures_hour, days, 'Hours', y_min=0, y_max=24)
-        report.find_or_create_leaf(moves_stats_path_elements, self.graph_tag.format(relative_img_path))
+        report.find_or_create_leaf(moves_stats_path_elements, self.graph_tag.format(relative_img_path).strip())
 
     def extend_report(self, report, report_parameters):
         if not self.auth_token:
