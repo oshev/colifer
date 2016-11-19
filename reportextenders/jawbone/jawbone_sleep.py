@@ -156,7 +156,7 @@ class JawboneSleepParser(ReportExtender):
 
         report.find_or_create_leaf(sleep_stats_path_elements, "Sleep efficiency: {}%".
                                    format(round((sleep_week_minutes - sleep_week_minutes_awake) /
-                                                sleep_week_minutes, 2)))
+                                                sleep_week_minutes * 100)))
 
         self.add_sleep_by_days_stats(report, report_parameters, sleep_stats_path_elements, measures, days)
 
