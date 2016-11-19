@@ -70,7 +70,7 @@
 Самоорг=Self-organization/Other
 
 Прочее=Other/Other
-Прочее-CL Generator=Other/Projects/Conscious Life Generator
+Прочее-CoLifer=Other/Projects/CoLifer
 Прочее-Фирма=Other/Projects/Consultancy Service
 Прочее-SibEDGE=Other/Projects/SibEDGE
 Прочее-Переезд=Other/Projects/Migration
