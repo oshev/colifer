@@ -1,35 +1,21 @@
 class HtmlReport:
 
-    @staticmethod
-    def get_nice_stats(stats):
-        text = ''
-        if stats is not None:
-            text = '('
-            if stats.seconds > 0:
-                text += "{:02d}:{:02d}, ".format((stats.seconds // 60) // 60, (stats.seconds // 60) % 60)
-            if stats.extra > 0:
-                text += "{:d} words, ".format(stats.extra)
-            if stats.events_num > 0:
-                text += "{:d} times, ".format(stats.events_num)
-            if stats.days_num > 0:
-                text += "{:d} days, ".format(stats.days_num)
-            if stats.days_list is not None and len(stats.days_list) > 0:
-                for day in stats.days_list:
-                    text += day + ", "
-            if stats.unit_stats is not None and not stats.unit_stats.is_zero():
-                text += stats.unit_stats.__str__()
-            text = text.strip(', ')
-            text += ')'
-        return text
-
     def traverse_and_save(self, html_file, section, level):
-        nice_stats = self.get_nice_stats(section.stats)
+        nice_stats = str(section.stats) if section.stats else ''
+        if section.stats and len(section.stats.all_tags) != len(section.stats.common_tags) \
+                and len(section.children) == 0:
+            all_tags = section.stats.all_tags
+        else:
+            all_tags = None
         if section.name != 'Dummy':
-            html_file.write("{}<li{}>{} {}</li>\n".
+            html_file.write("{}<li{}>{}{}{}</li>\n".
                             format(self.num_spaces(level),
                                    " class='level{}'".format(level) if section.holds_level_tag else "",
                                    section.name,
-                                   "<span class='stats'>{}</span>".format(nice_stats) if nice_stats != '' else ''))
+                                   "<br><span class='stats'>({})</span>".
+                                   format(", ".join(sorted(list(all_tags)))) if all_tags else '',
+                                   "<br><span class='stats'>{}</span>".
+                                   format(nice_stats) if nice_stats != '' else ''))
 
             if section.children is not None and len(section.children) > 0:
                 html_file.write(self.num_spaces(level) + '<ul>\n')

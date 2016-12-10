@@ -22,11 +22,12 @@ class SummaryExtender(ReportExtender):
                 format(focused_time, focused_units)
             report.find_or_create_leaf(section_path_elements, focused_info)
 
-            units_from_planned = int(round(report.root_section.stats.unit_stats.done_units_plan /
-                                           report.root_section.stats.unit_stats.planned * 100))
-            accomplished_info = "{}% units accomplished (ratio done from planned / planned.)". \
-                format(units_from_planned)
-            report.find_or_create_leaf(section_path_elements, accomplished_info)
+            if report.root_section.stats.unit_stats.planned:
+                units_from_planned = int(round(report.root_section.stats.unit_stats.done_units_plan /
+                                               report.root_section.stats.unit_stats.planned * 100))
+                accomplished_info = "{}% units accomplished (ratio done from planned / planned.)". \
+                    format(units_from_planned)
+                report.find_or_create_leaf(section_path_elements, accomplished_info)
 
 
 

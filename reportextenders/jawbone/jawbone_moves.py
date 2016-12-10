@@ -39,7 +39,7 @@ class JawboneMovesParser(ReportExtender):
                                                                             "activity_by_days_graph_file")
             self.naming_rules = NamingRules()
             naming_rules_filename = Config.get_section_param(section_entries, "naming_rules_file")
-            self.naming_rules.read_naming_rules_old(naming_rules_filename)
+            self.naming_rules.read_naming_rules(naming_rules_filename)
             self.moves_stats_path = self.naming_rules.get_path(MOVES_NAMING_RULE)
         else:
             self.auth_token = None

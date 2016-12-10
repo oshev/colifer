@@ -46,7 +46,7 @@ class JiffyCSVParser(ReportExtender):
                         jiffy_id = elements[0]
                         section_path_elements = elements[1].split(SECTION_SEPARATOR)
                         if jiffy_id in self.rows_stats_map.keys():
-                            section = report.find_or_create_section(report.root_section, section_path_elements, 0, True)
+                            section = report.find_or_create_section(report.root_section, section_path_elements, True)
                             section.stats = self.rows_stats_map[jiffy_id]
                             Report.propagate_stats_to_parent(section, section.stats)
 
@@ -67,7 +67,7 @@ class JiffyCSVParser(ReportExtender):
             stat_object = self.rows_stats_map[row_id]
         else:
             stat_object = sectionstats.SectionStats()
-            stat_object.jiffy_name = row_id
+            stat_object.path = row_id
             self.rows_stats_map[row_id] = stat_object
 
         start_datetime = datetime.strptime(row[titles[self.column_start_time]], DATE_TIME_FORMAT)
@@ -75,7 +75,7 @@ class JiffyCSVParser(ReportExtender):
         stat_object.seconds += round((stop_datetime - start_datetime).total_seconds())
 
         if row[titles[self.column_name_extra]].isdigit():
-            stat_object.extra += int(row[titles[self.column_name_extra]])
+            stat_object.words_num += int(row[titles[self.column_name_extra]])
         elif row[titles[self.column_name_extra]] != '':
             stat_object.comments_list.append(row[titles[self.column_name_extra]])
 

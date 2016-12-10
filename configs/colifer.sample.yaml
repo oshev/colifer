@@ -10,8 +10,16 @@ ConstantSection:
 SummaryExtender:
   summary_path: Overview/Summary
 
+Toggl:
+  enabled: False
+  auth_token: ADD_YOUR_AUTH_TOKEN_HERE
+  entries_endpoint: "https://www.toggl.com/api/v8/time_entries?start_date={}&end_date={}"
+  projects_endpoint: "https://www.toggl.com/api/v8/workspaces/YOU_WORKSPACE_ID_HERE/projects" # call https://www.toggl.com/api/v8/workspaces
+  tag_order_filename: configs/tag_order_toggl.txt
+  naming_rules_file: configs/naming_rules_toggl.txt
+
 Jiffy:
-  enabled: True
+  enabled: False
   report_file: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/jiffy/jiffy week %WEEK_NUMBER.csv"
   naming_rules_file: configs/naming_rules_jiffy.txt
   column_name_project: Project
@@ -21,7 +29,7 @@ Jiffy:
   column_name_stop_time: Stop time
 
 JawboneSleep:
-  enabled: True
+  enabled: False
   auth_token: ADD_YOUR_AUTH_TOKEN_HERE # see https://jawbone.com/up/developer/authentication
   endpoint: "https://jawbone.com/nudge/api/v.1.1/users/@me/sleeps?start_time={}&end_time={}"
   sleep_by_days_graph_file: sleep_by_days.png
@@ -31,7 +39,7 @@ JawboneSleep:
       <img style="max-height:300px;vertical-align:middle;padding:5px" src="{}">
 
 JawboneMoves:
-  enabled: True
+  enabled: False
   auth_token: ADD_YOUR_AUTH_TOKEN_HERE # see https://jawbone.com/up/developer/authentication
   endpoint: "https://jawbone.com//nudge/api/v.1.1/users/@me/moves?start_time={}&end_time={}"
   steps_by_days_graph_file: steps_by_days.png
@@ -41,7 +49,7 @@ JawboneMoves:
       <img style="max-height:300px;vertical-align:middle;padding:5px" src="{}">
 
 Trello:
-  enabled: true
+  enabled: False
   board_id: AhXqJnjl
   # to generate your Trello developer key visit https://trello.com/1/appKey/generate
   api_key: PUT_YOUR_KEY_HERE
@@ -67,7 +75,7 @@ Trello:
   title_clean_regexp: (^\s*\d+\s*✓\s*|\(\d+(\.\d+)?\/?\d*(\.\d+)?\)|\[\d+\]\s*)
 
 Zotero:
-  enabled: True
+  enabled: False
   # Your personal library ID is available at https://www.zotero.org/settings/keys,
   # in the section Your userID for use in API calls
   library_id: PUT_YOUR_LIBRARY_ID_HERE
@@ -78,7 +86,7 @@ Zotero:
   naming_rules_file: configs/naming_rules_articles.txt
 
 Pocket:
-  enabled: True
+  enabled: False
   consumer_key: PUT_YOUR_CONSUMER_KEY_HERE
   # to get access token, copy paste consumer key here
   # http://reader.fxneumann.de/plugins/oneclickpocket/auth.php?consumer_key=46352-1fffd94875bbf8016f9f8bdc&token=aa192b77-add3-c74f-5e3a-34b392

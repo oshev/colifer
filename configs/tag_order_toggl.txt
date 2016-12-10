@@ -1,0 +1,16 @@
+# List all Toggl tags in the order how they should appear in Report path
+# tags which appear on the same line, have the same order number and will be ordered by name
+# Example, you list:
+#
+# nature science
+# writing reading
+# book article
+#
+# If an entry with tags (writing,nature,book) appears, its path in the report will be:
+# PROJECT_NAME/nature/writing/book/ENTRY_NAME
+# Tags not listed in this file will be ignored in the path builder.
+
+novel
+exercise, devops, debugging, editing, codereview, brainstorming, mindmapping, listening, shopping, slidemaking, watching, writing, planning, programming, reading, reporting, testing, talking, chatting
+book, interview, movie, rebota, series, lecture, meeting, presentation, tutorial, vocabulary, colifer, documentary, documentation, blogpost, correspondence, grammar
+russian, spanish, french

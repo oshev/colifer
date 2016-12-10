@@ -1,0 +1,15 @@
+# Syntax: IdInJiffy=Section1/../SectionN
+# Spaces are allowed in any part of the line
+# Order of the sections in the report will replicate the order of lines here
+
+Work tasks=Day Job/Work tasks
+Tech Leadership=Day Job/Tech Leadership
+General education=Learning/General education
+Guitar=Learning/Guitar
+Writing=Learning/Writing
+French=Learning/French
+Data and ML=Learning/Data and ML
+Career=Projects/Career
+Chatbots=Projects/Chatbots
+Planning and reporting=Projects/Planning and reporting
+No project=Other

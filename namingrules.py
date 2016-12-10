@@ -12,7 +12,7 @@ class NamingRules:
                     return path
         return None
 
-    def read_naming_rules(self, naming_rules_filename):
+    def read_naming_rules_with_tags(self, naming_rules_filename):
         self.__content = {}
         lines = [line.strip() for line in open(naming_rules_filename)]
         for row in lines:
@@ -29,7 +29,7 @@ class NamingRules:
                         self.__content[tags] = []
                     self.__content[tags].append((matcher, path))
 
-    def read_naming_rules_old(self, naming_rules_filename):
+    def read_naming_rules(self, naming_rules_filename):
         self.__content = {}
         lines = [line.strip() for line in open(naming_rules_filename)]
         for row in lines:

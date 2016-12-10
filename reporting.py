@@ -26,8 +26,8 @@ class Report:
             return "{\"Title\": \"" + str(self.title) + "\"" + \
                    ", \"Root\": " + ("\"None\"" if self.root_section is None else str(self.root_section)) + "}"
 
-    def find_or_create_section(self, current_section, section_path_elements, element_index, holds_level_tag):
-        next_section_name = section_path_elements[element_index]
+    def find_or_create_section(self, current_section, section_path_elements, holds_level_tag):
+        next_section_name = section_path_elements[0]
         next_section = None
         for section in current_section.children:
             if section.name == next_section_name:
@@ -38,15 +38,15 @@ class Report:
             next_section.parent = current_section
             next_section.holds_level_tag = holds_level_tag
             current_section.children.append(next_section)
-        if len(section_path_elements) == element_index + 1:
+        if len(section_path_elements) == 1:
             return next_section
         else:
-            return self.find_or_create_section(next_section, section_path_elements, element_index + 1, holds_level_tag)
+            return self.find_or_create_section(next_section, section_path_elements[1:], holds_level_tag)
 
     def find_or_create_leaf(self, init_section_path_elements, leaf_element, holds_level_tag=False):
         section_path_elements = init_section_path_elements.copy()
         section_path_elements.append(leaf_element)
-        self.find_or_create_section(self.root_section, section_path_elements, 0, holds_level_tag)
+        return self.find_or_create_section(self.root_section, section_path_elements, holds_level_tag)
 
     @staticmethod
     def propagate_stats_to_parent(section, stats):

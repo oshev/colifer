@@ -22,7 +22,7 @@ class ZoteroParser(ReportExtender):
             self.zotero_api = zotero.Zotero(library_id, library_type, api_key)
             self.naming_rules = NamingRules()
             naming_rules_filename = Config.get_section_param(section_entries, "naming_rules_file")
-            self.naming_rules.read_naming_rules_old(naming_rules_filename)
+            self.naming_rules.read_naming_rules(naming_rules_filename)
         else:
             self.zotero_api = None
 
@@ -35,7 +35,7 @@ class ZoteroParser(ReportExtender):
 
             init_section_path_elements = path.split(SECTION_SEPARATOR)
             init_section_path_elements.append("Read articles")
-            report.find_or_create_section(report.root_section, init_section_path_elements, 0, False)
+            report.find_or_create_section(report.root_section, init_section_path_elements, False)
             init_section_path_elements.pop()
 
             items = self.zotero_api.items(tag=self.read_tag, sort="dateModified")
@@ -49,4 +49,4 @@ class ZoteroParser(ReportExtender):
                         init_section_path_elements = section_path_elements.copy()
                         print("Processing Zotero article: " + item_title)
                         section_path_elements.append("<a href='{}'>{}</a>".format(item_url, item_title))
-                        report.find_or_create_section(report.root_section, section_path_elements, 0, False)
+                        report.find_or_create_section(report.root_section, section_path_elements, False)

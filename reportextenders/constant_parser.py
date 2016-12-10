@@ -41,7 +41,7 @@ class ConstantParser(ReportExtender):
 
             section_path_elements.append(constant_section.b)
 
-            report.find_or_create_section(report.root_section, section_path_elements, 0, True)
+            report.find_or_create_section(report.root_section, section_path_elements, True)
             prev_section_path_elements = section_path_elements
 
 

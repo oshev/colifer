@@ -21,7 +21,7 @@ class PocketParser(ReportExtender):
             self.api = pocket.Pocket(self.pocket_consumer_key, self.pocket_access_token)
             self.naming_rules = NamingRules()
             naming_rules_filename = Config.get_section_param(section_entries, "naming_rules_file")
-            self.naming_rules.read_naming_rules_old(naming_rules_filename)
+            self.naming_rules.read_naming_rules(naming_rules_filename)
         else:
             self.api = None
 
@@ -43,9 +43,7 @@ class PocketParser(ReportExtender):
 
             init_section_path_elements = path.split(SECTION_SEPARATOR)
             init_section_path_elements.append("Read articles")
-            report.find_or_create_section(report.root_section, init_section_path_elements, 0, False)
-            init_section_path_elements.append("Quora")
-            report.find_or_create_section(report.root_section, init_section_path_elements, 0, False)
+            report.find_or_create_section(report.root_section, init_section_path_elements, False)
             init_section_path_elements.pop()
 
             result = self.api.get(state='archive', detailType='simple')
@@ -68,4 +66,4 @@ class PocketParser(ReportExtender):
                                                      "</a>" +
                                                      " (" + self.safe_get(result[0]['list'][key], 'word_count', None) +
                                                      "&nbsp;words)")
-                        report.find_or_create_section(report.root_section, section_path_elements, 0, False)
+                        report.find_or_create_section(report.root_section, section_path_elements, False)

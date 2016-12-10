@@ -2,26 +2,51 @@ class SectionStats:
 
     def add_stats(self, stats):
         self.seconds += stats.seconds
-        self.extra += stats.extra
+        self.words_num += stats.words_num
         self.events_num += stats.events_num
-        self.days_num += stats.days_num
+        self.days = self.days.union(stats.days)
+        self.all_tags = self.all_tags.union(stats.all_tags)
+        self.common_tags = self.common_tags.intersection(stats.common_tags)
+        self.unit_stats.add(stats.unit_stats)
 
-    def __init__(self):
-        self.jiffy_name = ''
-        self.seconds = 0
-        self.extra = 0
-        self.events_num = 0
-        self.days_num = 0
-        self.days_list = []
-        self.comments_list = []
-        self.unit_stats = UnitStats()
+    def __init__(self, path='', seconds=0, words_num=0, tags=set(),
+                 events_num=1, days=set(), comments_list=None, unit_stats=None):
+        self.path = path
+        self.seconds = seconds
+        self.words_num = words_num
+        self.all_tags = tags
+        self.common_tags = tags
+        self.events_num = events_num
+        self.days = days
+        self.comments_list = comments_list if comments_list else []
+        self.unit_stats = unit_stats if unit_stats else UnitStats()
+
+    def get_sorted_and_formatted_days(self):
+        return ", ".join([day.strftime("%m/%d %a") for day in sorted(list(self.days))])
+
+    def __str__(self):
+        text = '('
+        if self.seconds > 0:
+            text += "{:02d}:{:02d}, ".format((self.seconds // 60) // 60, (self.seconds // 60) % 60)
+        if self.words_num > 0:
+            text += "{:d} words, ".format(self.words_num)
+        if self.events_num > 0:
+            text += "{:d} times, ".format(self.events_num)
+        if len(self.days) > 0:
+            text += "days({:d}): {}; ".format(len(self.days), self.get_sorted_and_formatted_days())
+        if self.unit_stats is not None and not self.unit_stats.is_zero():
+            text += self.unit_stats.__str__()
+        text = text.strip(', ').strip('; ')
+        text += ')'
+        return text
 
     def __repr__(self):
         return "{\"Seconds\": " + str(self.seconds) + \
-               ", \"Extra\": " + str(self.extra) + \
+               ", \"Extra\": " + str(self.words_num) + \
                ", \"Events num\": " + str(self.events_num) + \
-               ", \"Days num\": " + str(self.days_num) + \
-               ", \"Days list\": " + ("\"None\"" if self.days_list is None else str(self.days_list)) + \
+               ", \"Days num\": " + str(len(self.days)) + \
+               ", \"Days\": " + ("\"None\"" if self.days is None
+                                                else ", ".join(self.get_sorted_and_formatted_days())) + \
                ", \"Comments list\": " + ("\"None\"" if self.comments_list is None else str(self.comments_list)) + \
                ", \"Unit stats\": " + ("\"None\"" if self.unit_stats is None else str(self.unit_stats)) + "}"
 
@@ -66,7 +91,7 @@ class UnitStats:
 
     def __str__(self):
         return ("S[" + self.fmt_field("pln", self.planned) +
-                self.fmt_field("unt", self.done_units()) +
+                self.fmt_field("unt", self.done_units()) if self.done_units() != self.done_pomodoros else '' +
                 self.fmt_field("untPln", self.done_units_plan) +
                 self.fmt_field("pom", self.done_pomodoros) +
                 self.fmt_field("brk", self.broken_pomodoros) +

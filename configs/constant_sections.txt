@@ -3,27 +3,29 @@
 # Spaces are allowed in any part of the line
 # Order of the sections in the report will replicate the order of lines here
 
-Overview=History: 68:22, 63:45, 59:13, 65:11, 59:33, 60:28, 64:14, 66:16, 39:47, 36:28, 44:41, 40:20, 50:36, 46:43, 45:51, 45:26, 47:43, 52:36, 58:47, 67:16, 70:01, 60:15, 63:10, 57:52, 71:02, 65:38, 53:56, 63:16, 60:33, 57:56, 60:46, 57:32, 65:04, 65:22, 63:26, 72:50, 72:06, 46:40, 68:05, 73:39, 71:31, 71:08, 67:46, 67:26, 65:50, 71:32, 68:15
+#Overview=History: 68:22, 63:45, 59:13, 65:11, 59:33, 60:28, 64:14, 66:16, 39:47, 36:28, 44:41, 40:20, 50:36, 46:43, 45:51, 45:26, 47:43, 52:36, 58:47, 67:16, 70:01, 60:15, 63:10, 57:52, 71:02, 65:38, 53:56, 63:16, 60:33, 57:56, 60:46, 57:32, 65:04, 65:22, 63:26, 72:50, 72:06, 46:40, 68:05, 73:39, 71:31, 71:08, 67:46, 67:26, 65:50, 71:32, 68:15
 
 Overview/Summary=Dummy
-Day Job/Programming=Dummy
-Day Job/Debugging=Dummy
-Day Job/Learning=Dummy
-Day Job/Social=Dummy
-Day Job/Other=Dummy
-Learning=Dummy
-Writing=Dummy
-Social=Dummy
+Day Job/Work tasks=Dummy
+Day Job/Tech Leadership=Dummy
+Learning/Writing=Dummy
+Learning/General education=Dummy
+Learning/French=Dummy
+Learning/Data and ML=Dummy
+Learning/Guitar=Dummy
+Family and friends=Dummy
+Projects/Career=Dummy
+Projects/Planning and reporting=Dummy
+Projects/Chatbots=Dummy
 Sport=Dummy
-Self-organization=Dummy
 Other=Dummy
 Failed=Dummy
 
-Learning/Reading/About Writing/Books=<img class=book src="https://d.gr-assets.com/books/1388176882l/48654.jpg"><a href=https://www.goodreads.com/book/show/48654.Story>Robert McKee "Story: Style, Structure, Substance, and the Principles of Screenwriting"</a>
-PREV=1%, 5%, 10%, 14%| 20%, 23%, 24%, 27%| 28%, 30%, 35%, 36%| 39%, 41%, 43%, 45%| 48%, 53%, 58%, 60% | 60%, 63%, 65%, 68% | 69% X% 73%
+#Learning/Reading/About Writing/Books=<img class=book src="https://d.gr-assets.com/books/1388176882l/48654.jpg"><a href=https://www.goodreads.com/book/show/48654.Story>Robert McKee "Story: Style, Structure, Substance, and the Principles of Screenwriting"</a>
+#PREV=1%, 5%, 10%, 14%| 20%, 23%, 24%, 27%| 28%, 30%, 35%, 36%| 39%, 41%, 43%, 45%| 48%, 53%, 58%, 60% | 60%, 63%, 65%, 68% | 69% X% 73% 77%
 
-Learning/Reading/Books/In English=<img class=book src="https://d2arxad8u2l0g7.cloudfront.net/books/1385226386l/18908744.jpg">Michael Dobbs <a href="https://www.goodreads.com/book/show/18908744-house-of-cards">House of Cards</a>
-PREV=4%, 8%, 20%, 27%| 30%, 36%, 42%, 50% | 56% X% X%
+#Learning/Reading/Books/In English=<img class=book src="https://d2arxad8u2l0g7.cloudfront.net/books/1385226386l/18908744.jpg">Michael Dobbs <a href="https://www.goodreads.com/book/show/18908744-house-of-cards">House of Cards</a>
+#PREV=4%, 8%, 20%, 27%| 30%, 36%, 42%, 50% | 56% X% X% 72%
 
 # Learning/Video/In English=<img class=book src="http://ia.media-imdb.com/images/M/MV5BMTY4ODk3OTM4Nl5BMl5BanBnXkFtZTgwMjMwNzg1NzE@._V1_UY268_CR8,0,182,268_AL_.jpg"><a href=http://www.imdb.com/title/tt4270492/?ref_=fn_al_tt_1>Billions</a>
 # Learning/Video/In English=<img class=book src="http://ia.media-imdb.com/images/M/MV5BZjNiNGJlOTYtOGMxMS00YmM5LTg0M2YtMGMzZmRiOWYyNWU1XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_.jpg"><a href=http://www.imdb.com/title/tt4003966/?ref_=nv_sr_1>Marseille</a>
