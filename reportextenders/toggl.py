@@ -8,6 +8,7 @@ from datetime import datetime
 from tag_order import TagOrder
 from reporting import Report
 from namingrules import NamingRules
+import past_tense_rules
 
 REPORT_PATH_SEPARATOR = '/'
 SECTIONSTAT_PATH_SEPARATOR = '$'
@@ -30,6 +31,9 @@ class TogglEntriesParser(ReportExtender):
             self.naming_rules = NamingRules()
             naming_rules_filename = Config.get_section_param(section_entries, "naming_rules_file")
             self.naming_rules.read_naming_rules(naming_rules_filename)
+            self.past_tense_rules_obj = past_tense_rules.PastTenseRules()
+            self.past_tense_rules_obj.read_past_tense_rules(
+                Config.get_section_param(section_entries, "past_tense_rules_file"))
         else:
             self.auth_token = None
 
@@ -77,7 +81,7 @@ class TogglEntriesParser(ReportExtender):
         project_name = path[0]
         naming_rules_path = self.naming_rules.get_path(project_name)
         init_path = naming_rules_path.split(REPORT_PATH_SEPARATOR) if naming_rules_path else [project_name]
-        leaf_name = path[1]
+        leaf_name = self.past_tense_rules_obj.convert_to_past(path[1])
         tags_with_order = []
         for tag in sectionstat.common_tags:
             order = self.tag_order.get_order(tag)
