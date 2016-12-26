@@ -79,7 +79,7 @@ class JawboneMovesParser(ReportExtender):
 
     def extend_report(self, report, report_parameters):
         if not self.auth_token:
-            pass
+            return
         if not self.moves_stats_path:
             print("You must add Moves report path to JawBone naming rules file")
             exit(1)
