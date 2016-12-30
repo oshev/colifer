@@ -25,7 +25,7 @@ Projects/Planning and reporting=Dummy
 Projects/Chatbots=Dummy
 Sport=Dummy
 Other=Dummy
-Failed=Dummy
+Notes=Dummy
 
 #Learning/Reading/About Writing/Books=<img class=book src="https://d.gr-assets.com/books/1388176882l/48654.jpg"><a href=https://www.goodreads.com/book/show/48654.Story>Robert McKee "Story: Style, Structure, Substance, and the Principles of Screenwriting"</a>
 #PREV=1%, 5%, 10%, 14%| 20%, 23%, 24%, 27%| 28%, 30%, 35%, 36%| 39%, 41%, 43%, 45%| 48%, 53%, 58%, 60% | 60%, 63%, 65%, 68% | 69% X% 73% 77%
