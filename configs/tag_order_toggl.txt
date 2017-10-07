@@ -10,7 +10,7 @@
 # PROJECT_NAME/nature/writing/book/ENTRY_NAME
 # Tags not listed in this file will be ignored in the path builder.
 
-novel, colifer, rebota
-exercise, devops, debugging, editing, codereview, brainstorming, mindmapping, listening, shopping, slidemaking, watching, writing, planning, programming, reading, reporting, testing, talking, chatting
-book, interview, movie, series, lecture, meeting, presentation, tutorial, vocabulary, documentary, documentation, blogpost, correspondence, grammar
+novel, colifer, rebota, martialarts, mlhandson
+exercise, devops, debugging, editing, codereview, brainstorming, mindmapping, listening, shopping, slidemaking, watching, writing, planning, programming, reading, reporting, testing, talking, chatting, gaming, playingmusic, techroutine, dancing
+book, interview, movie, series, lecture, meeting, presentation, tutorial, vocabulary, documentary, documentation, blogpost, correspondence, grammar, guitar, salsa
 russian, spanish, french

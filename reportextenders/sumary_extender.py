@@ -16,10 +16,8 @@ class SummaryExtender(ReportExtender):
         if report.root_section.stats and report.root_section.stats.unit_stats:
             focused_time = int(round((report.root_section.stats.unit_stats.done_pomodoros * 25 * 60) /
                                      report.root_section.stats.seconds * 100))
-            focused_units = int(round(report.root_section.stats.unit_stats.done_pomodoros /
-                                      report.root_section.stats.unit_stats.done_units() * 100))
-            focused_info = "{}% of highly focused time (ratio allTime/pomodoroTime) or {}% units.".\
-                format(focused_time, focused_units)
+            focused_info = "{}% of highly focused time (ratio allTime/pomodoroTime).".\
+                format(focused_time)
             report.find_or_create_leaf(section_path_elements, focused_info)
 
             if report.root_section.stats.unit_stats.planned:
