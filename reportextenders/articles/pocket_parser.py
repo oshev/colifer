@@ -42,16 +42,14 @@ class PocketParser(ReportExtender):
                 exit(1)
 
             init_section_path_elements = path.split(SECTION_SEPARATOR)
-            init_section_path_elements.append("Read articles")
             report.find_or_create_section(report.root_section, init_section_path_elements, False)
-            init_section_path_elements.pop()
 
             result = self.api.get(state='archive', detailType='simple')
             if result is not None and len(result) > 0 and result[0]['list'] is not None:
                 for key in result[0]['list'].keys():
                     section_path_elements = init_section_path_elements.copy()
                     time_read = datetime.datetime.fromtimestamp(int(result[0]['list'][key]['time_read']))
-                    if report_parameters.week_start <= time_read <= report_parameters.week_end:
+                    if report_parameters.period_start <= time_read <= report_parameters.period_end:
                         init_section_path_elements = section_path_elements.copy()
                         if "quora.com" in self.safe_get(result[0]['list'][key], 'resolved_url', 'given_url'):
                             section_path_elements.append("Quora")

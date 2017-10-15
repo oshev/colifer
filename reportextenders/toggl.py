@@ -5,6 +5,7 @@ from reportextenders.report_extender import ReportExtender
 from sectionstats import SectionStats
 from sectionstats import UnitStats
 from datetime import datetime
+from datetime import timedelta
 from tag_order import TagOrder
 from reporting import Report
 from namingrules import NamingRules
@@ -61,18 +62,37 @@ class TogglEntriesParser(ReportExtender):
                                    days=days, unit_stats=unit_stats)
         return sectionstat
 
+    @staticmethod
+    def _diff_months(datetime1: datetime, datetime2: datetime):
+        if datetime1 < datetime2:
+            datetime1, datetime2 = datetime2, datetime1
+        return (datetime1.year - datetime2.year) * 12 + datetime1.month - datetime2.month
+
+    @staticmethod
+    def _chunk_date_ranges(start, end) -> (datetime, datetime):
+        num_chunks = TogglEntriesParser._diff_months(start, end) + 1
+        diff = (end - start) / num_chunks
+        range_start = start
+        for i in range(1, num_chunks + 1):
+            range_end = (start + diff * i)
+            yield (range_start, range_end)
+            range_start = range_end + timedelta(seconds=1)
+
     def get_section_stats(self, report_parameters, projects_dict):
-        start_date = str(report_parameters.week_start).replace(" ", "T") + "Z"
-        end_date = str(report_parameters.week_end).replace(" ", "T") + "Z"
-        response = requests.get(self.entries_endpoint.format(start_date, end_date), headers=self.headers)
-        entries_list = response.json()
+        date_ranges = self._chunk_date_ranges(report_parameters.period_start, report_parameters.period_end)
         sectionstats_dict = {}
-        for entry in entries_list:
-            sectionstat = self.toggl_entry_to_sectionstat(entry, projects_dict)
-            if sectionstat.path in sectionstats_dict:
-                sectionstats_dict[sectionstat.path].add_stats(sectionstat)
-            else:
-                sectionstats_dict[sectionstat.path] = sectionstat
+        for start_date, end_date in date_ranges:
+            start_date_str = str(start_date).replace(" ", "T") + "Z"
+            end_date_str = str(end_date).replace(" ", "T") + "Z"
+            response = requests.get(self.entries_endpoint.format(start_date_str, end_date_str), headers=self.headers)
+            entries_list = response.json()
+
+            for entry in entries_list:
+                sectionstat = self.toggl_entry_to_sectionstat(entry, projects_dict)
+                if sectionstat.path in sectionstats_dict:
+                    sectionstats_dict[sectionstat.path].add_stats(sectionstat)
+                else:
+                    sectionstats_dict[sectionstat.path] = sectionstat
 
         return sectionstats_dict
 

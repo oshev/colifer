@@ -1,8 +1,6 @@
 Report:
-  report_week_number: 43
-  report_year: 2016
-  report_title: "%REPORT_YEAR Week %WEEK_NUMBER (%WEEK_START-%WEEK_END)"
-  pic_dir: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/%REPORT_YEAR Week %WEEK_NUMBER pics"
+  report_title: "%REPORT_YEAR %PERIOD_TYPE%PERIOD_VALUE (%PERIOD_START-%PERIOD_END)"
+  pic_dir: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/%REPORT_YEAR %PERIOD_TYPE%PERIOD_VALUE pics"
 
 ConstantSection:
   filename: configs/constant_sections.txt
@@ -21,7 +19,7 @@ Toggl:
 
 Jiffy:
   enabled: False
-  report_file: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/jiffy/jiffy week %WEEK_NUMBER.csv"
+  report_file: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/jiffy/jiffy %PERIOD_TYPE%PERIOD_VALUE.csv"
   naming_rules_file: configs/naming_rules_jiffy.txt
   column_name_project: Project
   column_name_task: Task
@@ -96,7 +94,7 @@ Pocket:
   naming_rules_file: configs/naming_rules_articles.txt
 
 HtmlGenerator:
-  out_html_report_file: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/%REPORT_YEAR Week %WEEK_NUMBER.html"
+  out_html_report_file: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/%REPORT_YEAR %PERIOD_TYPE%PERIOD_VALUE.html"
   before_report: |
     <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>

@@ -1,5 +1,6 @@
 import htmlreport
 import reporting
+import argparse
 from config import Config
 from report_parameters import ReportParameters
 from reportextenders.articles.pocket_parser import PocketParser
@@ -14,8 +15,17 @@ from reportextenders.trello.boardparser import TrelloBoardParser
 
 if __name__ == '__main__':
 
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--year", required=True, help="The year for which report should be generated", type=int)
+    parser.add_argument("--type", required=True, help="Report type (yearly, quarterly, monthly, weekly)", type=str)
+    parser.add_argument("--period-num", required=True,
+                        help="The number of the period: quarter (1-4), month (1-12), or week (1-53); "
+                             "depending on the report type", type=int)
+
+    args = parser.parse_args()
+
     config = Config()
-    report_parameters = ReportParameters(config.get_param("Report"))
+    report_parameters = ReportParameters(config.get_param("Report"), args.type, args.year, args.period_num)
 
     extenders = [
         ConstantParser(config.get_param("ConstantSection")),

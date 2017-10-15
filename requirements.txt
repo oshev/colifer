@@ -1,0 +1,5 @@
+pocket
+pyzotero
+requests
+argparse
+trolly

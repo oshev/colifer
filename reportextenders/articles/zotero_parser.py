@@ -34,9 +34,7 @@ class ZoteroParser(ReportExtender):
                 exit(1)
 
             init_section_path_elements = path.split(SECTION_SEPARATOR)
-            init_section_path_elements.append("Read articles")
             report.find_or_create_section(report.root_section, init_section_path_elements, False)
-            init_section_path_elements.pop()
 
             items = self.zotero_api.items(tag=self.read_tag, sort="dateModified")
             if items is not None and len(items) > 0:
@@ -45,7 +43,7 @@ class ZoteroParser(ReportExtender):
                     item_title = item['data']['title']
                     item_url = item['data']['url']
                     section_path_elements = init_section_path_elements.copy()
-                    if report_parameters.week_start <= item_date <= report_parameters.week_end:
+                    if report_parameters.period_start <= item_date <= report_parameters.period_end:
                         init_section_path_elements = section_path_elements.copy()
                         print("Processing Zotero article: " + item_title)
                         section_path_elements.append("<a href='{}'>{}</a>".format(item_url, item_title))

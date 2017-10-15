@@ -9,22 +9,19 @@ Overview/Summary/Achievements=Dummy
 Overview/Summary/Good stuff=Dummy
 Overview/Summary/Normal=Dummy
 Overview/Summary/Fuck ups=Dummy
-Overview/Stats from wristband=Dummy
-Overview/RescueTime stats=Dummy
-Overview/RescueTime stats/Most of my time went towards=Dummy
 Day Job/Work tasks=Dummy
 Day Job/Tech Leadership=Dummy
 Learning/Writing=Dummy
 Learning/General education=Dummy
-Learning/French=Dummy
 Learning/Data and ML=Dummy
 Learning/Guitar=Dummy
-Family and friends=Dummy
+Fun, Family, and friends=Dummy
 Projects/Career=Dummy
 Projects/Planning and reporting=Dummy
 Projects/Chatbots=Dummy
 Sport=Dummy
 Other=Dummy
+Read articles=Dummy
 Notes=Dummy
 
 #Learning/Reading/About Writing/Books=<img class=book src="https://d.gr-assets.com/books/1388176882l/48654.jpg"><a href=https://www.goodreads.com/book/show/48654.Story>Robert McKee "Story: Style, Structure, Substance, and the Principles of Screenwriting"</a>
