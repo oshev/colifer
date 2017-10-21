@@ -3,3 +3,4 @@ pyzotero
 requests
 argparse
 trolly
+pyyaml
