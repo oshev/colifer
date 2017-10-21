@@ -4,3 +4,4 @@ requests
 argparse
 trolly
 pyyaml
+matplotlib
