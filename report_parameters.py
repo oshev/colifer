@@ -90,7 +90,7 @@ class ReportParameters:
         date = datetime.date(int(year), 1, 1)
         date_end = datetime.date(int(year) + 1, 1, 7)
         while date < date_end:
-            if date.isocalendar()[1] == week:
+            if date.isocalendar()[1] == week and date.isocalendar()[0] == year:
                 break
             date += datetime.timedelta(days=1)
         datetime_start = datetime.datetime.combine(date, datetime.datetime.min.time())
