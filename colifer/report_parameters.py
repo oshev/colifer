@@ -1,6 +1,6 @@
 import datetime
 import calendar
-from colifer.config import Config
+from config import Config
 from enum import Enum
 
 
