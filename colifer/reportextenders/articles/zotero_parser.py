@@ -46,5 +46,6 @@ class ZoteroParser(ReportExtender):
                     if report_parameters.period_start <= item_date <= report_parameters.period_end:
                         init_section_path_elements = section_path_elements.copy()
                         print("Processing Zotero article: " + item_title)
-                        section_path_elements.append("<a href='{}'>{}</a>".format(item_url, item_title))
+                        # TODO: Find a way to make links agnostic to generated format (atm it's md)
+                        section_path_elements.append("[{}]({})".format(item_title, item_url))
                         report.find_or_create_section(report.root_section, section_path_elements, False)

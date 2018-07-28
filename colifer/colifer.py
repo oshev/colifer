@@ -1,4 +1,4 @@
-import htmlreport
+import markdown_report
 import reporting
 import argparse
 from config import Config
@@ -35,10 +35,10 @@ if __name__ == '__main__':
     for extender in extenders:
         extender.extend_report(report, report_parameters)
 
-    html_report = htmlreport.HtmlReport()
-    html_config_entries = config.get_param('HtmlGenerator')
-    out_html_report_file = report_parameters.set_variables(
-        Config.get_section_param(html_config_entries, 'out_html_report_file'))
-    html_report.generate(report, out_html_report_file,
-                         Config.get_section_param(html_config_entries, 'before_report'),
-                         Config.get_section_param(html_config_entries, 'after_report'))
+    md_report = markdown_report.MarkdownReport()
+    md_config_entries = config.get_param('MarkdownGenerator')
+    out_md_report_file = report_parameters.set_variables(
+        Config.get_section_param(md_config_entries, 'out_md_report_file'))
+    md_report.generate(report, out_md_report_file,
+                       Config.get_section_param(md_config_entries, 'before_report'),
+                       Config.get_section_param(md_config_entries, 'after_report'))

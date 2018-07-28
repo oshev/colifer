@@ -1,6 +1,6 @@
 Report:
   report_title: "%REPORT_YEAR %PERIOD_TYPE%PERIOD_VALUE (%PERIOD_START-%PERIOD_END)"
-  pic_dir: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/%REPORT_YEAR %PERIOD_TYPE%PERIOD_VALUE pics"
+  pic_dir: "OUTPUT_PATH_TO_YOUR_REPORT/%REPORT_YEAR %PERIOD_TYPE%PERIOD_VALUE pics"
 
 ConstantSection:
   filename: configs/constant_sections.txt
@@ -34,53 +34,8 @@ Pocket:
   access_token: PUT_YOUR_ACCESS_TOKEN_HERE
   naming_rules_file: configs/naming_rules_articles.txt
 
-HtmlGenerator:
-  out_html_report_file: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/%REPORT_YEAR %PERIOD_TYPE%PERIOD_VALUE.html"
-  before_report: |
-    <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-    <style>
-    img.book {max-height:80px;vertical-align:middle;padding:5px}
-    img.photo {max-height:320px;vertical-align:middle;padding:5px}
-    .stats {color: lightgray}
-    .level1 {font-weight: bold;font-size:130%;padding:10px}
-    .level2 {font-weight: bold;font-size:120%;padding:10px}
-    .level3 {font-weight: bold;font-size:110%;padding:5px}
-    .level4 {font-weight: bold;padding:5px}
-    .level5 {padding:5px}
-    a {color: #0254EB}
-    a:visited {color: #0254EB}
-    a.morelink {text-decoration:none;outline: none;}
-    .morecontent span {display: none;}
-    </style>
-    </head>
-    <body><div style="background:white;width:800px;right: 0;left: 0;margin-right: auto;margin-left: auto;">
+MarkdownGenerator:
+  out_md_report_file: "OUTPUT_PATH_TO_YOUR_REPORT/%REPORT_YEAR %PERIOD_TYPE%PERIOD_VALUE.md"
+  before_report:
   after_report: |
-    <li class=level4>Time for writing this report: X:X (template 0:10, draft X:X, the rest is editing).</li></div>
-    </body>
-    <script>$(document).ready(function() {
-        var showChar = 400;
-        var ellipsestext = "...";
-        var moretext = "more";
-        var lesstext = "less";
-        $(''.more').each(function() {
-            var content = $(this).html();
-            if(content.length > showChar) {
-                var c = content.substr(0, showChar);
-                var h = content.substr(showChar-1, content.length - showChar);
-                var html = c + '<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';
-                $(this).html(html);
-            }
-        });
-        $(".morelink").click(function(){
-            if($(this).hasClass("less")) {
-                $(this).removeClass("less");
-                $(this).html(moretext);
-            } else {
-                $(this).addClass("less");
-                $(this).html(lesstext);
-            }$(this).parent().prev().toggle();
-            $(this).prev().toggle();return false;
-        });
-    });
-    </script></html>'
+    **Time for writing this report: X:X.**

@@ -55,13 +55,10 @@ class PocketParser(ReportExtender):
                             section_path_elements.append("Quora")
                         print("Processing Pocket article: " + self.safe_get(result[0]['list'][key],
                                                                             'resolved_title', 'given_title'))
-                        section_path_elements.append("<a href='" +
-                                                     self.safe_get(result[0]['list'][key],
-                                                                   'resolved_url', 'given_url') +
-                                                     "'>" +
-                                                     self.safe_get(result[0]['list'][key],
-                                                                   'resolved_title', 'given_title') +
-                                                     "</a>" +
-                                                     " (" + self.safe_get(result[0]['list'][key], 'word_count', None) +
-                                                     "&nbsp;words)")
+                        word_count = self.safe_get(result[0]['list'][key], 'word_count', None)
+                        article_title = self.safe_get(result[0]['list'][key], 'resolved_title', 'given_title')
+                        article_url = self.safe_get(result[0]['list'][key], 'resolved_url', 'given_url')
+                        # TODO: Find a way to make links agnostic to generated format (atm it's md)
+                        section_path_elements.append("[{}]({}) ({} words)".format(article_title, article_url,
+                                                                                  word_count))
                         report.find_or_create_section(report.root_section, section_path_elements, False)
