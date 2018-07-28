@@ -1,15 +1,15 @@
 import requests
 
-from config import Config
-from reportextenders.report_extender import ReportExtender
-from sectionstats import SectionStats
-from sectionstats import UnitStats
+from colifer.config import Config
+from report_extender import ReportExtender
+from colifer.sectionstats import SectionStats
+from colifer.sectionstats import UnitStats
 from datetime import datetime
 from datetime import timedelta
-from tag_order import TagOrder
-from reporting import Report
-from namingrules import NamingRules
-import past_tense_rules
+from colifer.tag_order import TagOrder
+from colifer.reporting import Report
+from colifer.namingrules import NamingRules
+from colifer import past_tense_rules
 
 REPORT_PATH_SEPARATOR = '/'
 SECTIONSTAT_PATH_SEPARATOR = '$'
