@@ -31,7 +31,7 @@ class SectionStats:
         if self.events_num > 0:
             text += "{:d} times, ".format(self.events_num)
         if len(self.days) > 0:
-            text += "{:d} days: {}; ".format(len(self.days), self.get_sorted_and_formatted_days())
+            text += "{:d} days; ".format(len(self.days))
         text = text.strip(', ').strip('; ')
         text += ')'
         return text

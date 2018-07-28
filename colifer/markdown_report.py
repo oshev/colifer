@@ -17,15 +17,16 @@ class MarkdownReport:
                 tags_line = ''
             if nice_stats:
                 stats_line = "\n{}{}".format(self.fill(level + 1), "*{}*".format(nice_stats))
+                days_line = "\n<!--{}-->".format(section.stats.get_sorted_and_formatted_days())
             else:
-                stats_line = ''
+                stats_line = days_line = ''
             if section.holds_level_tag and level + 1 <= MAX_HEADER_LEVEL:
                 section_name = "{} {}".format(self.fill(level + 1, '#'), section.name)
             else:
                 section_name = "**{}**".format(section.name)
 
-            md_file.write("{}- {}{}{}\n".format(self.fill(level), section_name,
-                                                tags_line, stats_line))
+            md_file.write("{}- {}{}{}{}\n".format(self.fill(level), section_name,
+                                                  tags_line, stats_line, days_line))
 
             if section.children is not None and len(section.children) > 0:
                 for child in section.children:
