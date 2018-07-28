@@ -44,4 +44,3 @@ if __name__ == '__main__':
     html_report.generate(report, out_html_report_file,
                          Config.get_section_param(html_config_entries, 'before_report'),
                          Config.get_section_param(html_config_entries, 'after_report'))
-
