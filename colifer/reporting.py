@@ -1,4 +1,4 @@
-import sectionstats
+from colifer import sectionstats
 
 
 class Section:

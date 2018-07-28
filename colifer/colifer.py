@@ -1,13 +1,12 @@
-import htmlreport
-import reporting
+from colifer import htmlreport, reporting
 import argparse
-from config import Config
-from report_parameters import ReportParameters
-from reportextenders.articles.pocket_parser import PocketParser
-from reportextenders.articles.zotero_parser import ZoteroParser
-from reportextenders.constant_parser import ConstantParser
-from reportextenders.toggl import TogglEntriesParser
-from reportextenders.sumary_extender import SummaryExtender
+from colifer.config import Config
+from colifer.report_parameters import ReportParameters
+from articles.pocket_parser import PocketParser
+from articles.zotero_parser import ZoteroParser
+from constant_parser import ConstantParser
+from toggl import TogglEntriesParser
+from sumary_extender import SummaryExtender
 
 if __name__ == '__main__':
 
