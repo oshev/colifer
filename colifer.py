@@ -6,8 +6,6 @@ from report_parameters import ReportParameters
 from reportextenders.articles.pocket_parser import PocketParser
 from reportextenders.articles.zotero_parser import ZoteroParser
 from reportextenders.constant_parser import ConstantParser
-from reportextenders.jawbone.jawbone_moves import JawboneMovesParser
-from reportextenders.jawbone.jawbone_sleep import JawboneSleepParser
 from reportextenders.toggl import TogglEntriesParser
 from reportextenders.sumary_extender import SummaryExtender
 
@@ -30,8 +28,6 @@ if __name__ == '__main__':
         TogglEntriesParser(config.get_param('Toggl')),
         PocketParser(config.get_param('Pocket')),
         ZoteroParser(config.get_param('Zotero')),
-        JawboneSleepParser(config.get_param('JawboneSleep')),
-        JawboneMovesParser(config.get_param('JawboneMoves')),
         SummaryExtender(config.get_param('SummaryExtender'))
     ]
 
