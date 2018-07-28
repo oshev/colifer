@@ -17,26 +17,6 @@ Toggl:
   naming_rules_file: configs/naming_rules_toggl.txt
   past_tense_rules_file: configs/past_tense_rules.txt
 
-JawboneSleep:
-  enabled: False
-  auth_token: ADD_YOUR_AUTH_TOKEN_HERE # see https://jawbone.com/up/developer/authentication
-  endpoint: "https://jawbone.com/nudge/api/v.1.1/users/@me/sleeps?start_time={}&end_time={}"
-  sleep_by_days_graph_file: sleep_by_days.png
-  asleep_by_days_graph_file: asleep_by_days.png
-  naming_rules_file: configs/naming_rules_jawbone.txt
-  graph_tag: |
-      <img style="max-height:300px;vertical-align:middle;padding:5px" src="{}">
-
-JawboneMoves:
-  enabled: False
-  auth_token: ADD_YOUR_AUTH_TOKEN_HERE # see https://jawbone.com/up/developer/authentication
-  endpoint: "https://jawbone.com//nudge/api/v.1.1/users/@me/moves?start_time={}&end_time={}"
-  steps_by_days_graph_file: steps_by_days.png
-  activity_by_days_graph_file: activity_by_days.png
-  naming_rules_file: configs/naming_rules_jawbone.txt
-  graph_tag: |
-      <img style="max-height:300px;vertical-align:middle;padding:5px" src="{}">
-
 Zotero:
   enabled: False
   # Your personal library ID is available at https://www.zotero.org/settings/keys,
