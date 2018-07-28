@@ -2,6 +2,5 @@ pocket
 pyzotero
 requests
 argparse
-trolly
 pyyaml
 matplotlib

@@ -10,7 +10,6 @@ from reportextenders.jawbone.jawbone_moves import JawboneMovesParser
 from reportextenders.jawbone.jawbone_sleep import JawboneSleepParser
 from reportextenders.toggl import TogglEntriesParser
 from reportextenders.sumary_extender import SummaryExtender
-from reportextenders.trello.boardparser import TrelloBoardParser
 
 if __name__ == '__main__':
 
@@ -29,7 +28,6 @@ if __name__ == '__main__':
     extenders = [
         ConstantParser(config.get_param("ConstantSection")),
         TogglEntriesParser(config.get_param('Toggl')),
-        TrelloBoardParser(config.get_param('Trello')),
         PocketParser(config.get_param('Pocket')),
         ZoteroParser(config.get_param('Zotero')),
         JawboneSleepParser(config.get_param('JawboneSleep')),
