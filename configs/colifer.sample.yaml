@@ -5,9 +5,6 @@ Report:
 ConstantSection:
   filename: configs/constant_sections.txt
 
-SummaryExtender:
-  summary_path: Overview/Summary
-
 Toggl:
   enabled: False
   auth_token: ADD_YOUR_AUTH_TOKEN_HERE

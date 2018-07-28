@@ -7,7 +7,6 @@ from reportextenders.articles.pocket_parser import PocketParser
 from reportextenders.articles.zotero_parser import ZoteroParser
 from reportextenders.constant_parser import ConstantParser
 from reportextenders.toggl import TogglEntriesParser
-from reportextenders.sumary_extender import SummaryExtender
 
 if __name__ == '__main__':
 
@@ -28,7 +27,6 @@ if __name__ == '__main__':
         TogglEntriesParser(config.get_param('Toggl')),
         PocketParser(config.get_param('Pocket')),
         ZoteroParser(config.get_param('Zotero')),
-        SummaryExtender(config.get_param('SummaryExtender'))
     ]
 
     report = reporting.Report()
