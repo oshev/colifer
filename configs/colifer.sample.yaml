@@ -17,16 +17,6 @@ Toggl:
   naming_rules_file: configs/naming_rules_toggl.txt
   past_tense_rules_file: configs/past_tense_rules.txt
 
-Jiffy:
-  enabled: False
-  report_file: "/Users/olegshevelev/Dropbox/Productivity/Reports Unfinished/jiffy/jiffy %PERIOD_TYPE%PERIOD_VALUE.csv"
-  naming_rules_file: configs/naming_rules_jiffy.txt
-  column_name_project: Project
-  column_name_task: Task
-  column_name_extra: Note
-  column_name_start_time: Start time
-  column_name_stop_time: Stop time
-
 JawboneSleep:
   enabled: False
   auth_token: ADD_YOUR_AUTH_TOKEN_HERE # see https://jawbone.com/up/developer/authentication
