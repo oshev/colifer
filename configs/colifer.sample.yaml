@@ -37,32 +37,6 @@ JawboneMoves:
   graph_tag: |
       <img style="max-height:300px;vertical-align:middle;padding:5px" src="{}">
 
-Trello:
-  enabled: False
-  board_id: AhXqJnjl
-  # to generate your Trello developer key visit https://trello.com/1/appKey/generate
-  api_key: PUT_YOUR_KEY_HERE
-  # to get your token read https://trello.com/docs/gettingstarted/index.html#getting-a-token-from-a-user
-  # or just open the following link in the browser (don't forget to change SUBSTITUE_WITH_YOUR_DEV_KEY with your developer_key
-  # https://trello.com/1/authorize?key=SUBSTITUTE_WITH_YOUR_DEV_KEY&name=coscious-life-generator&expiration=never&response_type=token
-  user_oauth_token: PUT_YOUR_OAUTH_TOKEN_HERE
-  list_done_names: Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
-  list_notes_name: Notes
-  naming_rules_file: configs/naming_rules_trello.txt
-  past_tense_rules_file: configs/past_tense_rules.txt
-  lists_stats_graph_filename: lists_stats.png
-  list_stats_graph_tag: |
-      <img style="max-height:300px;vertical-align:middle;padding:5px" src="{}">
-  list_group_separator_regexp: \s*\*\*\*.*\*\*\*\s*
-  # values before week 36
-  # title_planned_regexp: ^.*\((-?\d+(\.\d+)?)\).*$
-  # title_done_cucumbers_regexp: ^.*\((-?\d+(\.\d+)?)\).*$
-  # title_done_pomodoros_regexp: ^.*\[(\d+)\]\s*$
-  title_planned_regexp: ^.*\((?:\d+(?:\.\d+)?\/)?(\d+(?:\.\d+)?)\).*$
-  title_done_cucumbers_regexp: ^.*\((\d+(?:\.\d+)?)\/\d+(?:\.\d+)?\).*$
-  title_done_pomodoros_regexp: ^\s*(\d+)\s*✓.*$
-  title_clean_regexp: (^\s*\d+\s*✓\s*|\(\d+(\.\d+)?\/?\d*(\.\d+)?\)|\[\d+\]\s*)
-
 Zotero:
   enabled: False
   # Your personal library ID is available at https://www.zotero.org/settings/keys,

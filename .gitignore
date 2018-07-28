@@ -76,4 +76,3 @@ venv
 configs/colifer.yaml
 __pycache__/
 reportextenders/articles/__pycache__/
-trello/__pycache__/
