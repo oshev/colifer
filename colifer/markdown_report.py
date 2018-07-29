@@ -23,7 +23,10 @@ class MarkdownReport:
             if section.holds_level_tag and level + 1 <= MAX_HEADER_LEVEL:
                 section_name = "{} {}".format(self.fill(level + 1, '#'), section.name)
             else:
-                section_name = "**{}**".format(section.name)
+                if section.children:
+                    section_name = "**{}**".format(section.name)
+                else:
+                    section_name = section.name
 
             md_file.write("{}- {}{}{}{}\n".format(self.fill(level), section_name,
                                                   tags_line, stats_line, days_line))
