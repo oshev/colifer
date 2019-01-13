@@ -3,22 +3,25 @@
 # Spaces are allowed in any part of the line
 # Order of the sections in the report will replicate the order of lines here
 
-Overview/Summary=Dummy
-Overview/Summary/Work=Dummy
-Overview/Summary/Achievements=Dummy
-Overview/Summary/Good stuff=Dummy
-Overview/Summary/Normal=Dummy
-Overview/Summary/Fuck ups=Dummy
-Day Job/Work tasks=Dummy
-Learning/Writing=Dummy
-Learning/General education=Dummy
-Learning/Data and ML=Dummy
-Learning/Guitar=Dummy
-Fun, Family, and friends=Dummy
-Projects/Career=Dummy
-Projects/Planning and reporting=Dummy
-Sport=Dummy
-Other=Dummy
-Read articles=Dummy
+Overview/Achievements=Dummy
+Overview/Fuck ups=Dummy
+Oracle/Unavoidable Side Work=Dummy
+Oracle/Avoidable Side Work=Dummy
+Oracle/ERP Account Defaulting=Dummy
+Oracle/Master Key Tools for ML Orchestration=Dummy
+Oracle/Offers=Dummy
+Social-self/Closest Family=Dummy
+Social-self/Remote Family=Dummy
+Social-self/Friends and Colleagues=Dummy
+Lone-self/Personal Accountability=Dummy
+Lone-self/Mastery of Written English=Dummy
+Lone-self/Conversational Fluency in French=Dummy
+Lone-self/Reading Fiction=Dummy
+Lone-self/Reading Non-fiction=Dummy
+Lone-self/Reading Non-fiction/Read articles=Dummy
+Lone-self/Self-entertainment=Dummy
+Lone-self/CoLifer=Dummy
+Lone-self/Sport=Dummy
+Lone-self/Other Lone Stuff=Dummy
 Notes=Dummy
 

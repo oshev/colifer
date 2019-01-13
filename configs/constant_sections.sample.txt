@@ -1,0 +1,9 @@
+# Syntax: Section1/../SectionN=Constant Section Value
+# PREV is a special section value which means last mentioned section
+# Spaces are allowed in any part of the line
+# Order of the sections in the report will replicate the order of lines here
+
+Overview/Summary=Dummy
+Overview/Summary/Work=Dummy
+Learning/Writing=Dummy
+Learning/General education=Dummy

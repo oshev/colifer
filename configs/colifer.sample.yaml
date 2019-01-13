@@ -10,6 +10,7 @@ Toggl:
   auth_token: ADD_YOUR_AUTH_TOKEN_HERE
   entries_endpoint: "https://www.toggl.com/api/v8/time_entries?start_date={}&end_date={}"
   projects_endpoint: "https://www.toggl.com/api/v8/workspaces/YOU_WORKSPACE_ID_HERE/projects" # call https://www.toggl.com/api/v8/workspaces
+  clients_endpoint: "https://www.toggl.com/api/v8/workspaces/YOU_WORKSPACE_ID_HERE/clients"
   tag_order_filename: configs/tag_order_toggl.txt
   past_tense_rules_file: configs/past_tense_rules.txt
 

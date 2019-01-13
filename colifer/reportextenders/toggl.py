@@ -1,3 +1,5 @@
+from typing import Dict
+
 import requests
 
 from config import Config
@@ -8,10 +10,14 @@ from datetime import timedelta
 from tag_order import TagOrder
 from reporting import Report
 import past_tense_rules
+from collections import namedtuple
 
-REPORT_PATH_SEPARATOR = '/'
+
 SECTION_STAT_PATH_SEPARATOR = '$'
 CHARACTERS_IN_DATE = 10
+NO_CLIENT = "Default"
+NO_PROJECT = "Default"
+ProjectWithClient = namedtuple('ProjectWithClient', 'client project')
 
 
 class TogglEntriesParser(ReportExtender):
@@ -24,6 +30,7 @@ class TogglEntriesParser(ReportExtender):
                             'Content-Type': 'application/json'}
             self.entries_endpoint = Config.get_section_param(section_entries, "entries_endpoint")
             self.projects_endpoint = Config.get_section_param(section_entries, "projects_endpoint")
+            self.clients_endpoint = Config.get_section_param(section_entries, "clients_endpoint")
             self.tag_order = TagOrder(Config.get_section_param(section_entries, "tag_order_filename"))
             self.past_tense_rules_obj = past_tense_rules.PastTenseRules()
             self.past_tense_rules_obj.read_past_tense_rules(
@@ -31,27 +38,35 @@ class TogglEntriesParser(ReportExtender):
         else:
             self.auth_token = None
 
-    def get_projects(self):
+    def get_clients(self) -> Dict[str, str]:
+        response = requests.get(self.clients_endpoint, headers=self.headers)
+        clients_list = response.json()
+        clients_dict = {client['id']: client['name'] for client in clients_list}
+        return clients_dict
+
+    def get_projects(self) -> Dict[str, ProjectWithClient]:
+        clients = self.get_clients()
         response = requests.get(self.projects_endpoint, headers=self.headers)
         projects_list = response.json()
-        projects_dict = {project['id']: project['name'] for project in projects_list}
+        projects_dict = dict()
+        for project in projects_list:
+            client = clients.get(project.get('cid', None), NO_CLIENT)
+            projects_dict[project['id']] = ProjectWithClient(client, project['name'])
         return projects_dict
 
     @staticmethod
-    def toggl_entry_to_section_stat(entry, projects_dict):
-        project_name = "No project"
-        if 'pid' in entry and entry['pid'] in projects_dict:
-            project_name = projects_dict[entry['pid']]
-
+    def toggl_entry_to_section_stat(entry: Dict[str, str], projects_with_client: Dict[str, ProjectWithClient]):
+        project_name, client = projects_with_client.get(entry.get('pid', None),
+                                                        ProjectWithClient(NO_CLIENT, NO_PROJECT))
         days = set()
         entry_date = datetime.strptime(entry['start'][:CHARACTERS_IN_DATE], '%Y-%m-%d').date()
         days.add(entry_date)
         entry_duration = entry['duration']
-        tags = set(entry['tags']) if 'tags' in entry else set()
-        sectionstat = SectionStats(path=SECTION_STAT_PATH_SEPARATOR.join([project_name, entry['description']]),
-                                   seconds=entry_duration, tags=tags,
-                                   days=days)
-        return sectionstat
+        tags = set(entry.get('tags', set()))
+        section_stat = SectionStats(path=SECTION_STAT_PATH_SEPARATOR.join([client, project_name, entry['description']]),
+                                    seconds=entry_duration, tags=tags,
+                                    days=days)
+        return section_stat
 
     @staticmethod
     def _diff_months(datetime1: datetime, datetime2: datetime):
@@ -69,7 +84,7 @@ class TogglEntriesParser(ReportExtender):
             yield (range_start, range_end)
             range_start = range_end + timedelta(seconds=1)
 
-    def get_section_stats(self, report_parameters, projects_dict):
+    def get_section_stats(self, report_parameters, projects_with_client: Dict[str, ProjectWithClient]):
         date_ranges = self._chunk_date_ranges(report_parameters.period_start, report_parameters.period_end)
         section_stats_dict = {}
         for start_date, end_date in date_ranges:
@@ -79,7 +94,7 @@ class TogglEntriesParser(ReportExtender):
             entries_list = response.json()
 
             for entry in entries_list:
-                section_stat = self.toggl_entry_to_section_stat(entry, projects_dict)
+                section_stat = self.toggl_entry_to_section_stat(entry, projects_with_client)
                 if section_stat.path in section_stats_dict:
                     section_stats_dict[section_stat.path].add_stats(section_stat)
                 else:
@@ -88,10 +103,9 @@ class TogglEntriesParser(ReportExtender):
         return section_stats_dict
 
     def get_report_path(self, section_stat):
-        path = section_stat.path.split(SECTION_STAT_PATH_SEPARATOR)
-        project_name = path[0]
-        init_path = project_name
-        leaf_name = self.past_tense_rules_obj.convert_to_past(path[1])
+        client_name, project_name, leaf_name = section_stat.path.split(SECTION_STAT_PATH_SEPARATOR)
+        init_path = [project_name, client_name]
+        leaf_name_past_tense = self.past_tense_rules_obj.convert_to_past(leaf_name)
         tags_with_order = []
         for tag in section_stat.common_tags:
             order = self.tag_order.get_order(tag)
@@ -102,14 +116,14 @@ class TogglEntriesParser(ReportExtender):
         init_path.extend(ordered_meaningful_tags)
         if len(section_stat.common_tags) != len(section_stat.all_tags):
             init_path.append("Mixed")
-        return init_path, leaf_name
+        return init_path, leaf_name_past_tense
 
     def extend_report(self, report, report_parameters):
         if not self.auth_token:
             pass
 
-        projects = self.get_projects()
-        event_stats_list = self.get_section_stats(report_parameters, projects)
+        projects_with_client = self.get_projects()
+        event_stats_list = self.get_section_stats(report_parameters, projects_with_client)
         sorted_event_stats_list = sorted(event_stats_list.values(), key=lambda x: x.seconds, reverse=True)
         for event_stats in sorted_event_stats_list:
             init_path, leaf_name = self.get_report_path(event_stats)
