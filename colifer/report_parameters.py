@@ -52,7 +52,7 @@ class ReportParameters:
         self.report_title = self.set_variables(Config.get_section_param(config_entries, 'report_title'))
 
         self.pic_dir = self.set_variables(Config.get_section_param(config_entries, 'pic_dir'))
-        Config.make_dir(self.pic_dir)
+        # Config.make_dir(self.pic_dir)
 
     @staticmethod
     def _abort_if_period_invalid(period_number: int, min_value: int, max_value: int, period_name: str):
