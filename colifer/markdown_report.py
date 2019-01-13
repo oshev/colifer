@@ -1,4 +1,4 @@
-MAX_HEADER_LEVEL = 3
+MAX_HEADER_LEVEL = 4
 
 
 class MarkdownReport:
@@ -12,24 +12,21 @@ class MarkdownReport:
             all_tags = None
         if section.name != 'Dummy':
             if all_tags:
-                tags_line = "\n{}{}".format(self.fill(level + 1), "*{}*".format(", ".join(sorted(list(all_tags)))))
+                tags_line = f" *{', '.join(sorted(list(all_tags)))}*"
             else:
                 tags_line = ''
             if nice_stats:
-                stats_line = "\n{}{}".format(self.fill(level + 1), "*{}*".format(nice_stats))
-                days_line = "\n<!--{}-->".format(section.stats.get_sorted_and_formatted_days())
+                stats_line = f"*{nice_stats}*"
+                days_line = f"<!--{section.stats.get_sorted_and_formatted_days()}-->"
             else:
                 stats_line = days_line = ''
-            if section.holds_level_tag and level + 1 <= MAX_HEADER_LEVEL:
-                section_name = "{} {}".format(self.fill(level + 1, '#'), section.name)
-            else:
-                if section.children:
-                    section_name = "**{}**".format(section.name)
-                else:
-                    section_name = section.name
 
-            md_file.write("{}- {}{}{}{}\n".format(self.fill(level), section_name,
-                                                  tags_line, stats_line, days_line))
+            if section.holds_level_tag and level + 1 <= MAX_HEADER_LEVEL:
+                section_name = f"\n{self.fill(level + 1)} {section.name}\n"
+            else:
+                section_name = f"{self.fill(level + 1 - MAX_HEADER_LEVEL, '  ')}- {section.name}"
+
+            md_file.write(f"{section_name} {tags_line} {stats_line} {days_line}\n")
 
             if section.children is not None and len(section.children) > 0:
                 for child in section.children:
@@ -38,13 +35,13 @@ class MarkdownReport:
                 if section.stats is not None and section.stats.comments_list is not None:
                     for comment in section.stats.comments_list:
 
-                        md_file.write('{}- {}\n'.format(self.fill(level), comment))
+                        md_file.write(f'{self.fill(level)}-{comment}\n')
 
     def generate(self, report, filename, before_report, after_report):
         md_file = open(filename, "w")
         if before_report:
             md_file.write(before_report + '\n')
-        md_file.write('# {}\n'.format(report.title))
+        md_file.write(f'# {report.title}\n')
         self.traverse_and_save(md_file, report.root_section, 1)
         md_file.write('\n')
         if after_report:
@@ -52,7 +49,7 @@ class MarkdownReport:
         md_file.close()
 
     @staticmethod
-    def fill(num, filler='  '):
+    def fill(num, filler='#'):
         spaces = ''
         for counter in range(0, num - 1):
             spaces += filler
