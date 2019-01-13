@@ -10,10 +10,8 @@ from reporting import Report
 import past_tense_rules
 
 REPORT_PATH_SEPARATOR = '/'
-SECTIONSTAT_PATH_SEPARATOR = '$'
+SECTION_STAT_PATH_SEPARATOR = '$'
 CHARACTERS_IN_DATE = 10
-MIN_POMODORO_IN_SECONDS = 24*60
-MAX_POMODORO_IN_SECONDS = 27*60
 
 
 class TogglEntriesParser(ReportExtender):
@@ -50,7 +48,7 @@ class TogglEntriesParser(ReportExtender):
         days.add(entry_date)
         entry_duration = entry['duration']
         tags = set(entry['tags']) if 'tags' in entry else set()
-        sectionstat = SectionStats(path=SECTIONSTAT_PATH_SEPARATOR.join([project_name, entry['description']]),
+        sectionstat = SectionStats(path=SECTION_STAT_PATH_SEPARATOR.join([project_name, entry['description']]),
                                    seconds=entry_duration, tags=tags,
                                    days=days)
         return sectionstat
@@ -90,7 +88,7 @@ class TogglEntriesParser(ReportExtender):
         return section_stats_dict
 
     def get_report_path(self, section_stat):
-        path = section_stat.path.split(SECTIONSTAT_PATH_SEPARATOR)
+        path = section_stat.path.split(SECTION_STAT_PATH_SEPARATOR)
         project_name = path[0]
         init_path = project_name
         leaf_name = self.past_tense_rules_obj.convert_to_past(path[1])
