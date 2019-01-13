@@ -9,7 +9,7 @@ from datetime import datetime
 from datetime import timedelta
 from tag_order import TagOrder
 from reporting import Report
-import past_tense_rules
+import tense_rules
 from collections import namedtuple
 
 
@@ -32,8 +32,8 @@ class TogglEntriesParser(ReportExtender):
             self.projects_endpoint = Config.get_section_param(section_entries, "projects_endpoint")
             self.clients_endpoint = Config.get_section_param(section_entries, "clients_endpoint")
             self.tag_order = TagOrder(Config.get_section_param(section_entries, "tag_order_filename"))
-            self.past_tense_rules_obj = past_tense_rules.PastTenseRules()
-            self.past_tense_rules_obj.read_past_tense_rules(
+            self.past_tense_rules_obj = tense_rules.TenseRules()
+            self.past_tense_rules_obj.read_tense_rules(
                 Config.get_section_param(section_entries, "past_tense_rules_file"))
         else:
             self.auth_token = None
@@ -105,7 +105,7 @@ class TogglEntriesParser(ReportExtender):
     def get_report_path(self, section_stat):
         client_name, project_name, leaf_name = section_stat.path.split(SECTION_STAT_PATH_SEPARATOR)
         init_path = [project_name, client_name]
-        leaf_name_past_tense = self.past_tense_rules_obj.convert_to_past(leaf_name)
+        leaf_name_past_tense = self.past_tense_rules_obj.convert_tense(leaf_name)
         tags_with_order = []
         for tag in section_stat.common_tags:
             order = self.tag_order.get_order(tag)
