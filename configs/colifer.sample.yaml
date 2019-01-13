@@ -11,7 +11,6 @@ Toggl:
   entries_endpoint: "https://www.toggl.com/api/v8/time_entries?start_date={}&end_date={}"
   projects_endpoint: "https://www.toggl.com/api/v8/workspaces/YOU_WORKSPACE_ID_HERE/projects" # call https://www.toggl.com/api/v8/workspaces
   tag_order_filename: configs/tag_order_toggl.txt
-  naming_rules_file: configs/naming_rules_toggl.txt
   past_tense_rules_file: configs/past_tense_rules.txt
 
 Zotero:

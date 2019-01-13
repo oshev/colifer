@@ -7,7 +7,6 @@ from datetime import datetime
 from datetime import timedelta
 from tag_order import TagOrder
 from reporting import Report
-from namingrules import NamingRules
 import past_tense_rules
 
 REPORT_PATH_SEPARATOR = '/'
@@ -28,9 +27,6 @@ class TogglEntriesParser(ReportExtender):
             self.entries_endpoint = Config.get_section_param(section_entries, "entries_endpoint")
             self.projects_endpoint = Config.get_section_param(section_entries, "projects_endpoint")
             self.tag_order = TagOrder(Config.get_section_param(section_entries, "tag_order_filename"))
-            self.naming_rules = NamingRules()
-            naming_rules_filename = Config.get_section_param(section_entries, "naming_rules_file")
-            self.naming_rules.read_naming_rules(naming_rules_filename)
             self.past_tense_rules_obj = past_tense_rules.PastTenseRules()
             self.past_tense_rules_obj.read_past_tense_rules(
                 Config.get_section_param(section_entries, "past_tense_rules_file"))
@@ -44,7 +40,7 @@ class TogglEntriesParser(ReportExtender):
         return projects_dict
 
     @staticmethod
-    def toggl_entry_to_sectionstat(entry, projects_dict):
+    def toggl_entry_to_section_stat(entry, projects_dict):
         project_name = "No project"
         if 'pid' in entry and entry['pid'] in projects_dict:
             project_name = projects_dict[entry['pid']]
@@ -77,7 +73,7 @@ class TogglEntriesParser(ReportExtender):
 
     def get_section_stats(self, report_parameters, projects_dict):
         date_ranges = self._chunk_date_ranges(report_parameters.period_start, report_parameters.period_end)
-        sectionstats_dict = {}
+        section_stats_dict = {}
         for start_date, end_date in date_ranges:
             start_date_str = str(start_date).replace(" ", "T") + "Z"
             end_date_str = str(end_date).replace(" ", "T") + "Z"
@@ -85,29 +81,28 @@ class TogglEntriesParser(ReportExtender):
             entries_list = response.json()
 
             for entry in entries_list:
-                sectionstat = self.toggl_entry_to_sectionstat(entry, projects_dict)
-                if sectionstat.path in sectionstats_dict:
-                    sectionstats_dict[sectionstat.path].add_stats(sectionstat)
+                section_stat = self.toggl_entry_to_section_stat(entry, projects_dict)
+                if section_stat.path in section_stats_dict:
+                    section_stats_dict[section_stat.path].add_stats(section_stat)
                 else:
-                    sectionstats_dict[sectionstat.path] = sectionstat
+                    section_stats_dict[section_stat.path] = section_stat
 
-        return sectionstats_dict
+        return section_stats_dict
 
-    def get_report_path(self, sectionstat):
-        path = sectionstat.path.split(SECTIONSTAT_PATH_SEPARATOR)
+    def get_report_path(self, section_stat):
+        path = section_stat.path.split(SECTIONSTAT_PATH_SEPARATOR)
         project_name = path[0]
-        naming_rules_path = self.naming_rules.get_path(project_name)
-        init_path = naming_rules_path.split(REPORT_PATH_SEPARATOR) if naming_rules_path else [project_name]
+        init_path = project_name
         leaf_name = self.past_tense_rules_obj.convert_to_past(path[1])
         tags_with_order = []
-        for tag in sectionstat.common_tags:
+        for tag in section_stat.common_tags:
             order = self.tag_order.get_order(tag)
             if order is not None:
                 tags_with_order.append((tag.title(), order))
         ordered_meaningful_tags = [tag_and_order[0]
                                    for tag_and_order in sorted(tags_with_order, key=lambda x: (x[1], x[0]))]
         init_path.extend(ordered_meaningful_tags)
-        if len(sectionstat.common_tags) != len(sectionstat.all_tags):
+        if len(section_stat.common_tags) != len(section_stat.all_tags):
             init_path.append("Mixed")
         return init_path, leaf_name
 
