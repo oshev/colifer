@@ -15,6 +15,7 @@ class MarkdownReport:
                 tags_line = f" *{', '.join(sorted(list(all_tags)))}*"
             else:
                 tags_line = ''
+
             if nice_stats:
                 stats_line = f"*{nice_stats}*"
                 days_line = f"<!--{section.stats.get_sorted_and_formatted_days()}-->"
@@ -22,9 +23,11 @@ class MarkdownReport:
                 stats_line = days_line = ''
 
             if section.holds_level_tag and level + 1 <= MAX_HEADER_LEVEL:
-                section_name = f"\n{self.fill(level + 1)} {section.name}\n"
+                prefix_spaces = self.fill(level + 1)
+                section_name = f"\n{prefix_spaces} {section.name}\n"
             else:
-                section_name = f"{self.fill(level + 1 - MAX_HEADER_LEVEL, '  ')}- {section.name}"
+                prefix_spaces = self.fill(level + 1 - MAX_HEADER_LEVEL, '  ')
+                section_name = f"{prefix_spaces}- **{section.name}**"
 
             md_file.write(f"{section_name} {tags_line} {stats_line} {days_line}\n")
 
