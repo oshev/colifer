@@ -73,3 +73,5 @@ compile compiled
 process processed
 register registered
 conduct conducted
+catch caught
+eat_out ate_out

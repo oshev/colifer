@@ -11,6 +11,6 @@
 # Tags not listed in this file will be ignored in the path builder.
 
 martialarts, datascience, machinelearning, pocket, cryptocurrencies, finance, leadership, math, statistics, meetup, museum, parenting
-exercise, devops, debugging, editing, codereview, brainstorming, mindmapping, listening, shopping, slidemaking, watching, writing, planning, programming, reading, reporting, testing, talking, chatting, video_gaming, playingmusic, techroutine, dancing, constitutional, chores, itroutine, meditation, pairprogramming, presenting, refactoring, review, running, singing, sleeping, summarizing, workout
+exercise, devops, debugging, editing, codereview, brainstorming, mindmapping, listening, shopping, slidemaking, watching, writing, planning, programming, reading, reporting, testing, talking, chatting, video_gaming, playingmusic, techroutine, dancing, constitutional, chores, itroutine, meditation, pairprogramming, presenting, refactoring, review, running, singing, sleeping, summarizing, workout, video-gaming
 book, interview, movie, series, lecture, meeting, presentation, tutorial, vocabulary, documentary, documentation, blogpost, correspondence, grammar, guitar, salsa, article, boardgame, course, news, phone, vc, podcast, waste
 russian, spanish

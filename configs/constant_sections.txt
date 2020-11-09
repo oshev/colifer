@@ -3,13 +3,24 @@
 # Spaces are allowed in any part of the line
 # Order of the sections in the report will replicate the order of lines here
 
-Overview/Achievements=Dummy
-Overview/Fuck ups=Dummy
+Overview/Highlights=Dummy
 Oracle/Unavoidable Side Work=Dummy
 Oracle/Avoidable Side Work=Dummy
+#Oracle/Master Key Tools for ML Orchestration=Dummy
 Oracle/ERP Account Defaulting=Dummy
-Oracle/Master Key Tools for ML Orchestration=Dummy
-Oracle/Offers=Dummy
+Oracle/Athena=Dummy
+#Oracle/Offer recommendations=Dummy
+#Oracle/CX Product recommendations=Dummy
+Oracle/Seldon Core=Dummy
+#Oracle/CX Lead scoring project=Dummy
+#Oracle/CX Marketing=Dummy
+#Oracle/PSCR=Dummy
+#Oracle/Random studies at work=Dummy
+#Oracle/IUX Smart Actions=Dummy
+#Oracle/Chatbots=Dummy
+#Oracle/DS Workbench=Dummy
+Oracle/AP invoice Line to PO Line matching=Dummy
+Oracle/Supervision Framework Dependencies=Dummy
 Social-self/Closest Family=Dummy
 Social-self/Remote Family=Dummy
 Social-self/Friends and Colleagues=Dummy
@@ -20,7 +31,9 @@ Lone-self/Reading Fiction=Dummy
 Lone-self/Reading Non-fiction=Dummy
 Lone-self/Self-entertainment=Dummy
 Lone-self/CoLifer=Dummy
+Lone-self/RoboTiles=Dummy
+#Lone-self/Toggl-Extra=Dummy
 Lone-self/Sport=Dummy
+Lone-self/Next career move=Dummy
 Lone-self/Other Lone Stuff=Dummy
 Notes=Dummy
-
