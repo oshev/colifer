@@ -12,7 +12,6 @@ from reporting import Report
 import tense_rules
 from collections import namedtuple
 
-
 SECTION_STAT_PATH_SEPARATOR = '$'
 CHARACTERS_IN_DATE = 10
 NO_CLIENT = "Default"
@@ -31,7 +30,8 @@ class TogglEntriesParser(ReportExtender):
             self.entries_endpoint = Config.get_section_param(section_entries, "entries_endpoint")
             self.projects_endpoint = Config.get_section_param(section_entries, "projects_endpoint")
             self.clients_endpoint = Config.get_section_param(section_entries, "clients_endpoint")
-            self.tag_order = TagOrder(Config.get_section_param(section_entries, "tag_order_filename"))
+            self.tag_order = TagOrder(
+                Config.get_section_param(section_entries, "tag_order_filename"))
             self.past_tense_rules_obj = tense_rules.TenseRules()
             self.past_tense_rules_obj.read_tense_rules(
                 Config.get_section_param(section_entries, "past_tense_rules_file"))
@@ -55,7 +55,8 @@ class TogglEntriesParser(ReportExtender):
         return projects_dict
 
     @staticmethod
-    def toggl_entry_to_section_stat(entry: Dict[str, str], projects_with_client: Dict[str, ProjectWithClient]):
+    def toggl_entry_to_section_stat(entry: Dict[str, str],
+                                    projects_with_client: Dict[str, ProjectWithClient]):
         project_name, client = projects_with_client.get(entry.get('pid', None),
                                                         ProjectWithClient(NO_CLIENT, NO_PROJECT))
         days = set()
@@ -63,9 +64,10 @@ class TogglEntriesParser(ReportExtender):
         days.add(entry_date)
         entry_duration = entry['duration']
         tags = set(entry.get('tags', set()))
-        section_stat = SectionStats(path=SECTION_STAT_PATH_SEPARATOR.join([client, project_name, entry['description']]),
-                                    seconds=entry_duration, tags=tags,
-                                    days=days)
+        section_stat = SectionStats(
+            path=SECTION_STAT_PATH_SEPARATOR.join([client, project_name, entry['description']]),
+            seconds=entry_duration, tags=tags,
+            days=days)
         return section_stat
 
     @staticmethod
@@ -81,16 +83,19 @@ class TogglEntriesParser(ReportExtender):
         range_start = start
         for i in range(1, num_chunks + 1):
             range_end = (start + diff * i)
-            yield (range_start, range_end)
+            yield range_start, range_end
             range_start = range_end + timedelta(seconds=1)
 
-    def get_section_stats(self, report_parameters, projects_with_client: Dict[str, ProjectWithClient]):
-        date_ranges = self._chunk_date_ranges(report_parameters.period_start, report_parameters.period_end)
+    def get_section_stats(self, report_parameters,
+                          projects_with_client: Dict[str, ProjectWithClient]):
+        date_ranges = self._chunk_date_ranges(report_parameters.period_start,
+                                              report_parameters.period_end)
         section_stats_dict = {}
         for start_date, end_date in date_ranges:
             start_date_str = str(start_date).replace(" ", "T") + "Z"
             end_date_str = str(end_date).replace(" ", "T") + "Z"
-            response = requests.get(self.entries_endpoint.format(start_date_str, end_date_str), headers=self.headers)
+            response = requests.get(self.entries_endpoint.format(start_date_str, end_date_str),
+                                    headers=self.headers)
             entries_list = response.json()
 
             for entry in entries_list:
@@ -112,24 +117,22 @@ class TogglEntriesParser(ReportExtender):
             if order is not None:
                 tags_with_order.append((tag.title(), order))
         ordered_meaningful_tags = [tag_and_order[0]
-                                   for tag_and_order in sorted(tags_with_order, key=lambda x: (x[1], x[0]))]
+                                   for tag_and_order in
+                                   sorted(tags_with_order, key=lambda x: (x[1], x[0]))]
         init_path.extend(ordered_meaningful_tags)
-        if len(section_stat.common_tags) != len(section_stat.all_tags):
-            init_path.append("Mixed")
         return init_path, leaf_name_past_tense
 
     def extend_report(self, report, report_parameters):
         if not self.auth_token:
-            pass
+            raise RuntimeError("Can't connect to Toggl: auth token is empty")
 
         projects_with_client = self.get_projects()
         event_stats_list = self.get_section_stats(report_parameters, projects_with_client)
-        sorted_event_stats_list = sorted(event_stats_list.values(), key=lambda x: x.seconds, reverse=True)
+        sorted_event_stats_list = sorted(event_stats_list.values(), key=lambda x: x.seconds,
+                                         reverse=True)
         for event_stats in sorted_event_stats_list:
             init_path, leaf_name = self.get_report_path(event_stats)
             print(init_path, leaf_name)
             section = report.find_or_create_leaf(init_path, leaf_name)
             section.stats = event_stats
             Report.propagate_stats_to_parent(section, section.stats)
-
-

@@ -1,10 +1,13 @@
+from typing import Optional
+
+
 class NamingRules:
 
     def __init__(self):
         super().__init__()
         self.__content = None
 
-    def get_path(self, tags, text=""):
+    def get_path(self, tags, text="") -> Optional[str]:
         if tags in self.__content:
             rules = self.__content[tags]
             for (matcher, path) in rules:
@@ -12,7 +15,7 @@ class NamingRules:
                     return path
         return None
 
-    def read_naming_rules_with_tags(self, naming_rules_filename):
+    def read_naming_rules_with_tags(self, naming_rules_filename: str) -> None:
         self.__content = {}
         lines = [line.strip() for line in open(naming_rules_filename)]
         for row in lines:
@@ -29,7 +32,7 @@ class NamingRules:
                         self.__content[tags] = []
                     self.__content[tags].append((matcher, path))
 
-    def read_naming_rules(self, naming_rules_filename):
+    def read_naming_rules(self, naming_rules_filename: str) -> None:
         self.__content = {}
         lines = [line.strip() for line in open(naming_rules_filename)]
         for row in lines:
