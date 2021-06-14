@@ -1,3 +1,4 @@
+import base64
 from typing import Dict
 
 import requests
@@ -23,8 +24,9 @@ class TogglEntriesParser(ReportExtender):
     def __init__(self, section_entries):
         super().__init__(section_entries)
         if Config.get_section_param(section_entries, "enabled"):
-            self.auth_token = Config.get_section_param(section_entries, "auth_token")
-            self.headers = {'Authorization': 'Basic ' + self.auth_token,
+            self.api_token = Config.get_section_param(section_entries, "api_token")
+            string = self.api_token + ':api_token'
+            self.headers = {'Authorization': 'Basic ' + base64.b64encode(string.encode('ascii')).decode("utf-8"),
                             'Cache-Control': 'no-cache',
                             'Content-Type': 'application/json'}
             self.entries_endpoint = Config.get_section_param(section_entries, "entries_endpoint")
@@ -36,7 +38,7 @@ class TogglEntriesParser(ReportExtender):
             self.past_tense_rules_obj.read_tense_rules(
                 Config.get_section_param(section_entries, "past_tense_rules_file"))
         else:
-            self.auth_token = None
+            self.api_token = None
 
     def get_clients(self) -> Dict[str, str]:
         response = requests.get(self.clients_endpoint, headers=self.headers)
@@ -123,7 +125,7 @@ class TogglEntriesParser(ReportExtender):
         return init_path, leaf_name_past_tense
 
     def extend_report(self, report, report_parameters):
-        if not self.auth_token:
+        if not self.api_token:
             raise RuntimeError("Can't connect to Toggl: auth token is empty")
 
         projects_with_client = self.get_projects()

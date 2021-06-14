@@ -7,10 +7,12 @@ ConstantSection:
 
 Toggl:
   enabled: False
-  auth_token: ADD_YOUR_AUTH_TOKEN_HERE
-  entries_endpoint: "https://www.toggl.com/api/v8/time_entries?start_date={}&end_date={}"
-  projects_endpoint: "https://www.toggl.com/api/v8/workspaces/YOU_WORKSPACE_ID_HERE/projects" # call https://www.toggl.com/api/v8/workspaces
-  clients_endpoint: "https://www.toggl.com/api/v8/workspaces/YOU_WORKSPACE_ID_HERE/clients"
+  api_token: ADD_YOUR_API_TOKEN_HERE
+  entries_endpoint: "https://api.track.toggl.com/api/v8/time_entries?start_date={}&end_date={}"
+  # to get to workspace id call https://www.toggl.com/api/v8/workspaces
+  # or open your workspace and check the url https://track.toggl.com/organization/ORG_ID/workspaces/YOU_WORKSPACE_ID_HERE/settings/general
+  projects_endpoint: "https://api.track.toggl.com/api/v8/workspaces/YOU_WORKSPACE_ID_HERE/projects" # call https://www.toggl.com/api/v8/workspaces
+  clients_endpoint: "https://api.track.toggl.com/api/v8/workspaces/YOU_WORKSPACE_ID_HERE/clients"
   tag_order_filename: configs/tag_order_toggl.txt
   past_tense_rules_file: configs/past_tense_rules.txt
 
