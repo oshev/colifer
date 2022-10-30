@@ -1,4 +1,4 @@
-from reporting import Section, Report
+from colifer.reporting import Report
 
 MAX_HEADER_LEVEL = 4
 

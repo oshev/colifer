@@ -1,7 +1,8 @@
-import datetime
 import calendar
-from config import Config
+import datetime
 from enum import Enum
+
+from colifer.config import Config
 
 
 class ReportType(Enum):

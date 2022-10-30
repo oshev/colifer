@@ -1,17 +1,15 @@
 import base64
+from collections import namedtuple
+from datetime import datetime, timedelta
 from typing import Dict, Tuple
 
 import requests
-
-from config import Config
-from reportextenders.report_extender import ReportExtender
-from sectionstats import SectionStats
-from datetime import datetime
-from datetime import timedelta
-from tag_order import TagOrder
-from reporting import Report
-import tense_rules
-from collections import namedtuple
+from colifer import tense_rules
+from colifer.config import Config
+from colifer.reportextenders.report_extender import ReportExtender
+from colifer.reporting import Report
+from colifer.sectionstats import SectionStats
+from colifer.tag_order import TagOrder
 
 SECTION_STAT_PATH_SEPARATOR = '$'
 CHARACTERS_IN_DATE = 10

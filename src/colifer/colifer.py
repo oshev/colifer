@@ -1,12 +1,12 @@
-import markdown_report
-import reporting
 import argparse
-from config import Config
-from report_parameters import ReportParameters
-from reportextenders.articles.pocket_parser import PocketParser
-from reportextenders.articles.zotero_parser import ZoteroParser
-from reportextenders.constant_parser import ConstantParser
-from reportextenders.toggl import TogglEntriesParser
+
+from colifer import markdown_report, reporting
+from colifer.config import Config
+from colifer.report_parameters import ReportParameters
+from colifer.reportextenders.articles.pocket_parser import PocketParser
+from colifer.reportextenders.articles.zotero_parser import ZoteroParser
+from colifer.reportextenders.constant_parser import ConstantParser
+from colifer.reportextenders.toggl import TogglEntriesParser
 
 if __name__ == '__main__':
 

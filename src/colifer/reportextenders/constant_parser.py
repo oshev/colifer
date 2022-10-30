@@ -1,5 +1,6 @@
-from config import Config
-from reportextenders.report_extender import ReportExtender
+from colifer.config import Config
+from colifer.reportextenders.report_extender import ReportExtender
+
 SPECIAL_PREV = "PREV"
 SECTION_SEPARATOR = '/'
 

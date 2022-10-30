@@ -1,10 +1,9 @@
 import datetime
 
 import pocket
-
-from config import Config
-from namingrules import NamingRules
-from reportextenders.report_extender import ReportExtender
+from colifer.config import Config
+from colifer.namingrules import NamingRules
+from colifer.reportextenders.report_extender import ReportExtender
 
 SECTION_SEPARATOR = '/'
 DEFAULT_LABEL_RULE = "Default"
