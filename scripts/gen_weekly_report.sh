@@ -5,4 +5,4 @@ if [ $dir = "scripts" ]; then
    cd ..
 fi
 
-python colifer/colifer.py --year $(date +%Y) --type weekly --period-num $1
+python src/colifer/colifer.py --year $(date +%Y) --type weekly --period-num $1

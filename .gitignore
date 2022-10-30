@@ -78,3 +78,4 @@ __pycache__/
 reportextenders/articles/__pycache__/
 
 configs/constant_sections.txt
+.vscode

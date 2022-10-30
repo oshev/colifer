@@ -1,5 +1,5 @@
 import base64
-from typing import Dict
+from typing import Dict, Tuple
 
 import requests
 
@@ -79,7 +79,7 @@ class TogglEntriesParser(ReportExtender):
         return (datetime1.year - datetime2.year) * 12 + datetime1.month - datetime2.month
 
     @staticmethod
-    def _chunk_date_ranges(start, end) -> (datetime, datetime):
+    def _chunk_date_ranges(start, end) -> Tuple[datetime, datetime]:
         num_chunks = TogglEntriesParser._diff_months(start, end) + 1
         diff = (end - start) / num_chunks
         range_start = start
