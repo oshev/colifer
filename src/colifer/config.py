@@ -9,7 +9,7 @@ class Config:
     def __init__(self):
         super().__init__()
         config_yaml_stream = open('configs/colifer.yaml', "r")
-        self.entries = yaml.load(config_yaml_stream)
+        self.entries = yaml.safe_load(config_yaml_stream)
 
     @staticmethod
     def get_param_recursive(entry, elements):
