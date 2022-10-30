@@ -13,8 +13,11 @@ logger = logging.getLogger(__name__)
 def main():
     config = Config()
     pocker_parser = PocketParser(config.get_param('Pocket'))
-    result = pocker_parser.api.get(state='unread', detailType='simple')
-    logger.info(f"Current Pocket queues size: {len(result)}")
+    result_unread = pocker_parser.api.get(state='unread', detailType='simple')
+    result_archived = pocker_parser.api.get(state='archived', detailType='simple')
+    logger.info(f"\nPocket stats: \n"
+                f"   Unread queue size: {len(result_unread[0]['list'])}\n"
+                f"   Number archived: {len(result_archived[0]['list'])}")
 
 if __name__ == '__main__':
     main()
