@@ -1,6 +1,7 @@
 import argparse
 
-from colifer import markdown_report, reporting
+from colifer.markdown_report import MarkdownReport
+from colifer.reporting import Report
 from colifer.config import Config
 from colifer.report_parameters import ReportParameters
 from colifer.reportextenders.articles.pocket_parser import PocketParser
@@ -32,13 +33,13 @@ if __name__ == '__main__':
         ZoteroParser(config.get_param('Zotero')),
     ]
 
-    report = reporting.Report()
+    report = Report()
     report.create(report_parameters.report_title)
 
     for extender in extenders:
         extender.extend_report(report, report_parameters)
 
-    md_report = markdown_report.MarkdownReport()
+    md_report = MarkdownReport()
     md_config_entries = config.get_param('MarkdownGenerator')
     out_md_report_file = report_parameters.set_variables(
         Config.get_section_param(md_config_entries, 'out_md_report_file'))
