@@ -1,4 +1,4 @@
-# CoLifer Project README
+# CoLifer
 
 CoLifer is a Python-based project that generates yearly, quarterly, monthly, and weekly reports in markdown format. The reports are based on personal data from Toggl, Zotero, and Pocket. The project allows you to define various configurations in the `/config` directory, including a main configuration file named `colifer.yaml`.
 
